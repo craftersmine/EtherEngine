@@ -8,10 +8,7 @@ using System.Windows.Forms;
 using craftersmine.EtherEngine.Content;
 using craftersmine.EtherEngine.Core;
 using craftersmine.EtherEngine.Utilities;
-using GLGDIPlus;
-//using craftersmine.EtherEngine.Utilities;
-using OpenTK;
-using OpenTK.Graphics.OpenGL;
+using craftersmine.GameEngine.Input;
 
 namespace craftersmine.EtherEngine.Rendering.Tester
 {
@@ -22,6 +19,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
         static Window gameWindow;
         public static Texture texture;
         static Animation animation;
+        public static ContentManager contentManager;
 
         static void Main(string[] args)
         {
@@ -30,14 +28,14 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             gameWindow = new Window("[RENDERER/CONTENT] craftersmine.EtherEngine", WindowSizePresets.SVGA, false);
             gameWindow.VSyncMode = VSyncMode.On;
             gameWindow.GLGDI.IsLinearFilteringEnabled = false;
-            Debugging.DrawFPS = true;
+            Debugging.DrawDebug = true;
             Debugging.ShowDrawCallsPerFrameInTitle = true;
 
-            ContentManager mgr = new ContentManager("root");
+            contentManager = new ContentManager("root");
 
-            texture = mgr.LoadTexture("TestCircle");
+            texture = contentManager.LoadTexture("TestCircle");
 
-            animation = mgr.LoadAnimation("Animation");
+            animation = contentManager.LoadAnimation("Animation");
 
             Game.GameStarted += Game_GameStarted;
 
@@ -64,10 +62,17 @@ namespace craftersmine.EtherEngine.Rendering.Tester
         int coordCount = 0;
 
         List<GameObject> myObjs = new List<GameObject>();
+        GameObject movable = new GameObject();
 
         public override void OnStart()
         {
             BackgroundColor = Color.Green;
+            movable.Texture = Program.contentManager.LoadTexture("TestAnim");
+            movable.Width = 128;
+            movable.Height = 32;
+            movable.X = 32;
+            movable.Y = 32;
+
             for (int x = 0; x < SceneCamera.FrameWidth / 2 / 32 + 1; x++)
                 for (int y = 0; y < SceneCamera.FrameHeight / 2 / 32 + 1; y++)
                 {
@@ -86,14 +91,30 @@ namespace craftersmine.EtherEngine.Rendering.Tester
                 }
 
             AddGameObjects(myObjs);
+            AddGameObject(movable);
         }
 
         public override void OnUpdate()
         {
-            foreach (var obj in myObjs)
+            if (Keyboard.IsKeyDown(Keys.W))
             {
-                obj.X++;
-                obj.Y++;
+                movable.Y--;
+                SceneCamera.MoveCamera(0, 1);
+            }
+            if (Keyboard.IsKeyDown(Keys.S))
+            {
+                movable.Y++;
+                SceneCamera.MoveCamera(0, -1);
+            }
+            if (Keyboard.IsKeyDown(Keys.A))
+            {
+                movable.X--;
+                SceneCamera.MoveCamera(-1, 0);
+            }
+            if (Keyboard.IsKeyDown(Keys.D))
+            {
+                movable.X++;
+                SceneCamera.MoveCamera(1, 0);
             }
         }
     }
