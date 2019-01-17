@@ -11,12 +11,24 @@ namespace craftersmine.EtherEngine.Utilities
     /// </summary>
     public sealed class Debugging
     {
-        internal static Logger StaticLogger { get; set; }
+        public static Logger Logger { get; set; }
+
+        public static int TPS { get; set; }
+
+        public static int FPS { get; set; }
+
+        public static int DrawCalls { get; set; }
+
+        public static double CPU { get; set; }
+
+        public static double RAM { get; set; } 
+
+        public static double FrameTime { get; set; }
 
         /// <summary>
         /// Gets or sets is FPS counter draws on screen
         /// </summary>
-        public static bool DrawFPS { get; set; }
+        public static bool DrawDebug { get; set; }
 
         /// <summary>
         /// Gets or sets is DrawCall counter is shown in titlebar after window title
@@ -31,7 +43,7 @@ namespace craftersmine.EtherEngine.Utilities
         /// <param name="isOnlyConsole">Indicates log entry must log only to console if true, else false</param>
         public static void Log(LogEntryType prefix, string contents, bool isOnlyConsole = false)
         {
-            StaticLogger?.Log(prefix, contents, isOnlyConsole);
+            Logger?.Log(prefix, contents, isOnlyConsole);
         }
 
         /// <summary>
@@ -41,7 +53,7 @@ namespace craftersmine.EtherEngine.Utilities
         /// <param name="exception">Exception to write</param>
         public static void LogException(LogEntryType prefix, Exception exception)
         {
-            StaticLogger?.LogException(prefix, exception);
+            Logger?.LogException(prefix, exception);
         }
     }
 }
