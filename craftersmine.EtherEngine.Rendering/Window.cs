@@ -96,7 +96,7 @@ namespace craftersmine.EtherEngine.Rendering
 
             Render?.Invoke(this, new RenderEventArgs() { FrameHeight = WindowSize.Height, FrameWidth = WindowSize.Width, GLGDIInstance = GLGDI });
             
-            if (Debugging.DrawFPS)
+            if (Debugging.DrawDebug)
             {
                 GLGDI.DrawRectangle(fpsBgColor, fpsBounds);
                 GLGDI.FillRectangle(fpsBgColor, fpsBounds);
@@ -137,11 +137,14 @@ namespace craftersmine.EtherEngine.Rendering
 
         private void preRun()
         {
-            if (Debugging.DrawFPS)
+            if (Debugging.DrawDebug)
             {
                 fpsUpdater = new AccurateTimer(new Action(() => {
-                    fpsData = string.Format("{0} FPS\r\n{1:F2} ms", FPS, _gameWnd.RenderPeriod * 1000);
+                    Debugging.FPS = FPS;
+                    Debugging.FrameTime = _gameWnd.RenderPeriod * 1000;
+                    fpsData = string.Format("{0} FPS\r\nFrameTime: {1:F2} ms\r\n{2} DrawCalls per frame\r\n{3} TPS", Debugging.FPS, Debugging.FrameTime, Debugging.DrawCalls, Debugging.TPS);
                     fpsBounds.Width = 0;
+                    fpsBounds.Height = 0;
                     int lastLength = 0;
                     foreach (var ln in fpsData.Split(new string[] { "\r\n" }, StringSplitOptions.None))
                     {
@@ -155,6 +158,7 @@ namespace craftersmine.EtherEngine.Rendering
                             fpsBounds.Width += 7;
                             fpsBounds.X = WindowSize.Width - fpsBounds.Width;
                         }
+                        fpsBounds.Height += 15;
                     }
                 }), 1000);
                 fpsUpdater.Start();
