@@ -19,12 +19,6 @@ namespace craftersmine.EtherEngine.Utilities
         /// </summary>
         public List<LogEntry> LogEntries { get; } = new List<LogEntry>();
 
-        static Logger()
-        {
-            string tempDirectoryPath = Environment.GetEnvironmentVariable("temp");
-            Debugging.StaticLogger = new Logger(tempDirectoryPath, "craftersmine.EtherEngine");
-        }
-
         /// <summary>
         /// Creates new <see cref="Logger"/> instance
         /// </summary>
