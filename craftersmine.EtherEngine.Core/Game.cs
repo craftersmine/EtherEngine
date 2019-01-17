@@ -24,6 +24,8 @@ namespace craftersmine.EtherEngine.Core
         {
             try
             {
+                string tempDirectoryPath = Environment.GetEnvironmentVariable("temp");
+                Debugging.Logger = new Logger(tempDirectoryPath, "craftersmine.EtherEngine");
                 Debugging.Log(LogEntryType.Info, "craftersmine EtherEngine (c) craftersmine 2018-2019");
                 Debugging.Log(LogEntryType.Info, "Initializing game...");
                 Debugging.Log(LogEntryType.Info, "Creating GameUpdater...");
