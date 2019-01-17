@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using craftersmine.EtherEngine.Rendering;
+using craftersmine.EtherEngine.Utilities;
 
 namespace craftersmine.EtherEngine.Core
 {
@@ -13,7 +14,7 @@ namespace craftersmine.EtherEngine.Core
 
         internal static void OnRender(object sender, RenderEventArgs e)
         {
-            DrawCallsPerFrame = 0;
+            Debugging.DrawCalls = 0;
             if (SceneManager.CurrentScene != null)
             {
                 for (int obj = 0; obj < SceneManager.CurrentScene.GameObjects.Count; obj++)
@@ -28,10 +29,12 @@ namespace craftersmine.EtherEngine.Core
                             SceneManager.CurrentScene.GameObjects[obj].RendererY,
                             SceneManager.CurrentScene.GameObjects[obj].Width,
                             SceneManager.CurrentScene.GameObjects[obj].Height);
-                        DrawCallsPerFrame++;
+                        Debugging.DrawCalls++;
                     }
                 }
             }
+            if (Debugging.ShowDrawCallsPerFrameInTitle)
+                Game.GameWnd.Title = Game.DefaultWindowTitle + " | " + Debugging.DrawCalls;
         }
     }
 }
