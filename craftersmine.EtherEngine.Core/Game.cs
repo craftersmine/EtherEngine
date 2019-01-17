@@ -29,7 +29,7 @@ namespace craftersmine.EtherEngine.Core
                 Debugging.Log(LogEntryType.Info, "craftersmine EtherEngine (c) craftersmine 2018-2019");
                 Debugging.Log(LogEntryType.Info, "Initializing game...");
                 Debugging.Log(LogEntryType.Info, "Creating GameUpdater...");
-                GameUpdater = new GameUpdater(40);
+                GameUpdater = new GameUpdater(60);
                 GameWnd = gameWindow;
                 DefaultWindowTitle = GameWnd.Title;
                 GameWnd.Render += GameRendererHelper.OnRender;
