@@ -59,10 +59,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\glgdiplus_0.1.fixed\GLGDIPlus\GLGDIPlus.csproj">
-      <Project>{094B5509-188E-4856-9280-1E325CA7D400}</Project>
-      <Name>GLGDIPlus</Name>
-    </ProjectReference>
     <ProjectReference Include="..\craftersmine.EtherEngine.Content\craftersmine.EtherEngine.Content.csproj">
       <Project>{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09}</Project>
       <Name>craftersmine.EtherEngine.Content</Name>

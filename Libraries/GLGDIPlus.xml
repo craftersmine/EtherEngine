@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GLGDIPlus</name>
+    </assembly>
+    <members>
+        <member name="M:GLGDIPlus.GLGraphics.Init">
+            <summary>
+            Initializes 2D mode.
+            </summary>
+        </member>
+        <member name="M:GLGDIPlus.GLGraphics.Resize(System.Int32,System.Int32)">
+            <summary>
+            Resizes viewport.
+            </summary>
+            <param name="windowW">New width of window.</param>
+            <param name="windowH">New height of window.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLGraphics.SetClearColor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Sets color to be cleared on Clear() call.
+            </summary>
+            <param name="r">Red intensity.</param>
+            <param name="g">Green intensity.</param>
+            <param name="b">Blue intensity.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLGraphics.SetClearColor(System.Drawing.Color)">
+            <summary>
+            Sets color to be cleared on Clear() call.
+            </summary>
+            <param name="c">Clearing Color</param>
+        </member>
+        <member name="M:GLGDIPlus.GLGraphics.Clear">
+            <summary>
+            Clears the background.
+            </summary>
+        </member>
+        <member name="M:GLGDIPlus.GLGraphics.Clear(System.Drawing.Color)">
+            <summary>
+            Clears the background with specified color
+            </summary>
+            <param name="c">Clearing color</param>
+        </member>
+        <member name="M:GLGDIPlus.GLGraphics.Color(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Sets drawing color.
+            </summary>
+            <param name="r">Red intensity.</param>
+            <param name="g">Green intensity.</param>
+            <param name="b">Blue intensity.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLGraphics.Color(System.Drawing.Color)">
+            <summary>
+            Sets drawing color.
+            </summary>
+            <param name="color">Drawing color</param>
+        </member>
+        <member name="M:GLGDIPlus.GLGraphics.Color(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Sets drawing color.
+            </summary>
+            <param name="r">Red intensity.</param>
+            <param name="g">Green intensity.</param>
+            <param name="b">Blue intensity.</param>
+            <param name="a">Alpha intensity.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLGraphics.Translate(System.Int32,System.Int32)">
+            <summary>
+            Translates.
+            </summary>
+            <param name="x">X position.</param>
+            <param name="y">Y position.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLGraphics.Rotate(System.Single,System.Int32,System.Int32)">
+            <summary>
+            Rotates.
+            </summary>
+            <param name="angle">Angle of rotation.</param>
+            <param name="originX">X position of origin to be rotated around.</param>
+            <param name="originY">Y position of origin to be rotated around.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLGraphics.Scale(System.Single,System.Single)">
+            <summary>
+            Scales.
+            </summary>
+            <param name="x">X scale factor.</param>
+            <param name="y">Y scale factor.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLGraphics.Reset">
+            <summary>
+            Resets color to white and loads identity.
+            </summary>
+        </member>
+        <member name="M:GLGDIPlus.GLGraphics.SetLinearFiltering(System.Boolean)">
+            <summary>
+            Set filtering to LINEAR if value is true, 
+            otherwise to NEAREST
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:GLGDIPlus.GLImage.#ctor">
+            <summary>
+            Creates 4 vertices and texcoords for quad.
+            </summary>
+        </member>
+        <member name="M:GLGDIPlus.GLImage.Load(System.String)">
+            <summary>
+            Loads image from harddisk into memory.
+            </summary>
+            <param name="path">Image path.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLImage.FromBitmap(System.Drawing.Bitmap)">
+            <summary>
+            Loads image from harddisk into memory.
+            </summary>
+            <param name="path">Image path.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLImage.Free">
+            <summary>
+            Deletes texture from memory.
+            </summary>
+        </member>
+        <member name="M:GLGDIPlus.GLImage.Draw(System.Int32,System.Int32)">
+            <summary>
+            Draws image.
+            </summary>
+            <param name="x">X position of left-upper corner.</param>
+            <param name="y">Y position of left-upper corner.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLImage.Draw(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Draws a part of image.
+            </summary>
+            <param name="x">X position of left-upper corner.</param>
+            <param name="y">Y position of left-upper corner.</param>
+            <param name="imgX">X positon on image.</param>
+            <param name="imgY">Y positon on image.</param>
+            <param name="imgW">Width of image part to be drawn.</param>
+            <param name="imgH">Height of image part to be drawn.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLImage.Draw(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Draws image with specified size.
+            </summary>
+            <param name="x">X position of left-upper corner.</param>
+            <param name="y">Y position of left-upper corner.</param>
+            <param name="w">Width of image.</param>
+            <param name="h">Height of image.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLImage.Draw(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Draws a part of image with specified size.
+            </summary>
+            <param name="x">X position of left-upper corner.</param>
+            <param name="y">Y position of left-upper corner.</param>
+            <param name="w">Width of image.</param>
+            <param name="h">Height of image.</param>
+            <param name="imgX">X positon on image.</param>
+            <param name="imgY">Y positon on image.</param>
+            <param name="imgW">Width of image part to be drawn.</param>
+            <param name="imgH">Height of image part to be drawn.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLImage.BuildTexcoords">
+            <summary>
+            Builds texcoords for quad.
+            </summary>
+        </member>
+        <member name="M:GLGDIPlus.GLImage.BuildTexcoords(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Builds texcoords for quad.
+            </summary>
+            <param name="u1">U1.</param>
+            <param name="u2">U2.</param>
+            <param name="v1">V1.</param>
+            <param name="v2">V2.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLImage.BuildVertices(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Builds vertices for quad.
+            </summary>
+            <param name="x">X pos.</param>
+            <param name="y">Y pos.</param>
+            <param name="w">Width.</param>
+            <param name="h">Height.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLImageBase.SetSize(System.Int32,System.Int32)">
+            <summary>
+            Sets new size.
+            </summary>
+            <param name="w">New width.</param>
+            <param name="h">New height.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLImageBase.SetBlending">
+            <summary>
+            Sets blending.
+            </summary>
+        </member>
+        <member name="M:GLGDIPlus.GLImageBase.SetBlending(System.Byte)">
+            <summary>
+            Sets blending.
+            </summary>
+            <param name="a">Alpha intensity.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLImageBase.SetBlending(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Sets blending.
+            </summary>
+            <param name="r">Red intensity.</param>
+            <param name="g">Green intensity.</param>
+            <param name="b">Blue intensity.</param>
+            <param name="a">Alpha intensity.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLImageBase.DisableBlending">
+            <summary>
+            Disables blending.
+            </summary>
+        </member>
+        <member name="M:GLGDIPlus.GLImageBase.Begin(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Prepares drawing.
+            </summary>
+            <param name="x">X position.</param>
+            <param name="y">Y position.</param>
+            <param name="w">Width of frame.</param>
+            <param name="h">Height of frame.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLImageBase.End">
+            <summary>
+            Ends drawing.
+            </summary>
+        </member>
+        <member name="M:GLGDIPlus.GLMultiImage.#ctor">
+            <summary>
+            Creates 4 vertices and texcoords for quad.
+            </summary>
+        </member>
+        <member name="M:GLGDIPlus.GLMultiImage.SetImageTiles(System.Collections.Generic.List{System.Drawing.RectangleF})">
+            <summary>
+            Set rectangles where you need draw image
+            </summary>
+            <param name="tiles"></param>
+        </member>
+        <member name="M:GLGDIPlus.GLMultiImage.Load(System.String)">
+            <summary>
+            Loads image from harddisk into memory.
+            </summary>
+            <param name="path">Image path.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLMultiImage.FromBitmap(System.Drawing.Bitmap)">
+            <summary>
+            Loads image from harddisk into memory.
+            </summary>
+            <param name="path">Image path.</param>
+        </member>
+        <member name="M:GLGDIPlus.GLMultiImage.Free">
+            <summary>
+            Deletes texture from memory.
+            </summary>
+        </member>
+        <member name="M:GLGDIPlus.GLMultiImage.Draw">
+            <summary>
+            Draws a part of image with specified size.
+            </summary>
+            <param name="x">X position of left-upper corner.</param>
+            <param name="y">Y position of left-upper corner.</param>
+            <param name="w">Width of image.</param>
+            <param name="h">Height of image.</param>
+            <param name="imgX">X positon on image.</param>
+            <param name="imgY">Y positon on image.</param>
+            <param name="imgW">Width of image part to be drawn.</param>
+            <param name="imgH">Height of image part to be drawn.</param>
+        </member>
+        <member name="M:GLGDIPlus.VBO.BuildVertices">
+            <summary>
+            Builds VBO for vertices.
+            </summary>
+        </member>
+        <member name="M:GLGDIPlus.VBO.BuildTex">
+            <summary>
+            Builds VBO for texcoords.
+            </summary>
+        </member>
+        <member name="M:GLGDIPlus.VBO.Draw">
+            <summary>
+            Draws VBO.
+            </summary>
+        </member>
+        <member name="M:GLGDIPlus.VBO.Draw(OpenTK.Graphics.OpenGL.BeginMode)">
+            <summary>
+            Draws VBO.
+            </summary>
+            <param name="mode">Mode used for drawing.</param>
+        </member>
+        <member name="M:GLGDIPlus.VBO.Draw(System.Int32)">
+            <summary>
+            Draws VBO.
+            </summary>
+            <param name="lenght">Number of vertices to be drawn from array.</param>
+        </member>
+        <member name="M:GLGDIPlus.VBO.Draw(System.Int32,OpenTK.Graphics.OpenGL.BeginMode)">
+            <summary>
+            Draws VBO.
+            </summary>
+            <param name="lenght">Number of vertices to be drawn from array.</param>
+            <param name="mode">Mode used for drawing.</param>
+        </member>
+    </members>
+</doc>

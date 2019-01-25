@@ -60,10 +60,6 @@
     <Compile Include="Tileset.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\glgdiplus_0.1.fixed\GLGDIPlus\GLGDIPlus.csproj">
-      <Project>{094B5509-188E-4856-9280-1E325CA7D400}</Project>
-      <Name>GLGDIPlus</Name>
-    </ProjectReference>
     <ProjectReference Include="..\craftersmine.EtherEngine.Content\craftersmine.EtherEngine.Content.csproj">
       <Project>{c7ab00ee-188d-4b1b-bdf5-3ef5a10fdc09}</Project>
       <Name>craftersmine.EtherEngine.Content</Name>
