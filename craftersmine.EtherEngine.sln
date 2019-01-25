@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GLGDI+", "GLGDI+", "{541B9682-972D-4049-924D-7CC39BFB590B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLGDIPlus", "..\..\..\glgdiplus_0.1.fixed\GLGDIPlus\GLGDIPlus.csproj", "{094B5509-188E-4856-9280-1E325CA7D400}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.Rendering", "craftersmine.EtherEngine.Rendering\craftersmine.EtherEngine.Rendering.csproj", "{80C1146F-572F-451C-8730-CC33C04DCBC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.Rendering.Tester", "craftersmine.EtherEngine.Rendering.Tester\craftersmine.EtherEngine.Rendering.Tester.csproj", "{11A7CF2E-C87D-401F-92B5-F1D2E51E32BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testers", "Testers", "{E53AC1B3-3A96-4C02-8290-A34E533604EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{DCC01A6D-63FE-4102-AB23-6FD712B7A691}"
+	ProjectSection(SolutionItems) = preProject
+		Libraries\OpenTK.Compatibility.dll = Libraries\OpenTK.Compatibility.dll
+		Libraries\OpenTK.dll = Libraries\OpenTK.dll
+		Libraries\OpenTK.GLControl.dll = Libraries\OpenTK.GLControl.dll
+		Libraries\OpenTK.GLControl.xml = Libraries\OpenTK.GLControl.xml
+		Libraries\OpenTK.xml = Libraries\OpenTK.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{70943BFB-7AD2-445E-8AAE-205EA98ABED1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.Utilities", "craftersmine.EtherEngine.Utilities\craftersmine.EtherEngine.Utilities.csproj", "{3DF06375-A8CE-475D-965D-08EEBE7DAB27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.Content", "craftersmine.EtherEngine.Content\craftersmine.EtherEngine.Content.csproj", "{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.Core", "craftersmine.EtherEngine.Core\craftersmine.EtherEngine.Core.csproj", "{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Global", "_Global", "{B5E6C975-7725-4C6D-8E08-3A06A6F539D2}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		_Global\GlobalAssemblyInfo.cs = _Global\GlobalAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{094B5509-188E-4856-9280-1E325CA7D400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{094B5509-188E-4856-9280-1E325CA7D400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{094B5509-188E-4856-9280-1E325CA7D400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{094B5509-188E-4856-9280-1E325CA7D400}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80C1146F-572F-451C-8730-CC33C04DCBC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80C1146F-572F-451C-8730-CC33C04DCBC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80C1146F-572F-451C-8730-CC33C04DCBC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80C1146F-572F-451C-8730-CC33C04DCBC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A7CF2E-C87D-401F-92B5-F1D2E51E32BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A7CF2E-C87D-401F-92B5-F1D2E51E32BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A7CF2E-C87D-401F-92B5-F1D2E51E32BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A7CF2E-C87D-401F-92B5-F1D2E51E32BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DF06375-A8CE-475D-965D-08EEBE7DAB27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DF06375-A8CE-475D-965D-08EEBE7DAB27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DF06375-A8CE-475D-965D-08EEBE7DAB27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DF06375-A8CE-475D-965D-08EEBE7DAB27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{541B9682-972D-4049-924D-7CC39BFB590B} = {DCC01A6D-63FE-4102-AB23-6FD712B7A691}
+		{094B5509-188E-4856-9280-1E325CA7D400} = {541B9682-972D-4049-924D-7CC39BFB590B}
+		{80C1146F-572F-451C-8730-CC33C04DCBC8} = {70943BFB-7AD2-445E-8AAE-205EA98ABED1}
+		{11A7CF2E-C87D-401F-92B5-F1D2E51E32BD} = {E53AC1B3-3A96-4C02-8290-A34E533604EE}
+		{3DF06375-A8CE-475D-965D-08EEBE7DAB27} = {70943BFB-7AD2-445E-8AAE-205EA98ABED1}
+		{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09} = {70943BFB-7AD2-445E-8AAE-205EA98ABED1}
+		{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE} = {70943BFB-7AD2-445E-8AAE-205EA98ABED1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E51B78D-0686-437C-84E4-590D39C15F5F}
+	EndGlobalSection
+EndGlobal

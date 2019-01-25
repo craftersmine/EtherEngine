@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{11A7CF2E-C87D-401F-92B5-F1D2E51E32BD}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>craftersmine.EtherEngine.Rendering.Tester</RootNamespace>
+    <AssemblyName>craftersmine.EtherEngine.Rendering.Tester</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OpenTK">
+      <HintPath>..\Libraries\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.Compatibility">
+      <HintPath>..\Libraries\OpenTK.Compatibility.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl">
+      <HintPath>..\Libraries\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\glgdiplus_0.1.fixed\GLGDIPlus\GLGDIPlus.csproj">
+      <Project>{094B5509-188E-4856-9280-1E325CA7D400}</Project>
+      <Name>GLGDIPlus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\craftersmine.EtherEngine.Content\craftersmine.EtherEngine.Content.csproj">
+      <Project>{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09}</Project>
+      <Name>craftersmine.EtherEngine.Content</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\craftersmine.EtherEngine.Core\craftersmine.EtherEngine.Core.csproj">
+      <Project>{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE}</Project>
+      <Name>craftersmine.EtherEngine.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\craftersmine.EtherEngine.Rendering\craftersmine.EtherEngine.Rendering.csproj">
+      <Project>{80c1146f-572f-451c-8730-cc33c04dcbc8}</Project>
+      <Name>craftersmine.EtherEngine.Rendering</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\craftersmine.EtherEngine.Utilities\craftersmine.EtherEngine.Utilities.csproj">
+      <Project>{3DF06375-A8CE-475D-965D-08EEBE7DAB27}</Project>
+      <Name>craftersmine.EtherEngine.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

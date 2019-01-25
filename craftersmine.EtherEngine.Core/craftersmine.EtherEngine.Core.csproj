@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>craftersmine.EtherEngine.Core</RootNamespace>
+    <AssemblyName>craftersmine.EtherEngine.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\_Global\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Camera.cs" />
+    <Compile Include="CollisionBox.cs" />
+    <Compile Include="EnginePrefabs\DefaultScene.cs" />
+    <Compile Include="Exceptions\SceneManagerException.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameObject.cs" />
+    <Compile Include="GameRendererHelper.cs" />
+    <Compile Include="GameUpdater.cs" />
+    <Compile Include="Scene.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SceneManager.cs" />
+    <Compile Include="Tileset.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\glgdiplus_0.1.fixed\GLGDIPlus\GLGDIPlus.csproj">
+      <Project>{094B5509-188E-4856-9280-1E325CA7D400}</Project>
+      <Name>GLGDIPlus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\craftersmine.EtherEngine.Content\craftersmine.EtherEngine.Content.csproj">
+      <Project>{c7ab00ee-188d-4b1b-bdf5-3ef5a10fdc09}</Project>
+      <Name>craftersmine.EtherEngine.Content</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\craftersmine.EtherEngine.Rendering\craftersmine.EtherEngine.Rendering.csproj">
+      <Project>{80C1146F-572F-451C-8730-CC33C04DCBC8}</Project>
+      <Name>craftersmine.EtherEngine.Rendering</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\craftersmine.EtherEngine.Utilities\craftersmine.EtherEngine.Utilities.csproj">
+      <Project>{3df06375-a8ce-475d-965d-08eebe7dab27}</Project>
+      <Name>craftersmine.EtherEngine.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
