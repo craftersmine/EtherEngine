@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GLGDIPlus, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\GLGDIPlus.dll</HintPath>
+    </Reference>
     <Reference Include="OpenTK">
       <HintPath>..\Libraries\OpenTK.dll</HintPath>
     </Reference>
@@ -63,10 +67,6 @@
     <Compile Include="WindowSize.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\glgdiplus_0.1.fixed\GLGDIPlus\GLGDIPlus.csproj">
-      <Project>{094B5509-188E-4856-9280-1E325CA7D400}</Project>
-      <Name>GLGDIPlus</Name>
-    </ProjectReference>
     <ProjectReference Include="..\craftersmine.EtherEngine.Content\craftersmine.EtherEngine.Content.csproj">
       <Project>{c7ab00ee-188d-4b1b-bdf5-3ef5a10fdc09}</Project>
       <Name>craftersmine.EtherEngine.Content</Name>
