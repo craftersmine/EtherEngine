@@ -36,6 +36,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Global", "_Global", "{B5E6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.Input", "craftersmine.EtherEngine.Input\craftersmine.EtherEngine.Input.csproj", "{EB866C13-3350-4AAE-BABA-42B69156F57D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TesterContent", "TesterContent", "{F56B4C0C-995C-430A-8223-2DEBB535768D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{3D2F66FF-37F1-4B82-8201-95633B775AE3}"
+	ProjectSection(SolutionItems) = preProject
+		TesterContent\content\root\Animation.eam = TesterContent\content\root\Animation.eam
+		TesterContent\content\root\metadata.epm = TesterContent\content\root\metadata.epm
+		TesterContent\content\root\TestAnim.etx = TesterContent\content\root\TestAnim.etx
+		TesterContent\content\root\TestCircle.etx = TesterContent\content\root\TestCircle.etx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +87,8 @@ Global
 		{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09} = {70943BFB-7AD2-445E-8AAE-205EA98ABED1}
 		{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE} = {70943BFB-7AD2-445E-8AAE-205EA98ABED1}
 		{EB866C13-3350-4AAE-BABA-42B69156F57D} = {70943BFB-7AD2-445E-8AAE-205EA98ABED1}
+		{F56B4C0C-995C-430A-8223-2DEBB535768D} = {E53AC1B3-3A96-4C02-8290-A34E533604EE}
+		{3D2F66FF-37F1-4B82-8201-95633B775AE3} = {F56B4C0C-995C-430A-8223-2DEBB535768D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E51B78D-0686-437C-84E4-590D39C15F5F}

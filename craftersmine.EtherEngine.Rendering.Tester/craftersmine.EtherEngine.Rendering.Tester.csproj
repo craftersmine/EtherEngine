@@ -72,4 +72,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy $(SolutionDir)\TesterContent\content\root\*.* $(TargetDir)\content\root /Y /I</PostBuildEvent>
+  </PropertyGroup>
 </Project>
