@@ -18,7 +18,7 @@ Allows you to create games with simple visuals
 
 | Badge Name              | Badge                                                                                                     |
 |:------------------------|:---------------------------------------------------------------------------------------------------------:|
-| Jenkins CI Build Status | ![Build Status Badge](http://craftersmine-ci.ddns.net/job/EtherEngine/badge/icon)                         |
+| Appveyor Build Status | [![Build status](https://ci.appveyor.com/api/projects/status/d3lcowtra73jevy9?svg=true)](https://ci.appveyor.com/project/craftersmine/etherengine) |
 | Repository Size         | ![Repository Size](https://img.shields.io/github/repo-size/craftersmine/EtherEngine.svg)                  |
 | Licence                 | [![Repository Licence](https://img.shields.io/github/license/craftersmine/EtherEngine.svg)](https://github.com/craftersmine/EtherEngine/blob/master/LICENSE.md)                 |
 | Current Version (Tag)   | [![Last tag](https://img.shields.io/github/tag/craftersmine/EtherEngine.svg)](https://github.com/craftersmine/EtherEngine/tags)                               |
