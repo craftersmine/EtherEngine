@@ -17,7 +17,8 @@ namespace craftersmine.EtherEngine.Core
         public float Y { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
-        public bool IsVisibleByCamera { get; private set; }
+        public bool IsVisibleByCamera { get; internal set; }
+        public bool Visible { get; set; }
 
         public virtual void OnStart()
         {
@@ -26,6 +27,7 @@ namespace craftersmine.EtherEngine.Core
 
         internal void InternalCreate()
         {
+            Visible = true;
             OnStart();
         }
 
