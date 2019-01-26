@@ -9,7 +9,7 @@ namespace craftersmine.EtherEngine.Core
 {
     public sealed class SceneManager
     {
-        internal static Scene CurrentScene { get; set; }
+        public static Scene CurrentScene { get; internal set; }
         internal static Dictionary<int, Scene> _scenes = new Dictionary<int, Scene>();
 
         public static void SetScene(Scene scene)
