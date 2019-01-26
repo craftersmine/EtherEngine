@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using craftersmine.EtherEngine.Content;
 using craftersmine.EtherEngine.Core;
+using craftersmine.EtherEngine.Objects;
 using craftersmine.EtherEngine.Utilities;
 using craftersmine.GameEngine.Input;
 
@@ -27,7 +28,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             //Application.Run(new MainForm());
             gameWindow = new Window("[RENDERER/CONTENT] craftersmine.EtherEngine", WindowSizePresets.SVGA, false);
             gameWindow.VSyncMode = VSyncMode.On;
-            gameWindow.GLGDI.IsLinearFilteringEnabled = false;
+            gameWindow.GLGDI.IsLinearFilteringEnabled = true;
             Debugging.DrawDebug = true;
             Debugging.ShowDrawCallsPerFrameInTitle = true;
 
@@ -63,6 +64,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
 
         List<GameObject> myObjs = new List<GameObject>();
         GameObject movable = new GameObject();
+        ParticleSystem particleSystem;
 
         public override void OnStart()
         {
@@ -72,6 +74,9 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             movable.Height = 32;
             movable.X = 32;
             movable.Y = 32;
+
+            particleSystem = new ParticleSystem(new Particle(Program.contentManager.LoadTexture("TestCircle")), 180, 30, 1.0f, 0.3f, 16, true);
+            particleSystem.X = 200; particleSystem.Y = 200;
 
             for (int x = 0; x < SceneCamera.FrameWidth / 2 / 32 + 1; x++)
                 for (int y = 0; y < SceneCamera.FrameHeight / 2 / 32 + 1; y++)
@@ -90,8 +95,10 @@ namespace craftersmine.EtherEngine.Rendering.Tester
                     myObjs.Add(obj);
                 }
 
-            AddGameObjects(myObjs);
+            //AddGameObjects(myObjs);
             AddGameObject(movable);
+            AddGameObject(particleSystem);
+            //particleSystem.Emit();
         }
 
         public override void OnUpdate()
@@ -116,6 +123,8 @@ namespace craftersmine.EtherEngine.Rendering.Tester
                 movable.X++;
                 SceneCamera.MoveCamera(1, 0);
             }
+            if (Keyboard.IsKeyDown(Keys.E))
+                particleSystem.Emit();
         }
     }
 }
