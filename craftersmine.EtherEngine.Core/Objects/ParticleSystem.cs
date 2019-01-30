@@ -35,6 +35,7 @@ namespace craftersmine.EtherEngine.Objects
             ParticleSize = particleSize;
             IsParticleVariativeSize = variativeSize;
             MaxParticles = maxParticles;
+            Collidable = false;
         }
 
         public override void OnStart()
@@ -47,6 +48,7 @@ namespace craftersmine.EtherEngine.Objects
                 particle.Height = ParticleSize;
                 particle.X = this.X;
                 particle.Y = this.Y;
+                particle.CurrentLifetime = ParticleLifetimeRanger.Next(-15, 0);
                 Particles.Add(particle);
             }
             Reset();
@@ -54,19 +56,25 @@ namespace craftersmine.EtherEngine.Objects
 
         public void Emit()
         {
-            Reset();
-            SceneManager.CurrentScene.AddGameObjects(Particles);
-            IsEmitting = true;
+            if (!IsEmitting)
+            {
+                Reset();
+                SceneManager.CurrentScene.AddGameObjects(Particles);
+                IsEmitting = true;
+            }
         }
 
         public void StopEmit()
         {
-            for (int i = 0; i < Particles.Count; i++)
+            if (IsEmitting)
             {
-                Reset();
-                SceneManager.CurrentScene.RemoveGameObject(Particles[i]);
+                for (int i = 0; i < Particles.Count; i++)
+                {
+                    Reset();
+                    SceneManager.CurrentScene.RemoveGameObject(Particles[i]);
+                }
+                IsEmitting = false;
             }
-            IsEmitting = false;
         }
 
         public void Reset()
@@ -79,6 +87,7 @@ namespace craftersmine.EtherEngine.Objects
                 Particles[i].Height = ParticleSize;
                 Particles[i].X = this.X;
                 Particles[i].Y = this.Y;
+                Particles[i].CurrentLifetime = ParticleLifetimeRanger.Next(-15, 0);
             }
         }
 
@@ -88,7 +97,7 @@ namespace craftersmine.EtherEngine.Objects
             {
                 for (int i = 0; i < Particles.Count; i++)
                 {
-                    if (Particles[i].CurrentLifetime == 0 || Particles[i].IsParticleLifetimeElapsed)
+                    if (Particles[i].CurrentLifetime <= 0 || Particles[i].IsParticleLifetimeElapsed)
                     {
                         Particles[i].Visible = true;
                         Particles[i].IsParticleLifetimeElapsed = false;
@@ -115,7 +124,7 @@ namespace craftersmine.EtherEngine.Objects
                         Particles[i].Height = ParticleSize;
                         Particles[i].X = this.X;
                         Particles[i].Y = this.Y;
-                        Particles[i].CurrentLifetime = 0;
+                        Particles[i].CurrentLifetime = ParticleLifetimeRanger.Next(-15, 0);
                     }
                 }
             }
