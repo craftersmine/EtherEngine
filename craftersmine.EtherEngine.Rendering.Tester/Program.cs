@@ -31,6 +31,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             gameWindow.GLGDI.IsLinearFilteringEnabled = true;
             Debugging.DrawDebug = true;
             Debugging.ShowDrawCallsPerFrameInTitle = true;
+            Debugging.DrawBounds = true;
 
             contentManager = new ContentManager("root");
 
@@ -63,7 +64,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
         int coordCount = 0;
 
         List<GameObject> myObjs = new List<GameObject>();
-        GameObject movable = new GameObject();
+        Movable movable = new Movable();
         ParticleSystem particleSystem;
 
         public override void OnStart()
@@ -77,6 +78,8 @@ namespace craftersmine.EtherEngine.Rendering.Tester
 
             particleSystem = new ParticleSystem(new Particle(Program.contentManager.LoadTexture("TestCircle")), 180, 30, 1.0f, 0.3f, 16, true);
             particleSystem.X = 200; particleSystem.Y = 200;
+            particleSystem.Collidable = true;
+            particleSystem.SetCollsionBox(new CollisionBox(0, 0, 32, 32));
 
             for (int x = 0; x < SceneCamera.FrameWidth / 2 / 32 + 1; x++)
                 for (int y = 0; y < SceneCamera.FrameHeight / 2 / 32 + 1; y++)
@@ -125,6 +128,23 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             }
             if (Keyboard.IsKeyDown(Keys.E))
                 particleSystem.Emit();
+        }
+    }
+
+    public class Movable : GameObject
+    {
+        public override void OnStart()
+        {
+            base.OnStart();
+            SetCollsionBox(new CollisionBox(0, 0, 32, 32));
+            Collidable = true;
+        }
+
+        public override void OnCollide(GameObject gameObject)
+        {
+            base.OnCollide(gameObject);
+            if (gameObject.GetType() == typeof(ParticleSystem))
+                SceneManager.CurrentScene.RemoveGameObject(this);
         }
     }
 }
