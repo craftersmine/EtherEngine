@@ -142,7 +142,7 @@ namespace craftersmine.EtherEngine.Rendering
                 fpsUpdater = new AccurateTimer(new Action(() => {
                     Debugging.FPS = FPS;
                     Debugging.FrameTime = _gameWnd.RenderPeriod * 1000;
-                    fpsData = string.Format("{0} FPS\r\nFrameTime: {1:F2} ms\r\n{2} DrawCalls per frame\r\n{3} TPS", Debugging.FPS, Debugging.FrameTime, Debugging.DrawCalls, Debugging.TPS);
+                    fpsData = string.Format("{0} FPS\r\nFrameTime: {1:F2} ms\r\n~{2} DrawCalls per frame\r\n{3} TPS\r\n{4} CUpdates/s", Debugging.FPS, Debugging.FrameTime, Debugging.DrawCalls, Debugging.TPS, Debugging.CollisionsUpdatesPerSecond);
                     fpsBounds.Width = 0;
                     fpsBounds.Height = 0;
                     int lastLength = 0;
