@@ -15,6 +15,7 @@ namespace craftersmine.EtherEngine.Core
         internal static Window GameWnd { get; private set; }
         internal static GLGDI GLGDIInstance { get { return GameWnd.GLGDI; } }
         internal static GameUpdater GameUpdater { get; private set; }
+        internal static CollisionUpdater CollisionUpdater { get; private set; }
         internal static string DefaultWindowTitle { get; private set; }
 
         public static event EventHandler GameStarted;
@@ -30,6 +31,8 @@ namespace craftersmine.EtherEngine.Core
                 Debugging.Log(LogEntryType.Info, "Initializing game...");
                 Debugging.Log(LogEntryType.Info, "Creating GameUpdater...");
                 GameUpdater = new GameUpdater(60);
+                Debugging.Log(LogEntryType.Info, "Creating CollisionUpdater...");
+                CollisionUpdater = new CollisionUpdater(60);
                 GameWnd = gameWindow;
                 DefaultWindowTitle = GameWnd.Title;
                 GameWnd.Render += GameRendererHelper.OnRender;
@@ -37,6 +40,7 @@ namespace craftersmine.EtherEngine.Core
                 Debugging.Log(LogEntryType.Info, "Loading default scene...");
                 SceneManager.SetScene(new DefaultScene());
                 GameUpdater.Run();
+                CollisionUpdater.Run();
                 //GameStarted?.Invoke(null, EventArgs.Empty);
                 GameWnd.Run();
             }

@@ -13,12 +13,14 @@ namespace craftersmine.EtherEngine.Core
         internal int RendererY { get { return (int)Y + SceneManager.CurrentScene.SceneCamera.CameraY; } }
 
         public Texture Texture { get; set; }
+        public CollisionBox CollisionBox { get; private set; }
         public float X { get; set; }
         public float Y { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
         public bool IsVisibleByCamera { get; internal set; }
         public bool Visible { get; set; }
+        public bool Collidable { get; set; }
 
         public virtual void OnStart()
         {
@@ -37,6 +39,28 @@ namespace craftersmine.EtherEngine.Core
         internal void InternalUpdate()
         {
             OnUpdate();
+        }
+
+        public virtual void OnCollide(GameObject gameObject)
+        {
+
+        }
+
+        internal void InternalCollide(GameObject gameObject)
+        {
+            OnCollide(gameObject);
+        }
+
+        public void SetCollsionBox(CollisionBox collisionBox)
+        {
+            CollisionBox = collisionBox;
+        }
+
+        internal void UpdateCollsionLocation()
+        {
+            int colliderX = CollisionBox.CollisionBoxBounds.X + (int)this.X;
+            int colliderY = CollisionBox.CollisionBoxBounds.Y + (int)this.Y;
+            CollisionBox.CollisionBoxBoundsOffsetted = new System.Drawing.Rectangle(colliderX, colliderY, CollisionBox.CollisionBoxBounds.Width, CollisionBox.CollisionBoxBounds.Height);
         }
     }
 }
