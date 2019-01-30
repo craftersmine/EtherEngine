@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="Camera.cs" />
     <Compile Include="CollisionBox.cs" />
+    <Compile Include="CollisionUpdater.cs" />
     <Compile Include="EnginePrefabs\DefaultScene.cs" />
     <Compile Include="Exceptions\SceneManagerException.cs" />
     <Compile Include="Game.cs" />
