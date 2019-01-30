@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,9 +42,27 @@ namespace craftersmine.EtherEngine.Core
                         }
                     }
                 }
+                if (Debugging.DrawBounds)
+                {
+                    for (int i = 0; i < SceneManager.CurrentScene.GameObjects.Count; i++)
+                    {
+                        Game.GLGDIInstance.DrawRectangle(
+                            Color.Yellow,
+                            (int)SceneManager.CurrentScene.GameObjects[i].RendererX,
+                            (int)SceneManager.CurrentScene.GameObjects[i].RendererY,
+                            SceneManager.CurrentScene.GameObjects[i].Width,
+                            SceneManager.CurrentScene.GameObjects[i].Height);
+                        if (SceneManager.CurrentScene.GameObjects[i].CollisionBox != null)
+                        {
+                            int x = SceneManager.CurrentScene.GameObjects[i].CollisionBox.CollisionBoxBounds.X + SceneManager.CurrentScene.GameObjects[i].RendererX;
+                            int y = SceneManager.CurrentScene.GameObjects[i].CollisionBox.CollisionBoxBounds.Y + SceneManager.CurrentScene.GameObjects[i].RendererY;
+                            Game.GLGDIInstance.DrawRectangle(Color.Red, x, y, SceneManager.CurrentScene.GameObjects[i].CollisionBox.CollisionBoxBounds.Width, SceneManager.CurrentScene.GameObjects[i].CollisionBox.CollisionBoxBounds.Height);
+                        }
+                    }
+                }
             }
             if (Debugging.ShowDrawCallsPerFrameInTitle)
-                Game.GameWnd.Title = Game.DefaultWindowTitle + " | " + Debugging.DrawCalls;
+                Game.GameWnd.Title = Game.DefaultWindowTitle + " | " + Debugging.DrawCalls + " DrawCalls/s";
         }
     }
 }
