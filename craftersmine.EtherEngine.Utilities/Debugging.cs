@@ -19,6 +19,8 @@ namespace craftersmine.EtherEngine.Utilities
 
         public static int DrawCalls { get; set; }
 
+        public static int CollisionsUpdatesPerSecond { get; set; }
+
         public static double CPU { get; set; }
 
         public static double RAM { get; set; } 
@@ -29,6 +31,8 @@ namespace craftersmine.EtherEngine.Utilities
         /// Gets or sets is FPS counter draws on screen
         /// </summary>
         public static bool DrawDebug { get; set; }
+
+        public static bool DrawBounds { get; set; }
 
         /// <summary>
         /// Gets or sets is DrawCall counter is shown in titlebar after window title
