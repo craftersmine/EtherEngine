@@ -14,6 +14,7 @@ namespace craftersmine.EtherEngine.GDK.Core
     public sealed class Project
     {
         public string ProjectFilePath { get; set; }
+        public string ProjectRoot { get; set; }
         public List<string> ProjectFiles { get; set; } = new List<string>();
 
         public void Save()
