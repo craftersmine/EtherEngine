@@ -9,7 +9,7 @@ using craftersmine.EtherEngine.Content;
 using craftersmine.EtherEngine.Core;
 using craftersmine.EtherEngine.Objects;
 using craftersmine.EtherEngine.Utilities;
-using craftersmine.GameEngine.Input;
+using craftersmine.EtherEngine.Input;
 
 namespace craftersmine.EtherEngine.Rendering.Tester
 {

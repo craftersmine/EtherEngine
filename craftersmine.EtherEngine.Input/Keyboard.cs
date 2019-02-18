@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace craftersmine.GameEngine.Input
+namespace craftersmine.EtherEngine.Input
 {
     /// <summary>
     /// Allows to get Keyboard input
