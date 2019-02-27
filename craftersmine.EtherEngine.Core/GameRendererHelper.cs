@@ -24,17 +24,14 @@ namespace craftersmine.EtherEngine.Core
                     {
                         if (SceneManager.CurrentScene.GameObjects[obj].Texture != null)
                         {
-                            if (SceneManager.CurrentScene.GameObjects[obj].RendererX + SceneManager.CurrentScene.GameObjects[obj].Width > 0 &&
-                                SceneManager.CurrentScene.GameObjects[obj].RendererX < SceneManager.CurrentScene.SceneCamera.FrameWidth &&
-                                SceneManager.CurrentScene.GameObjects[obj].RendererY + SceneManager.CurrentScene.GameObjects[obj].Height > 0 &&
-                                SceneManager.CurrentScene.GameObjects[obj].RendererY < SceneManager.CurrentScene.SceneCamera.FrameHeight)
+                            if (SceneManager.CurrentScene.GameObjects[obj].Transform.RendererX + SceneManager.CurrentScene.GameObjects[obj].Width > 0 &&
+                                SceneManager.CurrentScene.GameObjects[obj].Transform.RendererX < SceneManager.CurrentScene.SceneCamera.FrameWidth &&
+                                SceneManager.CurrentScene.GameObjects[obj].Transform.RendererY + SceneManager.CurrentScene.GameObjects[obj].Height > 0 &&
+                                SceneManager.CurrentScene.GameObjects[obj].Transform.RendererY < SceneManager.CurrentScene.SceneCamera.FrameHeight)
                             {
                                 SceneManager.CurrentScene.GameObjects[obj].IsVisibleByCamera = true;
-                                e.GLGDIInstance.DrawImage(SceneManager.CurrentScene.GameObjects[obj].Texture.RenderableImage,
-                                    SceneManager.CurrentScene.GameObjects[obj].RendererX,
-                                    SceneManager.CurrentScene.GameObjects[obj].RendererY,
-                                    SceneManager.CurrentScene.GameObjects[obj].Width,
-                                    SceneManager.CurrentScene.GameObjects[obj].Height);
+                                e.GLGDIInstance.Rotate(SceneManager.CurrentScene.GameObjects[obj].Transform.RotationAngle, SceneManager.CurrentScene.GameObjects[obj].Transform.Width / 2, SceneManager.CurrentScene.GameObjects[obj].Transform.Height / 2);
+                                SceneManager.CurrentScene.GameObjects[obj].OnRender(e.GLGDIInstance);
                                 Debugging.DrawCalls++;
                             }
                             else
@@ -48,14 +45,14 @@ namespace craftersmine.EtherEngine.Core
                     {
                         Game.GLGDIInstance.DrawRectangle(
                             Color.Yellow,
-                            (int)SceneManager.CurrentScene.GameObjects[i].RendererX,
-                            (int)SceneManager.CurrentScene.GameObjects[i].RendererY,
+                            (int)SceneManager.CurrentScene.GameObjects[i].Transform.RendererX,
+                            (int)SceneManager.CurrentScene.GameObjects[i].Transform.RendererY,
                             SceneManager.CurrentScene.GameObjects[i].Width,
                             SceneManager.CurrentScene.GameObjects[i].Height);
                         if (SceneManager.CurrentScene.GameObjects[i].CollisionBox != null)
                         {
-                            int x = SceneManager.CurrentScene.GameObjects[i].CollisionBox.CollisionBoxBounds.X + SceneManager.CurrentScene.GameObjects[i].RendererX;
-                            int y = SceneManager.CurrentScene.GameObjects[i].CollisionBox.CollisionBoxBounds.Y + SceneManager.CurrentScene.GameObjects[i].RendererY;
+                            int x = SceneManager.CurrentScene.GameObjects[i].CollisionBox.CollisionBoxBounds.X + SceneManager.CurrentScene.GameObjects[i].Transform.RendererX;
+                            int y = SceneManager.CurrentScene.GameObjects[i].CollisionBox.CollisionBoxBounds.Y + SceneManager.CurrentScene.GameObjects[i].Transform.RendererY;
                             Game.GLGDIInstance.DrawRectangle(Color.Red, x, y, SceneManager.CurrentScene.GameObjects[i].CollisionBox.CollisionBoxBounds.Width, SceneManager.CurrentScene.GameObjects[i].CollisionBox.CollisionBoxBounds.Height);
                         }
                     }
