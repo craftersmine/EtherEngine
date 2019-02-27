@@ -4,20 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using craftersmine.EtherEngine.Content;
+using craftersmine.EtherEngine.Rendering;
 
 namespace craftersmine.EtherEngine.Core
 {
-    public class GameObject
+    public class GameObject : IRenderable
     {
-        internal int RendererX { get { return (int)X - SceneManager.CurrentScene.SceneCamera.CameraX; } }
-        internal int RendererY { get { return (int)Y + SceneManager.CurrentScene.SceneCamera.CameraY; } }
-
         public Texture Texture { get; set; }
         public CollisionBox CollisionBox { get; private set; }
-        public float X { get; set; }
-        public float Y { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public Transform Transform { get; set; } = new Transform();
+        public float X { get { return Transform.X; } set { Transform.X = value; } }
+        public float Y { get { return Transform.Y; } set { Transform.Y = value; } }
+        public int Width { get { return Transform.Width; } set { Transform.Width = value; } }
+        public int Height { get { return Transform.Height; } set { Transform.Height = value; } }
         public bool IsVisibleByCamera { get; internal set; }
         public bool Visible { get; set; }
         public bool Collidable { get; set; }
@@ -49,6 +48,15 @@ namespace craftersmine.EtherEngine.Core
         internal void InternalCollide(GameObject gameObject)
         {
             OnCollide(gameObject);
+        }
+
+        public virtual void OnRender(GLGDI renderer)
+        {
+            renderer.DrawImage(Texture.RenderableImage,
+                                    Transform.RendererX,
+                                    Transform.RendererY,
+                                    Width,
+                                    Height);
         }
 
         public void SetCollsionBox(CollisionBox collisionBox)
