@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using craftersmine.EtherEngine.Input;
 using craftersmine.EtherEngine.Utilities;
 using OpenTK;
 
@@ -82,6 +83,7 @@ namespace craftersmine.EtherEngine.Rendering
             fpsBounds = new Rectangle(WindowSize.Width - 30, 0, 30, 30);
 
             _gameWnd.Load += _gameWnd_Load;
+            Keyboard.KeyboardDevice = _gameWnd.Keyboard;
         }
 
         private void _gameWnd_Load(object sender, EventArgs e)
