@@ -9,21 +9,13 @@ namespace craftersmine.EtherEngine.Input
 {
     public sealed class Mouse
     {
-        static Mouse()
-        {
-            MouseDevice.WheelChanged += MouseDevice_WheelChanged;
-            MouseDevice.ButtonDown += MouseDevice_ButtonDown;
-            MouseDevice.ButtonUp += MouseDevice_ButtonUp;
-            MouseDevice.Move += MouseDevice_Move;
-        }
-
-        private static void MouseDevice_Move(object sender, MouseMoveEventArgs e)
+        public static void MouseDeviceMoveEvent(object sender, MouseMoveEventArgs e)
         {
             XDelta = e.XDelta;
             YDelta = e.YDelta;
         }
 
-        private static void MouseDevice_ButtonUp(object sender, MouseButtonEventArgs e)
+        public static void MouseDeviceButtonUpEvent(object sender, MouseButtonEventArgs e)
         {
             switch (e.Button)
             {
@@ -39,7 +31,7 @@ namespace craftersmine.EtherEngine.Input
             }
         }
 
-        private static void MouseDevice_ButtonDown(object sender, MouseButtonEventArgs e)
+        public static void MouseDeviceButtonDownEvent(object sender, MouseButtonEventArgs e)
         {
             switch (e.Button)
             {
@@ -55,7 +47,7 @@ namespace craftersmine.EtherEngine.Input
             }
         }
 
-        private static void MouseDevice_WheelChanged(object sender, MouseWheelEventArgs e)
+        public static void MouseDeviceWheelChangedEvent(object sender, MouseWheelEventArgs e)
         {
             WheelDelta = e.Delta;
         }
