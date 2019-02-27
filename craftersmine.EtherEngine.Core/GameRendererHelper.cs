@@ -35,7 +35,7 @@ namespace craftersmine.EtherEngine.Core
                                 Debugging.DrawCalls++;
                             }
                             else
-                                SceneManager.CurrentScene.GameObjects[obj].IsVisibleByCamera = true;
+                                SceneManager.CurrentScene.GameObjects[obj].IsVisibleByCamera = false;
                         }
                     }
                 }
