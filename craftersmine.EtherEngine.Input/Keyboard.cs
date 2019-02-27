@@ -16,7 +16,7 @@ namespace craftersmine.EtherEngine.Input
     {
         public static KeyboardDevice KeyboardDevice { get; set; }
 
-        public static bool IsKeyPressed(Key key)
+        public static bool IsKeyDown(Key key)
         {
             return KeyboardDevice[(OpenTK.Input.Key)key];
         }
