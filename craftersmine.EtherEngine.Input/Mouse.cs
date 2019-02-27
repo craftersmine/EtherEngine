@@ -3,41 +3,73 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
+using OpenTK.Input;
 
 namespace craftersmine.EtherEngine.Input
 {
-    [Serializable]
-    public sealed class MouseEventArguments
+    public sealed class Mouse
     {
-        public MouseButtonState LeftButtonState { get; set; }
-        public MouseButtonState RightButtonState { get; set; }
-        public MouseButtonState MiddleButtonState { get; set; }
-        public double XPosition { get; set; }
-        public double YPosition { get; set; }
-
-        public override string ToString()
+        static Mouse()
         {
-            return "LB: " + LeftButtonState + " | RB: " + RightButtonState + " | MB: " + MiddleButtonState + " | X = " + XPosition + " | Y = " + YPosition;
+            MouseDevice.WheelChanged += MouseDevice_WheelChanged;
+            MouseDevice.ButtonDown += MouseDevice_ButtonDown;
+            MouseDevice.ButtonUp += MouseDevice_ButtonUp;
+            MouseDevice.Move += MouseDevice_Move;
         }
-    }
 
-    [Serializable]
-    public sealed class MouseWheelEventArguments
-    {
-        public MouseWheelRotationType MouseWheelRotationType { get; set; }
-        public double XPosition { get; set; }
-        public double YPosition { get; set; }
-
-        public override string ToString()
+        private static void MouseDevice_Move(object sender, MouseMoveEventArgs e)
         {
-            return "WRT: " + MouseWheelRotationType + " | X = " + XPosition + " | Y = " + YPosition;
+            XDelta = e.XDelta;
+            YDelta = e.YDelta;
         }
-    }
 
-    [Serializable]
-    public enum MouseWheelRotationType
-    {
-        NoRotation, Forward, Backward, ToUser = Backward, FromUser = Forward
+        private static void MouseDevice_ButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButton.Left:
+                    LeftButton = false;
+                    break;
+                case MouseButton.Middle:
+                    MiddleButton = false;
+                    break;
+                case MouseButton.Right:
+                    RightButton = false;
+                    break;
+            }
+        }
+
+        private static void MouseDevice_ButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButton.Left:
+                    LeftButton = true;
+                    break;
+                case MouseButton.Middle:
+                    MiddleButton = true;
+                    break;
+                case MouseButton.Right:
+                    RightButton = true;
+                    break;
+            }
+        }
+
+        private static void MouseDevice_WheelChanged(object sender, MouseWheelEventArgs e)
+        {
+            WheelDelta = e.Delta;
+        }
+
+        public static MouseDevice MouseDevice { get; set; }
+
+        public static int X { get { return MouseDevice.X; } }
+        public static int XDelta { get; private set; }
+        public static int Y { get { return MouseDevice.Y; } }
+        public static int YDelta { get; private set; }
+        public static int WheelDelta { get; private set; }
+
+        public static bool LeftButton { get; private set; }
+        public static bool RightButton { get; private set; }
+        public static bool MiddleButton { get; private set; }
     }
 }
