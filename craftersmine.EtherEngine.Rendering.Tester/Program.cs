@@ -28,7 +28,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             //Application.Run(new MainForm());
             gameWindow = new Window("[RENDERER/CONTENT] craftersmine.EtherEngine", WindowSizePresets.SVGA, false);
             gameWindow.VSyncMode = VSyncMode.On;
-            gameWindow.GLGDI.IsLinearFilteringEnabled = true;
+            gameWindow.GLGDI.IsLinearFilteringEnabled = false;
             Debugging.DrawDebug = true;
             Debugging.ShowDrawCallsPerFrameInTitle = true;
             Debugging.DrawBounds = true;
@@ -106,27 +106,30 @@ namespace craftersmine.EtherEngine.Rendering.Tester
 
         public override void OnUpdate()
         {
-            if (Keyboard.IsKeyDown(Keys.W))
+
+            DPad DPad = Gamepad.GetDPad(Player.First);
+            Buttons Buttons = Gamepad.GetButtons(Player.First);
+            if (Keyboard.IsKeyDown(Keys.W) || DPad.Up)
             {
                 movable.Y--;
                 SceneCamera.MoveCamera(0, 1);
             }
-            if (Keyboard.IsKeyDown(Keys.S))
+            if (Keyboard.IsKeyDown(Keys.S) || DPad.Down)
             {
                 movable.Y++;
                 SceneCamera.MoveCamera(0, -1);
             }
-            if (Keyboard.IsKeyDown(Keys.A))
+            if (Keyboard.IsKeyDown(Keys.A) || DPad.Left)
             {
                 movable.X--;
                 SceneCamera.MoveCamera(-1, 0);
             }
-            if (Keyboard.IsKeyDown(Keys.D))
+            if (Keyboard.IsKeyDown(Keys.D) || DPad.Right)
             {
                 movable.X++;
                 SceneCamera.MoveCamera(1, 0);
             }
-            if (Keyboard.IsKeyDown(Keys.E))
+            if (Keyboard.IsKeyDown(Keys.E) || Buttons.A)
                 particleSystem.Emit();
         }
     }
