@@ -28,6 +28,7 @@ namespace craftersmine.EtherEngine.Core
 
         internal void InternalCreate()
         {
+            Transform.ResetRotationOrigin();
             Visible = true;
             OnStart();
         }
