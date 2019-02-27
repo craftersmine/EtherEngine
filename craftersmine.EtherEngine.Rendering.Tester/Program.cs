@@ -109,28 +109,34 @@ namespace craftersmine.EtherEngine.Rendering.Tester
 
             DPad DPad = Gamepad.GetDPad(Player.First);
             Buttons Buttons = Gamepad.GetButtons(Player.First);
-            if (Keyboard.IsKeyDown(Keys.W) || DPad.Up)
+            if (Keyboard.IsKeyDown(Key.W) || DPad.Up)
             {
                 movable.Y--;
                 SceneCamera.MoveCamera(0, 1);
             }
-            if (Keyboard.IsKeyDown(Keys.S) || DPad.Down)
+            if (Keyboard.IsKeyDown(Key.S) || DPad.Down)
             {
                 movable.Y++;
                 SceneCamera.MoveCamera(0, -1);
             }
-            if (Keyboard.IsKeyDown(Keys.A) || DPad.Left)
+            if (Keyboard.IsKeyDown(Key.A) || DPad.Left)
             {
                 movable.X--;
                 SceneCamera.MoveCamera(-1, 0);
             }
-            if (Keyboard.IsKeyDown(Keys.D) || DPad.Right)
+            if (Keyboard.IsKeyDown(Key.D) || DPad.Right)
             {
                 movable.X++;
                 SceneCamera.MoveCamera(1, 0);
             }
-            if (Keyboard.IsKeyDown(Keys.E) || Buttons.A)
+            if (Keyboard.IsKeyDown(Key.P) || Buttons.A)
                 particleSystem.Emit();
+            if (Keyboard.IsKeyDown(Key.Q))
+                movable.Transform.Rotate(-0.5f);
+            if (Keyboard.IsKeyDown(Key.E))
+                movable.Transform.Rotate(0.5f);
+            if (Keyboard.IsKeyDown(Key.R))
+                movable.Transform.RotationAngle = 0.0f;
         }
     }
 
