@@ -64,7 +64,7 @@ namespace craftersmine.EtherEngine.Content
         }
 
         /// <summary>
-        /// Loads texture from content package
+        /// Loads texture from content package with specified ID
         /// </summary>
         /// <param name="id">Texture ID</param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace craftersmine.EtherEngine.Content
         }
 
         /// <summary>
-        /// Loads animation data and animation texture from content package
+        /// Loads animation data and animation texture from content package with specified ID
         /// </summary>
         /// <param name="id">Animation ID</param>
         /// <returns></returns>
