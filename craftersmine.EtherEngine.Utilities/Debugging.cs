@@ -11,27 +11,55 @@ namespace craftersmine.EtherEngine.Utilities
     /// </summary>
     public sealed class Debugging
     {
+        /// <summary>
+        /// Gets or sets current game logger
+        /// </summary>
         public static Logger Logger { get; set; }
 
+        /// <summary>
+        /// Gets or [ENGINE PROPERTY METHOD] sets current game TPS
+        /// </summary>
         public static int TPS { get; set; }
 
+        /// <summary>
+        /// Gets or [ENGINE PROPERTY METHOD] sets current game FPS
+        /// </summary>
         public static int FPS { get; set; }
 
+        /// <summary>
+        /// Gets or [ENGINE PROPERTY METHOD] sets current game DrawCalls per frame
+        /// </summary>
         public static int DrawCalls { get; set; }
 
+        /// <summary>
+        /// Gets or [ENGINE PROPERTY METHOD] sets current game CU/s
+        /// </summary>
         public static int CollisionsUpdatesPerSecond { get; set; }
 
-        public static double CPU { get; set; }
+        /// <summary>
+        /// Gets or [ENGINE PROPERTY METHOD] sets current game CPU usage
+        /// </summary>
+        [Obsolete("(WIP) Not realized yet")]
+        public static double CPU { get { throw new NotImplementedException("Not realized yet"); } set { } }
+        /// <summary>
+        /// Gets or [ENGINE PROPERTY METHOD] sets current game RAM usage
+        /// </summary>
+        [Obsolete("(WIP) Not realized yet")]
+        public static double RAM { get { throw new NotImplementedException("Not realized yet"); } set { } }
 
-        public static double RAM { get; set; } 
-
+        /// <summary>
+        /// Gets or [ENGINE PROPERTY METHOD] sets current game frame time
+        /// </summary>
         public static double FrameTime { get; set; }
 
         /// <summary>
-        /// Gets or sets is FPS counter draws on screen
+        /// Gets or sets true if debug info draws on screen, else false
         /// </summary>
         public static bool DrawDebug { get; set; }
 
+        /// <summary>
+        /// Gets or sets true if debug bounds draws on screen, else false
+        /// </summary>
         public static bool DrawBounds { get; set; }
 
         /// <summary>

@@ -14,8 +14,16 @@ namespace craftersmine.EtherEngine.Input
     /// </summary>
     public sealed class Keyboard
     {
+        /// <summary>
+        /// [ENGINE PROPERTY] Gets or sets keyboard to handle input
+        /// </summary>
         public static KeyboardDevice KeyboardDevice { get; set; }
 
+        /// <summary>
+        /// Returns true if specified <see cref="Key"/> is pressed
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static bool IsKeyDown(Key key)
         {
             return KeyboardDevice[(OpenTK.Input.Key)key];

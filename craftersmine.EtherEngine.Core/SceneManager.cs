@@ -7,11 +7,21 @@ using craftersmine.EtherEngine.Core.Exceptions;
 
 namespace craftersmine.EtherEngine.Core
 {
+    /// <summary>
+    /// Provides static methods to manage scenes
+    /// </summary>
     public sealed class SceneManager
     {
+        /// <summary>
+        /// Gets current shown scene
+        /// </summary>
         public static Scene CurrentScene { get; internal set; }
         internal static Dictionary<int, Scene> _scenes = new Dictionary<int, Scene>();
 
+        /// <summary>
+        /// Sets current scene with specified
+        /// </summary>
+        /// <param name="scene">Scene to set</param>
         public static void SetScene(Scene scene)
         {
             if (CurrentScene != null)
@@ -25,6 +35,10 @@ namespace craftersmine.EtherEngine.Core
                 Game.GameWnd.GLGDI.ClearColor = CurrentScene.BackgroundColor;
         }
 
+        /// <summary>
+        /// Sets current scene with early loaded scene by it ID
+        /// </summary>
+        /// <param name="id"></param>
         public static void SetScene(int id)
         {
             if (Contains(id))
@@ -34,6 +48,11 @@ namespace craftersmine.EtherEngine.Core
             else throw new SceneManagerException("No loaded scene with " + id + " id!");
         }
 
+        /// <summary>
+        /// Returns true if a specified scene ID is loaded and ID is exists
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static bool Contains(int id)
         {
             if (_scenes.ContainsKey(id))
@@ -41,6 +60,11 @@ namespace craftersmine.EtherEngine.Core
             else return false;
         }
 
+        /// <summary>
+        /// Loads scene into a memory under specified ID and stores it
+        /// </summary>
+        /// <param name="scene"></param>
+        /// <param name="id"></param>
         public static void LoadScene(Scene scene, int id)
         {
             if (!_scenes.ContainsKey(id))
@@ -48,6 +72,10 @@ namespace craftersmine.EtherEngine.Core
             else throw new SceneManagerException("Scene with " + id + " id already loaded!");
         }
 
+        /// <summary>
+        /// Unloads early loaded scene from memory with specified ID, but not switches it to other if it shown to user
+        /// </summary>
+        /// <param name="id"></param>
         public static void UnloadScene(int id)
         {
             if (_scenes.ContainsKey(id))

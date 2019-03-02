@@ -7,6 +7,9 @@ using craftersmine.EtherEngine.Utilities;
 
 namespace craftersmine.EtherEngine.Core
 {
+    /// <summary>
+    /// Represents game updater timer. This class cannot be inherited
+    /// </summary>
     public sealed class GameUpdater
     {
         private AccurateTimer _gameUpdaterThread;
@@ -15,8 +18,15 @@ namespace craftersmine.EtherEngine.Core
         private int _ticks = 0;
         private int _lastTicks = 0;
 
+        /// <summary>
+        /// Gets current <see cref="GameUpdater"/> tickrate (TPS)
+        /// </summary>
         public int Tickrate { get; private set; }
 
+        /// <summary>
+        /// Creates new <see cref="GameUpdater"/> instance with specified maximum tickrate
+        /// </summary>
+        /// <param name="tickrate">Maximum tickrate of updater</param>
         public GameUpdater(int tickrate)
         {
             Tickrate = tickrate;
@@ -25,6 +35,9 @@ namespace craftersmine.EtherEngine.Core
             _tpsUpdater = new AccurateTimer(new Action(() => { _lastTicks = _ticks; _ticks = 0; Debugging.TPS = _lastTicks; }), 1000);
         }
 
+        /// <summary>
+        /// Starts <see cref="GameUpdater"/> update loop
+        /// </summary>
         public void Run()
         {
             Debugging.Log(LogEntryType.Info, "Starting GameUpdater...");
@@ -32,6 +45,9 @@ namespace craftersmine.EtherEngine.Core
             _tpsUpdater.Start();
         }
 
+        /// <summary>
+        /// Stops <see cref="GameUpdater"/> update loop
+        /// </summary>
         public void Stop()
         {
             Debugging.Log(LogEntryType.Info, "Stopping GameUpdater...");

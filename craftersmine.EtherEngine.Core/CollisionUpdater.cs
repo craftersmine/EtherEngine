@@ -8,6 +8,9 @@ using craftersmine.EtherEngine.Utilities;
 
 namespace craftersmine.EtherEngine.Core
 {
+    /// <summary>
+    /// Represents game collision updater. This class cannot be inherited
+    /// </summary>
     public sealed class CollisionUpdater
     {
         private AccurateTimer _collisionUpdaterThread;
@@ -16,8 +19,15 @@ namespace craftersmine.EtherEngine.Core
         private int _ticks = 0;
         private int _lastTicks = 0;
 
+        /// <summary>
+        /// Gets current collision updater tickrate (CU/s)
+        /// </summary>
         public int Tickrate { get; private set; }
 
+        /// <summary>
+        /// Creates new <see cref="CollisionUpdater"/> instance with specified maximum tickrate
+        /// </summary>
+        /// <param name="tickrate">Maximum tickrate of updater</param>
         public CollisionUpdater(int tickrate)
         {
             Tickrate = tickrate;
@@ -26,6 +36,9 @@ namespace craftersmine.EtherEngine.Core
             _cpsUpdater = new AccurateTimer(new Action(() => { _lastTicks = _ticks; _ticks = 0; Debugging.CollisionsUpdatesPerSecond = _lastTicks; }), 1000);
         }
 
+        /// <summary>
+        /// Starts <see cref="CollisionUpdater"/> update loop
+        /// </summary>
         public void Run()
         {
             Debugging.Log(LogEntryType.Info, "Starting CollisionUpdater...");
@@ -33,6 +46,9 @@ namespace craftersmine.EtherEngine.Core
             _cpsUpdater.Start();
         }
 
+        /// <summary>
+        /// Stops <see cref="CollisionUpdater"/> update loop
+        /// </summary>
         public void Stop()
         {
             Debugging.Log(LogEntryType.Info, "Stopping CollisionUpdater...");
