@@ -13,10 +13,17 @@ namespace craftersmine.EtherEngine.Core
     /// </summary>
     public class GameObject : IRenderable
     {
+        private int _frameCounter = 0;
+        private int _currentAnimationFrame = 0;
+
         /// <summary>
         /// Gets or sets <see cref="Content.Texture"/> which being rendered
         /// </summary>
         public Texture Texture { get; set; }
+        /// <summary>
+        /// Gets or sets <see cref="Content.Animation"/> for object
+        /// </summary>
+        public Animation Animation { get; set; }
         /// <summary>
         /// Gets <see cref="Core.CollisionBox"/> which being used by <see cref="CollisionUpdater"/> to check collisions
         /// </summary>
@@ -53,6 +60,10 @@ namespace craftersmine.EtherEngine.Core
         /// Gets or sets true if <see cref="CollisionUpdater"/> will check collisions for this object
         /// </summary>
         public bool Collidable { get; set; }
+        /// <summary>
+        /// Gets or sets true if object animation enabled, else false
+        /// </summary>
+        public bool IsAnimated { get; set; }
 
         /// <summary>
         /// Calls when <see cref="GameObject"/> being created
@@ -100,11 +111,34 @@ namespace craftersmine.EtherEngine.Core
         /// <param name="renderer"></param>
         public virtual void OnRender(GLGDI renderer)
         {
-            renderer.DrawImage(Texture.RenderableImage,
+            if (IsAnimated)
+            {
+                if (Animation != null)
+                {
+                    if (_frameCounter == Animation.TicksPerFrame)
+                    {
+                        _frameCounter = 0;
+                        _currentAnimationFrame++;
+                        if (_currentAnimationFrame == Animation.FramesCount)
+                            ResetAnimation();
+                    }
+                    renderer.DrawImage(Animation.AnimationFrames[_currentAnimationFrame].RenderableImage,
                                     Transform.RendererX,
                                     Transform.RendererY,
                                     Width,
                                     Height);
+                    _frameCounter++;
+                }
+                else IsAnimated = false;
+            }
+            else
+            {
+                renderer.DrawImage(Texture.RenderableImage,
+                                    Transform.RendererX,
+                                    Transform.RendererY,
+                                    Width,
+                                    Height);
+            }
         }
 
         /// <summary>
@@ -121,6 +155,11 @@ namespace craftersmine.EtherEngine.Core
             int colliderX = CollisionBox.CollisionBoxBounds.X + (int)this.X;
             int colliderY = CollisionBox.CollisionBoxBounds.Y + (int)this.Y;
             CollisionBox.CollisionBoxBoundsOffsetted = new System.Drawing.Rectangle(colliderX, colliderY, CollisionBox.CollisionBoxBounds.Width, CollisionBox.CollisionBoxBounds.Height);
+        }
+
+        public void ResetAnimation()
+        {
+            _currentAnimationFrame = 0;
         }
     }
 }
