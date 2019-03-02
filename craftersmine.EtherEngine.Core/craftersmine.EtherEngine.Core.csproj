@@ -35,6 +35,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\GLGDIPlus.dll</HintPath>
     </Reference>
+    <Reference Include="NVorbis">
+      <HintPath>..\Libraries\NVorbis.dll</HintPath>
+    </Reference>
+    <Reference Include="NVorbis.OpenTKSupport">
+      <HintPath>..\Libraries\NVorbis.OpenTKSupport.dll</HintPath>
+    </Reference>
     <Reference Include="OpenTK, Version=1.0.0.201, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\OpenTK.dll</HintPath>
