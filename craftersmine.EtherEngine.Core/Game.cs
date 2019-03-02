@@ -29,11 +29,11 @@ namespace craftersmine.EtherEngine.Core
                 Debugging.Logger = new Logger(tempDirectoryPath, "craftersmine.EtherEngine");
                 Debugging.Log(LogEntryType.Info, "craftersmine EtherEngine (c) craftersmine 2018-2019");
                 Debugging.Log(LogEntryType.Info, "Initializing game...");
+                GameWnd = gameWindow;
                 Debugging.Log(LogEntryType.Info, "Creating GameUpdater...");
                 GameUpdater = new GameUpdater(60);
                 Debugging.Log(LogEntryType.Info, "Creating CollisionUpdater...");
                 CollisionUpdater = new CollisionUpdater(60);
-                GameWnd = gameWindow;
                 DefaultWindowTitle = GameWnd.Title;
                 GameWnd.Render += GameRendererHelper.OnRender;
                 GameWnd.Load += GameWnd_Load;
@@ -46,8 +46,8 @@ namespace craftersmine.EtherEngine.Core
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong!\r\nMessage: " + ex.Message + "\r\n\r\nStacktrace:\r\n" + ex.StackTrace, "Engine Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Debugging.LogException(LogEntryType.Crash, ex);
+                MessageBox.Show("Something went wrong!\r\nMessage: " + ex.Message + "\r\n\r\nStacktrace:\r\n" + ex.StackTrace, "Engine Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Exit(ex.HResult);
             }
         }
