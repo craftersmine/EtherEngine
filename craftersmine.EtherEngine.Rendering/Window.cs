@@ -85,6 +85,10 @@ namespace craftersmine.EtherEngine.Rendering
             _gameWnd.Load += _gameWnd_Load;
             Keyboard.KeyboardDevice = _gameWnd.Keyboard;
             Mouse.MouseDevice = _gameWnd.Mouse;
+            Mouse.MouseDevice.ButtonDown += Mouse.MouseDeviceButtonDownEvent;
+            Mouse.MouseDevice.ButtonUp += Mouse.MouseDeviceButtonUpEvent;
+            Mouse.MouseDevice.Move += Mouse.MouseDeviceMoveEvent;
+            Mouse.MouseDevice.WheelChanged += Mouse.MouseDeviceWheelChangedEvent;
         }
 
         private void _gameWnd_Load(object sender, EventArgs e)

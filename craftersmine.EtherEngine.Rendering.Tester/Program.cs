@@ -61,8 +61,6 @@ namespace craftersmine.EtherEngine.Rendering.Tester
 
     public sealed class BaseScene : Scene
     {
-        int coordCount = 0;
-
         List<GameObject> myObjs = new List<GameObject>();
         Movable movable = new Movable();
         ParticleSystem particleSystem;
