@@ -19,7 +19,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
         //static GLGDI paintHelper;
         static Window gameWindow;
         public static Texture texture;
-        static Animation animation;
+        public static Animation animation;
         public static ContentManager contentManager;
 
         static void Main(string[] args)
@@ -68,8 +68,10 @@ namespace craftersmine.EtherEngine.Rendering.Tester
         public override void OnStart()
         {
             BackgroundColor = Color.Green;
-            movable.Texture = Program.contentManager.LoadTexture("TestAnim");
-            movable.Width = 128;
+            //movable.Texture = Program.contentManager.LoadTexture("TestAnim");
+            //movable.Animation = Program.animation;
+            movable.IsAnimated = true;
+            movable.Width = 32;
             movable.Height = 32;
             movable.X = 32;
             movable.Y = 32;
