@@ -63,5 +63,12 @@ namespace craftersmine.EtherEngine.Input
         public static bool LeftButton { get; private set; }
         public static bool RightButton { get; private set; }
         public static bool MiddleButton { get; private set; }
+
+        public static void ResetDeltas()
+        {
+            XDelta = 0;
+            YDelta = 0;
+            WheelDelta = 0;
+        }
     }
 }
