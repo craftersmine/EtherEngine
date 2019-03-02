@@ -145,6 +145,33 @@ namespace craftersmine.EtherEngine.Content
             }
             else throw new ContentManagerException("Package does not contains object with this id \"" + id + "\"!");
         }
+
+        /// <summary>
+        /// Loads audio clip from content package with specified ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public AudioClip LoadAudioClip(string id)
+        {
+            if (Contains(id))
+            {
+                ContentObject cObj = objects[id];
+                if (cObj.Type == ContentType.AudioClip)
+                {
+                    string path = Path.Combine(ContentPath, id + ".etx");
+                    try
+                    {
+                        return AudioClip.FromFile(path);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ContentManagerException("Unable to load object with this id \"" + id + "\" as audio clip! " + ex.Message);
+                    }
+                }
+                else throw new ContentManagerException("Object with this id \"" + id + "\" is not an audio clip!");
+            }
+            else throw new ContentManagerException("Package does not contains object with this id \"" + id + "\"!");
+        }
     }
 
     /// <summary>
@@ -198,6 +225,10 @@ namespace craftersmine.EtherEngine.Content
         /// <summary>
         /// Animation
         /// </summary>
-        Animation = 200
+        Animation = 200,
+        /// <summary>
+        /// Audio clip
+        /// </summary>
+        AudioClip = 300
     }
 }
