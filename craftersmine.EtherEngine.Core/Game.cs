@@ -10,7 +10,10 @@ using craftersmine.EtherEngine.Utilities;
 
 namespace craftersmine.EtherEngine.Core
 {
-    public sealed class Game
+    /// <summary>
+    /// Provides static methods to manage game
+    /// </summary>
+    public static class Game
     {
         internal static Window GameWnd { get; private set; }
         internal static GLGDI GLGDIInstance { get { return GameWnd.GLGDI; } }
@@ -18,9 +21,19 @@ namespace craftersmine.EtherEngine.Core
         internal static CollisionUpdater CollisionUpdater { get; private set; }
         internal static string DefaultWindowTitle { get; private set; }
 
+        /// <summary>
+        /// Occurs when game started and ready to show scene
+        /// </summary>
         public static event EventHandler GameStarted;
-        public static event EventHandler GameExited;
+        /// <summary>
+        /// Occurs when game exiting
+        /// </summary>
+        public static event EventHandler GameExiting;
 
+        /// <summary>
+        /// Starts game instance with specified <see cref="Window"/>
+        /// </summary>
+        /// <param name="gameWindow">Main game <see cref="Window"/></param>
         public static void Run(Window gameWindow)
         {
             try
@@ -57,9 +70,13 @@ namespace craftersmine.EtherEngine.Core
             GameStarted?.Invoke(null, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Exits from game with specified exit code
+        /// </summary>
+        /// <param name="exitCode">Game exit code</param>
         public static void Exit(int exitCode)
         {
-            GameExited?.Invoke(null, EventArgs.Empty);
+            GameExiting?.Invoke(null, EventArgs.Empty);
             if (GameWnd != null)
                 GameWnd.Close();
 
