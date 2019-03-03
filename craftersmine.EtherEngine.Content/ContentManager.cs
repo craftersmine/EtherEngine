@@ -158,7 +158,7 @@ namespace craftersmine.EtherEngine.Content
                 ContentObject cObj = objects[id];
                 if (cObj.Type == ContentType.AudioClip)
                 {
-                    string path = Path.Combine(ContentPath, id + ".etx");
+                    string path = Path.Combine(ContentPath, id + ".eac");
                     try
                     {
                         return AudioClip.FromFile(path);
