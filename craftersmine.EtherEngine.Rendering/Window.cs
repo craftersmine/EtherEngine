@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -83,12 +84,18 @@ namespace craftersmine.EtherEngine.Rendering
             fpsBounds = new Rectangle(WindowSize.Width - 30, 0, 30, 30);
 
             _gameWnd.Load += _gameWnd_Load;
+            _gameWnd.Closing += _gameWnd_Closing;
             Keyboard.KeyboardDevice = _gameWnd.Keyboard;
             Mouse.MouseDevice = _gameWnd.Mouse;
             Mouse.MouseDevice.ButtonDown += Mouse.MouseDeviceButtonDownEvent;
             Mouse.MouseDevice.ButtonUp += Mouse.MouseDeviceButtonUpEvent;
             Mouse.MouseDevice.Move += Mouse.MouseDeviceMoveEvent;
             Mouse.MouseDevice.WheelChanged += Mouse.MouseDeviceWheelChangedEvent;
+        }
+
+        private void _gameWnd_Closing(object sender, CancelEventArgs e)
+        {
+            Exiting?.Invoke(this, e);
         }
 
         private void _gameWnd_Load(object sender, EventArgs e)
@@ -122,6 +129,11 @@ namespace craftersmine.EtherEngine.Rendering
         /// Occurs before window being shown. Used by engine renderer
         /// </summary>
         public event EventHandler Load;
+
+        /// <summary>
+        /// Occurs when close on window clicked
+        /// </summary>
+        public event EventHandler<CancelEventArgs> Exiting;
 
         /// <summary>
         /// Initializes and shows window and sets maximum framerate
