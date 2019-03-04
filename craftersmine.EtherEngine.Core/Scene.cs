@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using craftersmine.EtherEngine.Content;
 
 namespace craftersmine.EtherEngine.Core
 {
@@ -15,6 +16,8 @@ namespace craftersmine.EtherEngine.Core
         private Color _bgColor;
 
         internal List<GameObject> GameObjects = new List<GameObject>();
+
+        internal Dictionary<string, AudioChannel> AudioChannels = new Dictionary<string, AudioChannel>();
 
         /// <summary>
         /// Gets or sets <see cref="Scene"/> background color
@@ -89,6 +92,32 @@ namespace craftersmine.EtherEngine.Core
             {
                 GameObjects.Remove(gameObject);
             }
+        }
+
+        public bool CreateAudioChannel(string id, AudioClip audioClip)
+        {
+            if (!AudioChannels.ContainsKey(id))
+            {
+                AudioChannels.Add(id, new AudioChannel(audioClip));
+                return true;
+            }
+            else return false;
+        }
+
+        public void RemoveAudioChannel(string id)
+        {
+            if (AudioChannels.ContainsKey(id))
+            {
+                AudioChannels[id].Stop();
+                AudioChannels.Remove(id);
+            }
+        }
+
+        public AudioChannel GetAudioChannel(string id)
+        {
+            if (AudioChannels.ContainsKey(id))
+                return AudioChannels[id];
+            else return null;
         }
 
         internal void InternalCreate()
