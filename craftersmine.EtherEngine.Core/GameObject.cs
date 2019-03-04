@@ -43,6 +43,10 @@ namespace craftersmine.EtherEngine.Core
         /// </summary>
         public float Y { get { return Transform.Y; } set { Transform.Y = value; } }
         /// <summary>
+        /// Gets or sets object texture or animation texture transparency factor
+        /// </summary>
+        public float ObjectTransparency { get; set; } = 1.0f;
+        /// <summary>
         /// Gets or sets <see cref="GameObject"/> width
         /// </summary>
         public int Width { get { return Transform.Width; } set { Transform.Width = value; } }
@@ -66,10 +70,10 @@ namespace craftersmine.EtherEngine.Core
         /// Gets or sets true if object animation enabled, else false
         /// </summary>
         public bool IsAnimated { get; set; }
-        
+        /// <summary>
+        /// Gets or sets object texture or animation texture blending color
+        /// </summary>
         public Color BlendingColor { get; set; }
-        
-        public float ObjectTransparency { get; set; } = 1.0f;
 
         /// <summary>
         /// Calls when <see cref="GameObject"/> being created
@@ -173,9 +177,22 @@ namespace craftersmine.EtherEngine.Core
             CollisionBox.CollisionBoxBoundsOffsetted = new System.Drawing.Rectangle(colliderX, colliderY, CollisionBox.CollisionBoxBounds.Width, CollisionBox.CollisionBoxBounds.Height);
         }
 
+        /// <summary>
+        /// Resets object animation frame to first
+        /// </summary>
         public void ResetAnimation()
         {
             _currentAnimationFrame = 0;
+        }
+
+        /// <summary>
+        /// Creates shallow of the current object of specified type
+        /// </summary>
+        /// <typeparam name="T">The type of returnable cloned object</typeparam>
+        /// <returns></returns>
+        public virtual T Clone<T>()
+        {
+            return (T)MemberwiseClone();
         }
     }
 }
