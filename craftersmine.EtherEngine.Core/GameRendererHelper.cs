@@ -22,7 +22,7 @@ namespace craftersmine.EtherEngine.Core
                 {
                     if (SceneManager.CurrentScene.GameObjects[obj].Visible)
                     {
-                        if (SceneManager.CurrentScene.GameObjects[obj].Texture != null)
+                        if (SceneManager.CurrentScene.GameObjects[obj].Texture != null || SceneManager.CurrentScene.GameObjects[obj].Animation != null)
                         {
                             if (SceneManager.CurrentScene.GameObjects[obj].Transform.RendererX + SceneManager.CurrentScene.GameObjects[obj].Width > 0 &&
                                 SceneManager.CurrentScene.GameObjects[obj].Transform.RendererX < SceneManager.CurrentScene.SceneCamera.FrameWidth &&

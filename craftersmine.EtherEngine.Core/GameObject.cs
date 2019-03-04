@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,6 +66,11 @@ namespace craftersmine.EtherEngine.Core
         /// Gets or sets true if object animation enabled, else false
         /// </summary>
         public bool IsAnimated { get; set; }
+        
+        public Color BlendingColor { get; set; }
+
+        [DefaultValue(1.0f)]
+        public float ObjectTransparency { get; set; }// = 1.0f;
 
         /// <summary>
         /// Calls when <see cref="GameObject"/> being created
@@ -75,6 +82,7 @@ namespace craftersmine.EtherEngine.Core
 
         internal void InternalCreate()
         {
+            BlendingColor = Color.White;
             Transform.ResetRotationOrigin();
             Visible = true;
             OnStart();
@@ -111,6 +119,12 @@ namespace craftersmine.EtherEngine.Core
         /// <param name="renderer"></param>
         public virtual void OnRender(GLGDI renderer)
         {
+            byte objTransparencyCalculated = (byte)(255 * ObjectTransparency);
+            //if (objTransparencyCalculated < 0)
+            //    objTransparencyCalculated = 0;
+            //else if (objTransparencyCalculated > 255)
+            //    objTransparencyCalculated = 255;
+
             if (IsAnimated)
             {
                 if (Animation != null)
@@ -126,7 +140,8 @@ namespace craftersmine.EtherEngine.Core
                                     Transform.RendererX,
                                     Transform.RendererY,
                                     Width,
-                                    Height);
+                                    Height,
+                                    new GLGDIPlus.BlendingValues(BlendingColor.R, BlendingColor.G, BlendingColor.B, objTransparencyCalculated));
                     _frameCounter++;
                 }
                 else IsAnimated = false;
@@ -137,8 +152,10 @@ namespace craftersmine.EtherEngine.Core
                                     Transform.RendererX,
                                     Transform.RendererY,
                                     Width,
-                                    Height);
+                                    Height,
+                                    new GLGDIPlus.BlendingValues(BlendingColor.R, BlendingColor.G, BlendingColor.B, objTransparencyCalculated));
             }
+            
         }
 
         /// <summary>
