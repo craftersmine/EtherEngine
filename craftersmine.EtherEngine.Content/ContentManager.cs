@@ -91,6 +91,33 @@ namespace craftersmine.EtherEngine.Content
         }
 
         /// <summary>
+        /// Loads texture as texture atlas from content package with specified ID
+        /// </summary>
+        /// <param name="id">Texture ID</param>
+        /// <returns></returns>
+        public TextureAtlas LoadTextureAtlas(string id)
+        {
+            if (Contains(id))
+            {
+                ContentObject cObj = objects[id];
+                if (cObj.Type == ContentType.TextureAtlas || cObj.Type == ContentType.TextureAtlas)
+                {
+                    string path = Path.Combine(ContentPath, id + ".etx");
+                    try
+                    {
+                        return new TextureAtlas(Texture.FromFile(path));
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ContentManagerException("Unable to load object with this id \"" + id + "\" as texture atlas! " + ex.Message);
+                    }
+                }
+                else throw new ContentManagerException("Object with this id \"" + id + "\" is not a texture or texture atlas!");
+            }
+            else throw new ContentManagerException("Package does not contains object with this id \"" + id + "\"!");
+        }
+
+        /// <summary>
         /// Loads animation data and animation texture from content package with specified ID
         /// </summary>
         /// <param name="id">Animation ID</param>
@@ -222,6 +249,10 @@ namespace craftersmine.EtherEngine.Content
         /// Texture
         /// </summary>
         Texture = 100,
+        /// <summary>
+        /// Texture atlas
+        /// </summary>
+        TextureAtlas = 110,
         /// <summary>
         /// Animation
         /// </summary>
