@@ -182,7 +182,7 @@
             this.Name = "CrashHandlerForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "CrashHandlerForm";
+            this.Text = "craftersmine EtherEngine - Something went wrong";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.icon)).EndInit();
             this.ResumeLayout(false);
