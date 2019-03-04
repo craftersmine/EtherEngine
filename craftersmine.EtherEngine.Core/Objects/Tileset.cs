@@ -7,7 +7,6 @@ using craftersmine.EtherEngine.Content;
 
 namespace craftersmine.EtherEngine.Core
 {
-    [Obsolete("Temporary Obsolete")]
     public sealed class Tileset : GameObject
     {
         public bool[,] Tiles;
