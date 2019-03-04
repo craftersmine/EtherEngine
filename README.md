@@ -6,6 +6,8 @@ New reworked and renamed libraries of GameEngine
 
 Allows you to create games with simple visuals
 
+[![View Code of Conduct](https://img.shields.io/badge/view-code%20of%20conduct-blue.svg)](https://github.com/craftersmine/EtherEngine/blob/master/CODE_OF_CONDUCT.md) [![View Licence](https://img.shields.io/badge/view-licence-blue.svg)](https://github.com/craftersmine/EtherEngine/blob/master/LICENSE) [![View Contributing](https://img.shields.io/badge/view-contributing-brightgreen.svg)](https://github.com/craftersmine/EtherEngine/blob/master/CONTRIBUTING.md) [![View Pull Request Template](https://img.shields.io/badge/view-pull%20request%20template-blue.svg)](https://github.com/craftersmine/EtherEngine/blob/master/PULL_REQUEST_TEMPLATE.md)
+
 ##### Current Engine Features:
 * Full working XInput Gamepad input
 * Lightweight
@@ -16,8 +18,10 @@ Allows you to create games with simple visuals
 
 [![Built With ❤](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) [![Made With C#](https://forthebadge.com/images/badges/made-with-c-sharp.svg)](https://forthebadge.com) [![Powered by ⚡](https://forthebadge.com/images/badges/powered-by-electricity.svg)](https://forthebadge.com) [![Contains Cat GIFs](https://forthebadge.com/images/badges/contains-cat-gifs.svg)](https://forthebadge.com)
 
-| Badge Name              | Badge                                                                                                     |
-|:------------------------|:---------------------------------------------------------------------------------------------------------:|
+Statuses:
+
+| Name                    | Status                                                                                                    |
+|:------------------------|:----------------------------------------------------------------------------------------------------------|
 | Appveyor Build Status | [![Build status](https://ci.appveyor.com/api/projects/status/d3lcowtra73jevy9?svg=true)](https://ci.appveyor.com/project/craftersmine/etherengine) |
 | Repository Size         | ![Repository Size](https://img.shields.io/github/repo-size/craftersmine/EtherEngine.svg)                  |
 | Licence                 | [![Repository Licence](https://img.shields.io/github/license/craftersmine/EtherEngine.svg)](https://github.com/craftersmine/EtherEngine/blob/master/LICENSE.md)                 |
