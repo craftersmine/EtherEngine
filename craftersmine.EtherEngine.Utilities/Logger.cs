@@ -20,6 +20,11 @@ namespace craftersmine.EtherEngine.Utilities
         public List<LogEntry> LogEntries { get; } = new List<LogEntry>();
 
         /// <summary>
+        /// Gets current log file full path
+        /// </summary>
+        public string LogFile { get { return _file; } }
+
+        /// <summary>
         /// Creates new <see cref="Logger"/> instance
         /// </summary>
         /// <param name="logsRoot">Sets where logs will stored</param>
