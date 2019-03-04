@@ -13,17 +13,17 @@ namespace craftersmine.EtherEngine.Content
     /// </summary>
     public sealed class AudioClip
     {
-        private OggStream oggStream;
+        public OggStream OggStream { get; private set; }
 
         /// <summary>
         /// Gets or sets true if audio clip is looped, else false
         /// </summary>
-        public bool IsLooped { get { return oggStream.IsLooped; } set { oggStream.IsLooped = value; } }
+        public bool IsLooped { get { return OggStream.IsLooped; } set { OggStream.IsLooped = value; } }
 
         /// <summary>
         /// Gets or sets volume level of audio clip
         /// </summary>
-        public float Volume { get { return oggStream.Volume; } set { oggStream.Volume = value; } }
+        public float Volume { get { return OggStream.Volume; } set { OggStream.Volume = value; } }
 
         /// <summary>
         /// Creates new <see cref="AudioClip"/> instance from specified <see cref="OggStream"/>
@@ -31,41 +31,8 @@ namespace craftersmine.EtherEngine.Content
         /// <param name="oggStream">Ogg stream</param>
         public AudioClip(OggStream oggStream)
         {
-            this.oggStream = oggStream;
-            this.oggStream.Prepare();
-        }
-
-        /// <summary>
-        /// Plays audio clip
-        /// </summary>
-        public void Play()
-        {
-            if (oggStream.Ready)
-                oggStream.Play();
-        }
-
-        /// <summary>
-        /// Pauses playing audio clip
-        /// </summary>
-        public void Pause()
-        {
-            oggStream.Pause();
-        }
-
-        /// <summary>
-        /// Stops playing audio clip
-        /// </summary>
-        public void Stop()
-        {
-            oggStream.Stop();
-        }
-
-        /// <summary>
-        /// Resumes paused audio clip
-        /// </summary>
-        public void Resume()
-        {
-            oggStream.Resume();
+            OggStream = oggStream;
+            OggStream.Prepare();
         }
 
         /// <summary>
