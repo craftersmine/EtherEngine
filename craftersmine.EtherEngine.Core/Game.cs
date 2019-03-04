@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,9 @@ namespace craftersmine.EtherEngine.Core
         /// <summary>
         /// Occurs when game exiting
         /// </summary>
-        public static event EventHandler GameExiting;
+        public static event EventHandler<CancelEventArgs> GameExiting;
+
+        public static SoundDevice SoundDevice { get; set; }
 
         /// <summary>
         /// Starts game instance with specified <see cref="Window"/>
@@ -38,11 +41,16 @@ namespace craftersmine.EtherEngine.Core
         {
             try
             {
+                Application.EnableVisualStyles();
                 string tempDirectoryPath = Environment.GetEnvironmentVariable("temp");
                 Debugging.Logger = new Logger(tempDirectoryPath, "craftersmine.EtherEngine");
                 Debugging.Log(LogEntryType.Info, "craftersmine EtherEngine (c) craftersmine 2018-2019");
                 Debugging.Log(LogEntryType.Info, "Initializing game...");
                 GameWnd = gameWindow;
+                //Debugging.Log(LogEntryType.Info, "Current OpenAL audio context is " + AudioContext.CurrentContext.ToString());
+                Debugging.Log(LogEntryType.Info, "Initializing OpenAL...");
+                SoundDevice = new SoundDevice();
+                SoundDevice.Initialize();
                 Debugging.Log(LogEntryType.Info, "Creating GameUpdater...");
                 GameUpdater = new GameUpdater(60);
                 Debugging.Log(LogEntryType.Info, "Creating CollisionUpdater...");
@@ -50,19 +58,24 @@ namespace craftersmine.EtherEngine.Core
                 DefaultWindowTitle = GameWnd.Title;
                 GameWnd.Render += GameRendererHelper.OnRender;
                 GameWnd.Load += GameWnd_Load;
+                GameWnd.Exiting += GameWnd_Exiting;
                 Debugging.Log(LogEntryType.Info, "Loading default scene...");
                 SceneManager.SetScene(new DefaultScene());
                 GameUpdater.Run();
                 CollisionUpdater.Run();
                 //GameStarted?.Invoke(null, EventArgs.Empty);
                 GameWnd.Run();
+                Exit(0);
             }
             catch (Exception ex)
             {
-                Debugging.LogException(LogEntryType.Crash, ex);
-                MessageBox.Show("Something went wrong!\r\nMessage: " + ex.Message + "\r\n\r\nStacktrace:\r\n" + ex.StackTrace, "Engine Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Exit(ex.HResult);
+                CrashHandler.Handle(ex);
             }
+        }
+
+        private static void GameWnd_Exiting(object sender, CancelEventArgs e)
+        {
+            GameExiting?.Invoke(null, e);
         }
 
         private static void GameWnd_Load(object sender, EventArgs e)
@@ -76,14 +89,21 @@ namespace craftersmine.EtherEngine.Core
         /// <param name="exitCode">Game exit code</param>
         public static void Exit(int exitCode)
         {
-            GameExiting?.Invoke(null, EventArgs.Empty);
+            if (SceneManager.CurrentScene !=  null)
+            {
+                foreach (var audioChannel in SceneManager.CurrentScene.AudioChannels)
+                {
+                    audioChannel.Value.Stop();
+                }
+            }
+            
             if (GameWnd != null)
                 GameWnd.Close();
 
             else Debugging.Log(LogEntryType.Warning, "No active game window found!");
             if (exitCode != 0)
                 Debugging.Log(LogEntryType.Warning, "Game exited with code " + exitCode + " (0x" + exitCode.ToString("X") + ")");
-            else Debugging.Log(LogEntryType.Info, "Game exited with code " + exitCode + "(0x" + exitCode.ToString("X") + ")");
+            else Debugging.Log(LogEntryType.Info, "Game exited with code " + exitCode + " (0x" + exitCode.ToString("X") + ")");
             Environment.Exit(exitCode);
         }
     }
