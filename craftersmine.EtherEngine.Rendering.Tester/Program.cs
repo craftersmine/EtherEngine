@@ -24,24 +24,31 @@ namespace craftersmine.EtherEngine.Rendering.Tester
 
         static void Main(string[] args)
         {
-            //Logger.DefaultLog(LogEntryType.Info, "Initialize renderer tester...");
-            //Application.Run(new MainForm());
-            gameWindow = new Window("[RENDERER/CONTENT] craftersmine.EtherEngine", WindowSizePresets.SVGA, false);
-            gameWindow.VSyncMode = VSyncMode.On;
-            gameWindow.GLGDI.IsLinearFilteringEnabled = false;
-            Debugging.DrawDebug = true;
-            Debugging.ShowDrawCallsPerFrameInTitle = true;
-            Debugging.DrawBounds = true;
+            try
+            {
+                //Logger.DefaultLog(LogEntryType.Info, "Initialize renderer tester...");
+                //Application.Run(new MainForm());
+                gameWindow = new Window("[RENDERER/CONTENT] craftersmine.EtherEngine", WindowSizePresets.SVGA, false);
+                gameWindow.VSyncMode = VSyncMode.On;
+                gameWindow.GLGDI.IsLinearFilteringEnabled = false;
+                Debugging.DrawDebug = true;
+                Debugging.ShowDrawCallsPerFrameInTitle = true;
+                Debugging.DrawBounds = true;
 
-            contentManager = new ContentManager("root");
+                contentManager = new ContentManager("root");
 
-            texture = contentManager.LoadTexture("TestCircle");
+                texture = contentManager.LoadTexture("TestCircle");
 
-            animation = contentManager.LoadAnimation("Animation");
+                animation = contentManager.LoadAnimation("Animation");
 
-            Game.GameStarted += Game_GameStarted;
+                Game.GameStarted += Game_GameStarted;
 
-            Game.Run(gameWindow);
+                Game.Run(gameWindow);
+            }
+            catch (Exception ex)
+            {
+                CrashHandler.Handle(ex);
+            }
         }
 
         private static void Game_GameStarted(object sender, EventArgs e)
@@ -70,12 +77,14 @@ namespace craftersmine.EtherEngine.Rendering.Tester
         {
             BackgroundColor = Color.Green;
             //movable.Texture = Program.contentManager.LoadTexture("TestAnim");
-            //movable.Animation = Program.animation;
+            movable.Animation = Program.animation;
             movable.IsAnimated = true;
             movable.Width = 32;
             movable.Height = 32;
             movable.X = 32;
             movable.Y = 32;
+            //movable.BlendingColor = Color.Red;
+            movable.ObjectTransparency = .5f;
 
             particleSystem = new ParticleSystem(new Particle(Program.contentManager.LoadTexture("TestCircle")), 180, 30, 1.0f, 0.3f, 16, true);
             particleSystem.X = 200; particleSystem.Y = 200;
@@ -142,6 +151,10 @@ namespace craftersmine.EtherEngine.Rendering.Tester
                 movable.Transform.RotationAngle = 0.0f;
             if (Keyboard.IsKeyDown(Key.C))
                 GetAudioChannel("aud").Play();
+            if (Keyboard.IsKeyDown(Key.KeypadPlus))
+                movable.ObjectTransparency += .05f;
+            if (Keyboard.IsKeyDown(Key.KeypadMinus))
+                movable.ObjectTransparency -= .05f;
         }
     }
 
@@ -159,6 +172,11 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             base.OnCollide(gameObject);
             if (gameObject.GetType() == typeof(ParticleSystem))
                 SceneManager.CurrentScene.RemoveGameObject(this);
+        }
+
+        public override void OnRender(GLGDI renderer)
+        {
+            base.OnRender(renderer);
         }
     }
 }
