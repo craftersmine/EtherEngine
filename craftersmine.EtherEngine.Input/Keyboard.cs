@@ -10,9 +10,9 @@ using OpenTK.Input;
 namespace craftersmine.EtherEngine.Input
 {
     /// <summary>
-    /// Allows to get Keyboard input
+    /// Provides static methods to handle keyboard input
     /// </summary>
-    public sealed class Keyboard
+    public static class Keyboard
     {
         /// <summary>
         /// [ENGINE PROPERTY] Gets or sets keyboard to handle input

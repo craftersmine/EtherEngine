@@ -8,8 +8,15 @@ using craftersmine.EtherEngine.Utilities;
 
 namespace craftersmine.EtherEngine.Core
 {
-    public sealed class CrashHandler
+    /// <summary>
+    /// Provides static methods for exception handling
+    /// </summary>
+    public static class CrashHandler
     {
+        /// <summary>
+        /// Handles provided exception, writes exception data to log file, shows message to user and then exits from game
+        /// </summary>
+        /// <param name="ex">Exception to handle</param>
         public static void Handle(Exception ex)
         {
             Debugging.LogException(LogEntryType.Crash, ex);

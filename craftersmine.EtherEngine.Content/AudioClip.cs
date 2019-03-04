@@ -13,6 +13,9 @@ namespace craftersmine.EtherEngine.Content
     /// </summary>
     public sealed class AudioClip
     {
+        /// <summary>
+        /// Current audio clip Ogg stream with file
+        /// </summary>
         public OggStream OggStream { get; private set; }
 
         /// <summary>

@@ -7,7 +7,10 @@ using OpenTK.Input;
 
 namespace craftersmine.EtherEngine.Input
 {
-    public sealed class Mouse
+    /// <summary>
+    /// Provides static methods to handle mouse input
+    /// </summary>
+    public static class Mouse
     {
         /// <summary>
         /// [ENGINE METHOD] MouseDevice.Move event handler

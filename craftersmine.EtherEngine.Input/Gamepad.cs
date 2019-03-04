@@ -9,9 +9,9 @@ using XInput.Wrapper;
 namespace craftersmine.EtherEngine.Input
 {
     /// <summary>
-    /// Allows to use gamepad input
+    /// Provides static methods to handle XInput gamepad input
     /// </summary>
-    public sealed class Gamepad
+    public static class Gamepad
     {
         private static X.Gamepad fstPlayer { get; set; } = X.Gamepad_1;
         private static X.Gamepad secPlayer { get; set; } = X.Gamepad_2;

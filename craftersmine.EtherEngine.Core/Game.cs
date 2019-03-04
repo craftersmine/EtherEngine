@@ -31,6 +31,9 @@ namespace craftersmine.EtherEngine.Core
         /// </summary>
         public static event EventHandler<CancelEventArgs> GameExiting;
 
+        /// <summary>
+        /// Gets or sets current used sound device
+        /// </summary>
         public static SoundDevice SoundDevice { get; set; }
 
         /// <summary>

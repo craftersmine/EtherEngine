@@ -7,6 +7,9 @@ using craftersmine.EtherEngine.Content;
 
 namespace craftersmine.EtherEngine.Core
 {
+    /// <summary>
+    /// Represents scene audio channel. This class cannot be inherited
+    /// </summary>
     public sealed class AudioChannel
     {
         /// <summary>
