@@ -64,6 +64,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
         List<GameObject> myObjs = new List<GameObject>();
         Movable movable = new Movable();
         ParticleSystem particleSystem;
+        AudioClip audioclip;
 
         public override void OnStart()
         {
@@ -102,6 +103,8 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             AddGameObject(movable);
             AddGameObject(particleSystem);
             //particleSystem.Emit();
+            audioclip = Program.contentManager.LoadAudioClip("TestAudioClip");
+            CreateAudioChannel("aud", audioclip);
         }
 
         public override void OnUpdate()
@@ -137,6 +140,8 @@ namespace craftersmine.EtherEngine.Rendering.Tester
                 movable.Transform.Rotate(0.5f);
             if (Keyboard.IsKeyDown(Key.R))
                 movable.Transform.RotationAngle = 0.0f;
+            if (Keyboard.IsKeyDown(Key.C))
+                GetAudioChannel("aud").Play();
         }
     }
 
