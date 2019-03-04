@@ -68,9 +68,8 @@ namespace craftersmine.EtherEngine.Core
         public bool IsAnimated { get; set; }
         
         public Color BlendingColor { get; set; }
-
-        [DefaultValue(1.0f)]
-        public float ObjectTransparency { get; set; }// = 1.0f;
+        
+        public float ObjectTransparency { get; set; } = 1.0f;
 
         /// <summary>
         /// Calls when <see cref="GameObject"/> being created
