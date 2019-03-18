@@ -55,7 +55,7 @@ namespace craftersmine.EtherEngine.Objects
         /// <summary>
         /// Gets or sets particle on update behaviour
         /// </summary>
-        public ParticleOnUpdateDelegate OnUpdateAction { get; set; }
+        public ParticleOnUpdateAction OnUpdateAction { get; set; }
 
         /// <summary>
         /// Creates new <see cref="ParticleSystem"/> instance with specified parameters
@@ -258,5 +258,5 @@ namespace craftersmine.EtherEngine.Objects
     /// Represents particle OnUpdate behaviour
     /// </summary>
     /// <param name="particle">Updating particle</param>
-    public delegate void ParticleOnUpdateDelegate(Particle particle);
+    public delegate void ParticleOnUpdateAction(Particle particle);
 }
