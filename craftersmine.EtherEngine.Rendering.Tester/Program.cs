@@ -90,7 +90,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             particleSystem.X = 200; particleSystem.Y = 200;
             particleSystem.Collidable = true;
             particleSystem.SetCollsionBox(new CollisionBox(0, 0, 32, 32));
-            particleSystem.OnUpdateAction = new ParticleOnUpdateDelegate(ParticleOnUpdate);
+            particleSystem.OnUpdateAction = new ParticleOnUpdateAction(ParticleOnUpdate);
 
             for (int x = 0; x < SceneCamera.FrameWidth / 2 / 32 + 1; x++)
                 for (int y = 0; y < SceneCamera.FrameHeight / 2 / 32 + 1; y++)
