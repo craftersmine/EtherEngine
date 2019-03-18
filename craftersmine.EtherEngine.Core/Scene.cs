@@ -16,6 +16,7 @@ namespace craftersmine.EtherEngine.Core
         private Color _bgColor;
 
         internal List<GameObject> GameObjects = new List<GameObject>();
+        internal List<UIWidget> UIWidgets = new List<UIWidget>();
 
         internal Dictionary<string, AudioChannel> AudioChannels = new Dictionary<string, AudioChannel>();
 
@@ -118,6 +119,16 @@ namespace craftersmine.EtherEngine.Core
             if (AudioChannels.ContainsKey(id))
                 return AudioChannels[id];
             else return null;
+        }
+
+        public void AddUIWidget(UIWidget widget)
+        {
+            UIWidgets.Add(widget);
+        }
+
+        public void RemoveUIWidget(UIWidget widget)
+        {
+            UIWidgets.Remove(widget);
         }
 
         internal void InternalCreate()
