@@ -24,8 +24,14 @@ Statuses:
 |:------------------------|:----------------------------------------------------------------------------------------------------------|
 | Appveyor Build Status | [![Build status](https://ci.appveyor.com/api/projects/status/d3lcowtra73jevy9?svg=true)](https://ci.appveyor.com/project/craftersmine/etherengine) |
 | Repository Size         | ![Repository Size](https://img.shields.io/github/repo-size/craftersmine/EtherEngine.svg)                  |
-| Licence                 | [![Repository Licence](https://img.shields.io/github/license/craftersmine/EtherEngine.svg)](https://github.com/craftersmine/EtherEngine/blob/master/LICENSE.md)                 |
+| Licence                 | [![Repository Licence](https://img.shields.io/github/license/craftersmine/EtherEngine.svg)](https://github.com/craftersmine/EtherEngine/blob/master/LICENSE)                 |
 | Current Version (Tag)   | [![Last tag](https://img.shields.io/github/tag/craftersmine/EtherEngine.svg)](https://github.com/craftersmine/EtherEngine/tags)                               |
 | Release Date            | [![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/craftersmine/EtherEngine.svg)](https://github.com/craftersmine/EtherEngine/releases) |
 | Last Commit Date        | [![Last commit](https://img.shields.io/github/last-commit/craftersmine/EtherEngine.svg)](https://github.com/craftersmine/EtherEngine/commits/master)                    |
 | Game Engine Type        | ![2D Game Engine](https://img.shields.io/badge/game%20engine-2D-green.svg)                 	              |
+
+
+* Uses OpenTK Library under MIT licence and can be found [here](https://github.com/opentk/opentk)
+* Uses GLGDI Library by dmbreaker and can be found [here](https://github.com/dmbreaker/glgdiplus)
+* Uses XInput Wrapper Library by nicvoronin under MIT license and can be found [here](https://github.com/nikvoronin/XInput.Wrapper)
+* Uses NVorbis and NVorbis.OpenTKSupport Libraries by ioctlLR under Microsoft Public License and can be found [here](https://github.com/ioctlLR/NVorbis)
