@@ -81,12 +81,14 @@
     <Compile Include="GameUpdater.cs" />
     <Compile Include="IRenderable.cs" />
     <Compile Include="Objects\ParticleSystem.cs" />
+    <Compile Include="Objects\Tile.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SceneManager.cs" />
     <Compile Include="SoundDevice.cs" />
     <Compile Include="Objects\Tileset.cs" />
     <Compile Include="Transform.cs" />
+    <Compile Include="UIWidget.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\craftersmine.EtherEngine.Content\craftersmine.EtherEngine.Content.csproj">
