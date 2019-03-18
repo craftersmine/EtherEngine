@@ -18,6 +18,7 @@ namespace craftersmine.EtherEngine.Core
             Debugging.DrawCalls = 0;
             if (SceneManager.CurrentScene != null)
             {
+                #region GameObjects Renderer
                 for (int obj = 0; obj < SceneManager.CurrentScene.GameObjects.Count; obj++)
                 {
                     if (SceneManager.CurrentScene.GameObjects[obj].Visible)
@@ -30,7 +31,7 @@ namespace craftersmine.EtherEngine.Core
                                 SceneManager.CurrentScene.GameObjects[obj].Transform.RendererY < SceneManager.CurrentScene.SceneCamera.FrameHeight)
                             {
                                 SceneManager.CurrentScene.GameObjects[obj].IsVisibleByCamera = true;
-                                e.GLGDIInstance.Rotate(SceneManager.CurrentScene.GameObjects[obj].Transform.RotationAngle, SceneManager.CurrentScene.GameObjects[obj].Transform.Width / 2, SceneManager.CurrentScene.GameObjects[obj].Transform.Height / 2);
+                                e.GLGDIInstance.Rotate(SceneManager.CurrentScene.GameObjects[obj].Transform.RotationAngle, SceneManager.CurrentScene.GameObjects[obj].Transform.RotationOriginX, SceneManager.CurrentScene.GameObjects[obj].Transform.RotationOriginY);
                                 SceneManager.CurrentScene.GameObjects[obj].OnRender(e.GLGDIInstance);
                                 Debugging.DrawCalls++;
                             }
@@ -39,6 +40,33 @@ namespace craftersmine.EtherEngine.Core
                         }
                     }
                 }
+                #endregion
+
+                #region UI Widgets Renderer
+                for (int widget = 0; widget < SceneManager.CurrentScene.UIWidgets.Count; widget++)
+                {
+                    if (SceneManager.CurrentScene.UIWidgets[widget].Visible)
+                    {
+                        if (SceneManager.CurrentScene.UIWidgets[widget].Texture != null || SceneManager.CurrentScene.UIWidgets[widget].Animation != null)
+                        {
+                            if (SceneManager.CurrentScene.UIWidgets[widget].Transform.RendererX + SceneManager.CurrentScene.UIWidgets[widget].Width > 0 &&
+                                SceneManager.CurrentScene.UIWidgets[widget].Transform.RendererX < SceneManager.CurrentScene.SceneCamera.FrameWidth &&
+                                SceneManager.CurrentScene.UIWidgets[widget].Transform.RendererY + SceneManager.CurrentScene.UIWidgets[widget].Height > 0 &&
+                                SceneManager.CurrentScene.UIWidgets[widget].Transform.RendererY < SceneManager.CurrentScene.SceneCamera.FrameHeight)
+                            {
+                                SceneManager.CurrentScene.UIWidgets[widget].IsVisibleByCamera = true;
+                                e.GLGDIInstance.Rotate(SceneManager.CurrentScene.UIWidgets[widget].Transform.RotationAngle, SceneManager.CurrentScene.UIWidgets[widget].Transform.RotationOriginX, SceneManager.CurrentScene.UIWidgets[widget].Transform.RotationOriginY);
+                                SceneManager.CurrentScene.UIWidgets[widget].OnRender(e.GLGDIInstance);
+                                Debugging.DrawCalls++;
+                            }
+                            else
+                                SceneManager.CurrentScene.UIWidgets[widget].IsVisibleByCamera = false;
+                        }
+                    }
+                }
+                #endregion
+
+                #region Debug Bounds Renderer
                 if (Debugging.DrawBounds)
                 {
                     for (int i = 0; i < SceneManager.CurrentScene.GameObjects.Count; i++)
@@ -57,9 +85,10 @@ namespace craftersmine.EtherEngine.Core
                         }
                     }
                 }
+                #endregion
             }
             if (Debugging.ShowDrawCallsPerFrameInTitle)
-                Game.GameWnd.Title = Game.DefaultWindowTitle + " | " + Debugging.DrawCalls + " DrawCalls/s";
+                Game.GameWnd.Title = Game.DefaultWindowTitle + " | ~" + Debugging.DrawCalls + " DrawCalls/s";
         }
     }
 }
