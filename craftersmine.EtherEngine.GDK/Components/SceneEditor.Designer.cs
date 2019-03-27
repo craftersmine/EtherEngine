@@ -28,24 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.glControl1 = new OpenTK.GLControl();
+            this.openGLWindow = new craftersmine.EtherEngine.GDK.Components.GLGDIControl();
             this.SuspendLayout();
             // 
-            // glControl1
+            // openGLWindow
             // 
-            this.glControl1.BackColor = System.Drawing.Color.Black;
-            this.glControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.glControl1.Location = new System.Drawing.Point(0, 0);
-            this.glControl1.Name = "glControl1";
-            this.glControl1.Size = new System.Drawing.Size(757, 504);
-            this.glControl1.TabIndex = 0;
-            this.glControl1.VSync = false;
+            this.openGLWindow.BackColor = System.Drawing.Color.Black;
+            this.openGLWindow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.openGLWindow.GLGDIInstance = null;
+            this.openGLWindow.Location = new System.Drawing.Point(0, 0);
+            this.openGLWindow.Name = "openGLWindow";
+            this.openGLWindow.Size = new System.Drawing.Size(757, 504);
+            this.openGLWindow.TabIndex = 1;
+            this.openGLWindow.VSync = false;
             // 
             // SceneEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.glControl1);
+            this.Controls.Add(this.openGLWindow);
             this.Name = "SceneEditor";
             this.Size = new System.Drawing.Size(757, 504);
             this.ResumeLayout(false);
@@ -53,7 +54,6 @@
         }
 
         #endregion
-
-        private OpenTK.GLControl glControl1;
+        private GLGDIControl openGLWindow;
     }
 }

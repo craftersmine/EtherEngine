@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GLGDIPlus, Version=0.1.1.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="OpenTK, Version=1.0.0.201, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\OpenTK.dll</HintPath>
@@ -60,6 +61,9 @@
     <Compile Include="Components\EditorBase.Designer.cs">
       <DependentUpon>EditorBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\GLGDIControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Components\SceneEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -74,6 +78,13 @@
     </Compile>
     <Compile Include="Core\LocaleManager.cs" />
     <Compile Include="Core\Project.cs" />
+    <Compile Include="GameBaseComponents\CollisionBox.cs" />
+    <Compile Include="GameBaseComponents\EditorCamera.cs" />
+    <Compile Include="GameBaseComponents\EditorTransform.cs" />
+    <Compile Include="GameBaseComponents\EditorGameObject.cs" />
+    <Compile Include="GameBaseComponents\EditorScene.cs" />
+    <Compile Include="GameBaseComponents\IRenderable.cs" />
+    <Compile Include="GameBaseComponents\EditorUIWidget.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +92,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectObjectProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectObjectProperties.Designer.cs">
+      <DependentUpon>ProjectObjectProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticData.cs" />
     <EmbeddedResource Include="Components\SceneEditor.resx">
@@ -91,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectObjectProperties.resx">
+      <DependentUpon>ProjectObjectProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

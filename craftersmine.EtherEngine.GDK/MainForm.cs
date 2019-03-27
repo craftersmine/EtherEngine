@@ -8,13 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
+using craftersmine.EtherEngine.Core;
+using craftersmine.EtherEngine.Core.EnginePrefabs;
 using craftersmine.EtherEngine.GDK.Core;
+using craftersmine.EtherEngine.GDK.GameBaseComponents;
 using craftersmine.EtherEngine.Utilities;
 
 namespace craftersmine.EtherEngine.GDK
 {
     public partial class MainForm : Form
     {
+        private TreeNode _rightClickedNode;
+
         public MainForm()
         {
             InitializeComponent();
@@ -22,6 +29,8 @@ namespace craftersmine.EtherEngine.GDK
             Program.Log(LogEntryType.Info, "Applying locale...");
             ApplyLocale();
             Program.Log(LogEntryType.Done, "GDK Loaded!");
+            StaticData.EditingScene = new EditorScene();
+            StaticData.EditingScene.BackgroundColor = Color.LightGreen;
         }
 
         private void LocaleManager_LocaleLoaded(object sender, EventArgs e)
@@ -106,12 +115,14 @@ namespace craftersmine.EtherEngine.GDK
             {
                 PrepareEnvironment();
                 _switchEnabledOpen(true);
+
+                sceneEditor.StartRender();
             }
         }
 
         private void PrepareEnvironment()
         {
-            projectTree.Nodes.Add(new TreeNode("Project Root", 3, 3));
+            projectTree.Nodes.Add(new TreeNode(StaticData.LocaleManager.GetLocalizedString("treenode.projectroot"), 3, 3) { Tag = "treenode.projectroot" });
             _populateTreeView(projectTree.Nodes[0], StaticData.CurrentProject.ProjectFiles);
             projectTree.Nodes[0].Expand();
         }
@@ -184,25 +195,30 @@ namespace craftersmine.EtherEngine.GDK
 
         private void projectTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (Path.HasExtension(e.Node.Text))
+            if (e.Button == MouseButtons.Left)
             {
-                switch (Path.GetExtension(e.Node.Text))
+                if (Path.HasExtension(e.Node.Text))
                 {
-                    case ".etx":
-                        string treePath = e.Node.FullPath.Replace("Project Root\\", "");
-                        string texturePath = Path.Combine(StaticData.CurrentProject.ProjectRoot, treePath);
-                        previewBox.BackgroundImage = Image.FromFile(texturePath);
-                        break;
-                    case ".eam":
-                        break;
-                    case ".epm":
-                        break;
-                    case ".cs":
-                        break;
-                    default:
-                        break;
+                    switch (Path.GetExtension(e.Node.Text))
+                    {
+                        case ".etx":
+                            string treePath = e.Node.FullPath.Replace(StaticData.LocaleManager.GetLocalizedString("treenode.projectroot") + "\\", "");
+                            string texturePath = Path.Combine(StaticData.CurrentProject.ProjectRoot, treePath);
+                            previewBox.BackgroundImage = Image.FromFile(texturePath);
+                            break;
+                        case ".eam":
+                            break;
+                        case ".epm":
+                            break;
+                        case ".cs":
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
+            if (e.Button == MouseButtons.Right)
+                _rightClickedNode = e.Node;
         }
 
         private void ApplyLocale()
@@ -235,6 +251,61 @@ namespace craftersmine.EtherEngine.GDK
 
             serviceToolStripMenuItem.Text = StaticData.LocaleManager.GetLocalizedString((string)serviceToolStripMenuItem.Tag);
             gDKSettingsToolStripMenuItem.Text = StaticData.LocaleManager.GetLocalizedString((string)gDKSettingsToolStripMenuItem.Tag);
+
+            contextProjTreeProperties.Text = StaticData.LocaleManager.GetLocalizedString((string)contextProjTreeProperties.Tag);
+        }
+
+        private void ContextProjectTreePropertiesClick(object sender, EventArgs e)
+        {
+            if ((string)_rightClickedNode.Tag == "treenode.projectroot")
+            {
+                MessageBox.Show("Project Properties isn't made yet!");
+            }
+            else new ProjectObjectProperties(_rightClickedNode).ShowDialog();
+        }
+
+        int x = 200;
+
+        private void sceneEditor_Render(object sender, Components.SceneEditorRenderEventArgs e)
+        {
+            //e.GLGDIInstance.Clear(sceneEditor.EditingScene.BackgroundColor);
+            if (e.GLGDIInstance != null)
+            {
+                e.GLGDIInstance.Clear(StaticData.EditingScene.BackgroundColor);
+                e.GLGDIInstance.DrawRectangle(Color.Yellow, x++, 200, 50, 100);
+            }
+        }
+
+        private void DEBUGrunRender_Click(object sender, EventArgs e)
+        {
+            sceneEditor.StartRender();
+        }
+
+        private void DEBUGserializeScene_Click(object sender, EventArgs e)
+        {
+            EditorScene scene = new EditorScene() {
+                BackgroundColor = Color.Aquamarine
+            };
+            scene.InternalCreate();
+            StaticData.EditingScene = scene;
+            EditorGameObject go = new EditorGameObject();
+            scene.AddGameObject(go);
+
+            var serializer = new XmlSerializer(StaticData.EditingScene.GetType());
+            using (var writer = XmlWriter.Create("D:\\_TEST\\testScene.scene"))
+            {
+                serializer.Serialize(writer, StaticData.EditingScene);
+            }
+        }
+
+        private void DEBUGdeserializeScene_Click(object sender, EventArgs e)
+        {
+            var serializer = new XmlSerializer(typeof(EditorScene));
+            using (var reader = XmlReader.Create("D:\\_TEST\\testScene.scene"))
+            {
+                var scene = (EditorScene)serializer.Deserialize(reader);
+                StaticData.EditingScene = scene;
+            }
         }
     }
 }

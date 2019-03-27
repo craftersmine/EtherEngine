@@ -32,45 +32,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMainMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.createMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.openMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.closeMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.editMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.duplicateMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
-            this.projectMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
-            this.serviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gDKSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.previewContainer = new System.Windows.Forms.Panel();
-            this.projectTreeToolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.projectTree = new System.Windows.Forms.TreeView();
-            this.treeIconList = new System.Windows.Forms.ImageList(this.components);
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.objectProperties = new System.Windows.Forms.PropertyGrid();
-            this.mainToolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mainTabs = new System.Windows.Forms.TabControl();
-            this.previewBox = new System.Windows.Forms.PictureBox();
-            this.projectTreeRefresh = new System.Windows.Forms.ToolStripButton();
-            this.projectTreeCreateFolder = new System.Windows.Forms.ToolStripButton();
-            this.mainToolSave = new System.Windows.Forms.ToolStripButton();
-            this.mainToolOpen = new System.Windows.Forms.ToolStripButton();
-            this.mainToolbarDuplicate = new System.Windows.Forms.ToolStripButton();
-            this.mainToolDelete = new System.Windows.Forms.ToolStripButton();
-            this.createMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.openMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.duplicateMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.projectCreateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sceneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,9 +55,41 @@
             this.animationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.contentPackageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.buildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buildLaunchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.projectPropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gDKSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.previewContainer = new System.Windows.Forms.Panel();
+            this.previewBox = new System.Windows.Forms.PictureBox();
+            this.projectTreeToolStrip = new System.Windows.Forms.ToolStrip();
+            this.projectTreeRefresh = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.projectTreeCreateFolder = new System.Windows.Forms.ToolStripButton();
+            this.projectTree = new System.Windows.Forms.TreeView();
+            this.projectTreeContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextProjTreeProperties = new System.Windows.Forms.ToolStripMenuItem();
+            this.treeIconList = new System.Windows.Forms.ImageList(this.components);
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.mainTabs = new System.Windows.Forms.TabControl();
+            this.tabSceneEditor = new System.Windows.Forms.TabPage();
+            this.sceneEditor = new craftersmine.EtherEngine.GDK.Components.SceneEditor();
+            this.objectProperties = new System.Windows.Forms.PropertyGrid();
+            this.mainToolStrip = new System.Windows.Forms.ToolStrip();
+            this.mainToolSave = new System.Windows.Forms.ToolStripButton();
+            this.mainToolOpen = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mainToolbarDuplicate = new System.Windows.Forms.ToolStripButton();
+            this.mainToolDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.DEBUGrunRender = new System.Windows.Forms.ToolStripButton();
+            this.DEBUGserializeScene = new System.Windows.Forms.ToolStripButton();
+            this.DEBUGdeserializeScene = new System.Windows.Forms.ToolStripButton();
             this.menuStrip.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -91,13 +99,17 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.previewContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
             this.projectTreeToolStrip.SuspendLayout();
+            this.projectTreeContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.mainTabs.SuspendLayout();
+            this.tabSceneEditor.SuspendLayout();
             this.mainToolStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.previewBox)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -129,10 +141,37 @@
             this.fileMainMenu.Tag = "menu.file";
             this.fileMainMenu.Text = "menu.file";
             // 
+            // createMenu
+            // 
+            this.createMenu.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.create_project;
+            this.createMenu.Name = "createMenu";
+            this.createMenu.Size = new System.Drawing.Size(196, 22);
+            this.createMenu.Tag = "menu.file.createProject";
+            this.createMenu.Text = "menu.file.createProject";
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(193, 6);
+            // 
+            // openMenu
+            // 
+            this.openMenu.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.open;
+            this.openMenu.Name = "openMenu";
+            this.openMenu.Size = new System.Drawing.Size(196, 22);
+            this.openMenu.Tag = "menu.file.openProject";
+            this.openMenu.Text = "menu.file.openProject";
+            this.openMenu.Click += new System.EventHandler(this.OpenEventHandler);
+            // 
+            // saveMenu
+            // 
+            this.saveMenu.Enabled = false;
+            this.saveMenu.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.save;
+            this.saveMenu.Name = "saveMenu";
+            this.saveMenu.Size = new System.Drawing.Size(196, 22);
+            this.saveMenu.Tag = "menu.file.save";
+            this.saveMenu.Text = "menu.file.save";
+            this.saveMenu.Click += new System.EventHandler(this.SaveEventHandler);
             // 
             // closeMenu
             // 
@@ -169,10 +208,26 @@
             this.editMenu.Tag = "menu.edit";
             this.editMenu.Text = "menu.edit";
             // 
+            // duplicateMenu
+            // 
+            this.duplicateMenu.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.duplicate;
+            this.duplicateMenu.Name = "duplicateMenu";
+            this.duplicateMenu.Size = new System.Drawing.Size(187, 22);
+            this.duplicateMenu.Tag = "menu.edit.duplicate";
+            this.duplicateMenu.Text = "menu.edit.duplicate";
+            // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(184, 6);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.delete;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.deleteToolStripMenuItem.Tag = "menu.edit.delete";
+            this.deleteToolStripMenuItem.Text = "menu.edit.delete";
             // 
             // resetToolStripMenuItem
             // 
@@ -185,6 +240,14 @@
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
             this.toolStripMenuItem7.Size = new System.Drawing.Size(184, 6);
+            // 
+            // editSourceToolStripMenuItem
+            // 
+            this.editSourceToolStripMenuItem.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.edit_source;
+            this.editSourceToolStripMenuItem.Name = "editSourceToolStripMenuItem";
+            this.editSourceToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.editSourceToolStripMenuItem.Tag = "menu.edit.editSource";
+            this.editSourceToolStripMenuItem.Text = "menu.edit.editSource";
             // 
             // projectMenu
             // 
@@ -200,318 +263,6 @@
             this.projectMenu.Size = new System.Drawing.Size(90, 20);
             this.projectMenu.Tag = "menu.project";
             this.projectMenu.Text = "menu.project";
-            // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(233, 6);
-            // 
-            // toolStripMenuItem6
-            // 
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(233, 6);
-            // 
-            // serviceToolStripMenuItem
-            // 
-            this.serviceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gDKSettingsToolStripMenuItem});
-            this.serviceToolStripMenuItem.Name = "serviceToolStripMenuItem";
-            this.serviceToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
-            this.serviceToolStripMenuItem.Tag = "menu.service";
-            this.serviceToolStripMenuItem.Text = "menu.service";
-            // 
-            // gDKSettingsToolStripMenuItem
-            // 
-            this.gDKSettingsToolStripMenuItem.Name = "gDKSettingsToolStripMenuItem";
-            this.gDKSettingsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.gDKSettingsToolStripMenuItem.Tag = "menu.service.settings";
-            this.gDKSettingsToolStripMenuItem.Text = "menu.service.settings";
-            // 
-            // statusStrip
-            // 
-            this.statusStrip.Location = new System.Drawing.Point(0, 380);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1047, 22);
-            this.statusStrip.TabIndex = 2;
-            this.statusStrip.Text = "statusBar";
-            // 
-            // toolStripContainer1
-            // 
-            this.toolStripContainer1.BottomToolStripPanelVisible = false;
-            // 
-            // toolStripContainer1.ContentPanel
-            // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1047, 331);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.LeftToolStripPanelVisible = false;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 24);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(1047, 356);
-            this.toolStripContainer1.TabIndex = 3;
-            this.toolStripContainer1.Text = "toolStripContainer1";
-            // 
-            // toolStripContainer1.TopToolStripPanel
-            // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.mainToolStrip);
-            this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.previewContainer);
-            this.splitContainer1.Panel1.Controls.Add(this.projectTreeToolStrip);
-            this.splitContainer1.Panel1.Controls.Add(this.projectTree);
-            this.splitContainer1.Panel1.Enabled = false;
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1047, 331);
-            this.splitContainer1.SplitterDistance = 200;
-            this.splitContainer1.TabIndex = 0;
-            // 
-            // previewContainer
-            // 
-            this.previewContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.previewContainer.Controls.Add(this.previewBox);
-            this.previewContainer.Location = new System.Drawing.Point(0, 131);
-            this.previewContainer.Name = "previewContainer";
-            this.previewContainer.Size = new System.Drawing.Size(200, 200);
-            this.previewContainer.TabIndex = 2;
-            // 
-            // projectTreeToolStrip
-            // 
-            this.projectTreeToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.projectTreeToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.projectTreeRefresh,
-            this.toolStripSeparator1,
-            this.projectTreeCreateFolder});
-            this.projectTreeToolStrip.Location = new System.Drawing.Point(0, 0);
-            this.projectTreeToolStrip.Name = "projectTreeToolStrip";
-            this.projectTreeToolStrip.Size = new System.Drawing.Size(200, 25);
-            this.projectTreeToolStrip.TabIndex = 1;
-            this.projectTreeToolStrip.Text = "toolStrip2";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // projectTree
-            // 
-            this.projectTree.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.projectTree.ImageIndex = 0;
-            this.projectTree.ImageList = this.treeIconList;
-            this.projectTree.Location = new System.Drawing.Point(0, 28);
-            this.projectTree.Name = "projectTree";
-            this.projectTree.SelectedImageIndex = 0;
-            this.projectTree.Size = new System.Drawing.Size(200, 97);
-            this.projectTree.TabIndex = 0;
-            this.projectTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.projectTree_NodeMouseClick);
-            // 
-            // treeIconList
-            // 
-            this.treeIconList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("treeIconList.ImageStream")));
-            this.treeIconList.TransparentColor = System.Drawing.Color.Transparent;
-            this.treeIconList.Images.SetKeyName(0, "folder-closed");
-            this.treeIconList.Images.SetKeyName(1, "folder-open");
-            this.treeIconList.Images.SetKeyName(2, "unknown");
-            this.treeIconList.Images.SetKeyName(3, "project");
-            this.treeIconList.Images.SetKeyName(4, "animation");
-            this.treeIconList.Images.SetKeyName(5, "texture");
-            this.treeIconList.Images.SetKeyName(6, "source");
-            this.treeIconList.Images.SetKeyName(7, "gameobject");
-            this.treeIconList.Images.SetKeyName(8, "scene");
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.mainTabs);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.objectProperties);
-            this.splitContainer2.Size = new System.Drawing.Size(843, 331);
-            this.splitContainer2.SplitterDistance = 603;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // objectProperties
-            // 
-            this.objectProperties.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.objectProperties.Location = new System.Drawing.Point(0, 0);
-            this.objectProperties.Name = "objectProperties";
-            this.objectProperties.Size = new System.Drawing.Size(236, 331);
-            this.objectProperties.TabIndex = 0;
-            // 
-            // mainToolStrip
-            // 
-            this.mainToolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this.mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mainToolSave,
-            this.mainToolOpen,
-            this.toolStripSeparator2,
-            this.mainToolbarDuplicate,
-            this.mainToolDelete});
-            this.mainToolStrip.Location = new System.Drawing.Point(3, 0);
-            this.mainToolStrip.Name = "mainToolStrip";
-            this.mainToolStrip.Size = new System.Drawing.Size(110, 25);
-            this.mainToolStrip.TabIndex = 0;
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // mainTabs
-            // 
-            this.mainTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainTabs.Location = new System.Drawing.Point(0, 0);
-            this.mainTabs.Name = "mainTabs";
-            this.mainTabs.SelectedIndex = 0;
-            this.mainTabs.Size = new System.Drawing.Size(603, 331);
-            this.mainTabs.TabIndex = 0;
-            // 
-            // previewBox
-            // 
-            this.previewBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.previewBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.previewBox.Location = new System.Drawing.Point(0, 0);
-            this.previewBox.Name = "previewBox";
-            this.previewBox.Size = new System.Drawing.Size(200, 200);
-            this.previewBox.TabIndex = 0;
-            this.previewBox.TabStop = false;
-            // 
-            // projectTreeRefresh
-            // 
-            this.projectTreeRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.projectTreeRefresh.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.refresh;
-            this.projectTreeRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.projectTreeRefresh.Name = "projectTreeRefresh";
-            this.projectTreeRefresh.Size = new System.Drawing.Size(23, 22);
-            this.projectTreeRefresh.Tag = "toolbar.projectTree.refresh";
-            this.projectTreeRefresh.Text = "toolbar.projectTree.refresh";
-            // 
-            // projectTreeCreateFolder
-            // 
-            this.projectTreeCreateFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.projectTreeCreateFolder.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.create_folder;
-            this.projectTreeCreateFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.projectTreeCreateFolder.Name = "projectTreeCreateFolder";
-            this.projectTreeCreateFolder.Size = new System.Drawing.Size(23, 22);
-            this.projectTreeCreateFolder.Tag = "toolbar.projectTree.createFolder";
-            this.projectTreeCreateFolder.Text = "toolbar.projectTree.createFolder";
-            // 
-            // mainToolSave
-            // 
-            this.mainToolSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.mainToolSave.Enabled = false;
-            this.mainToolSave.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.save;
-            this.mainToolSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.mainToolSave.Name = "mainToolSave";
-            this.mainToolSave.Size = new System.Drawing.Size(23, 22);
-            this.mainToolSave.Tag = "toolbar.main.save";
-            this.mainToolSave.Text = "toolbar.main.save";
-            this.mainToolSave.Click += new System.EventHandler(this.SaveEventHandler);
-            // 
-            // mainToolOpen
-            // 
-            this.mainToolOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.mainToolOpen.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.open;
-            this.mainToolOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.mainToolOpen.Name = "mainToolOpen";
-            this.mainToolOpen.Size = new System.Drawing.Size(23, 22);
-            this.mainToolOpen.Tag = "toolbar.main.open";
-            this.mainToolOpen.Text = "toolbar.main.open";
-            this.mainToolOpen.Click += new System.EventHandler(this.OpenEventHandler);
-            // 
-            // mainToolbarDuplicate
-            // 
-            this.mainToolbarDuplicate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.mainToolbarDuplicate.Enabled = false;
-            this.mainToolbarDuplicate.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.duplicate;
-            this.mainToolbarDuplicate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.mainToolbarDuplicate.Name = "mainToolbarDuplicate";
-            this.mainToolbarDuplicate.Size = new System.Drawing.Size(23, 22);
-            this.mainToolbarDuplicate.Tag = "toolbar.main.duplicate";
-            this.mainToolbarDuplicate.Text = "toolbar.main.duplicate";
-            // 
-            // mainToolDelete
-            // 
-            this.mainToolDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.mainToolDelete.Enabled = false;
-            this.mainToolDelete.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.delete;
-            this.mainToolDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.mainToolDelete.Name = "mainToolDelete";
-            this.mainToolDelete.Size = new System.Drawing.Size(23, 22);
-            this.mainToolDelete.Tag = "toolbar.main.delete";
-            this.mainToolDelete.Text = "toolbar.main.delete";
-            // 
-            // createMenu
-            // 
-            this.createMenu.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.create_project;
-            this.createMenu.Name = "createMenu";
-            this.createMenu.Size = new System.Drawing.Size(196, 22);
-            this.createMenu.Tag = "menu.file.createProject";
-            this.createMenu.Text = "menu.file.createProject";
-            // 
-            // openMenu
-            // 
-            this.openMenu.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.open;
-            this.openMenu.Name = "openMenu";
-            this.openMenu.Size = new System.Drawing.Size(196, 22);
-            this.openMenu.Tag = "menu.file.openProject";
-            this.openMenu.Text = "menu.file.openProject";
-            this.openMenu.Click += new System.EventHandler(this.OpenEventHandler);
-            // 
-            // saveMenu
-            // 
-            this.saveMenu.Enabled = false;
-            this.saveMenu.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.save;
-            this.saveMenu.Name = "saveMenu";
-            this.saveMenu.Size = new System.Drawing.Size(196, 22);
-            this.saveMenu.Tag = "menu.file.save";
-            this.saveMenu.Text = "menu.file.save";
-            this.saveMenu.Click += new System.EventHandler(this.SaveEventHandler);
-            // 
-            // duplicateMenu
-            // 
-            this.duplicateMenu.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.duplicate;
-            this.duplicateMenu.Name = "duplicateMenu";
-            this.duplicateMenu.Size = new System.Drawing.Size(187, 22);
-            this.duplicateMenu.Tag = "menu.edit.duplicate";
-            this.duplicateMenu.Text = "menu.edit.duplicate";
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.delete;
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.deleteToolStripMenuItem.Tag = "menu.edit.delete";
-            this.deleteToolStripMenuItem.Text = "menu.edit.delete";
-            // 
-            // editSourceToolStripMenuItem
-            // 
-            this.editSourceToolStripMenuItem.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.edit_source;
-            this.editSourceToolStripMenuItem.Name = "editSourceToolStripMenuItem";
-            this.editSourceToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.editSourceToolStripMenuItem.Tag = "menu.edit.editSource";
-            this.editSourceToolStripMenuItem.Text = "menu.edit.editSource";
             // 
             // projectCreateToolStripMenuItem
             // 
@@ -578,6 +329,11 @@
             this.contentPackageToolStripMenuItem.Tag = "menu.project.create.contentPackage";
             this.contentPackageToolStripMenuItem.Text = "menu.project.create.contentPackage";
             // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(233, 6);
+            // 
             // buildToolStripMenuItem
             // 
             this.buildToolStripMenuItem.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.build;
@@ -594,6 +350,11 @@
             this.buildLaunchToolStripMenuItem.Tag = "menu.project.buildAndLaunch";
             this.buildLaunchToolStripMenuItem.Text = "menu.project.buildAndLaunch";
             // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(233, 6);
+            // 
             // projectPropertiesToolStripMenuItem
             // 
             this.projectPropertiesToolStripMenuItem.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.properties;
@@ -601,6 +362,339 @@
             this.projectPropertiesToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.projectPropertiesToolStripMenuItem.Tag = "menu.project.properties";
             this.projectPropertiesToolStripMenuItem.Text = "menu.project.properties";
+            // 
+            // serviceToolStripMenuItem
+            // 
+            this.serviceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gDKSettingsToolStripMenuItem});
+            this.serviceToolStripMenuItem.Name = "serviceToolStripMenuItem";
+            this.serviceToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
+            this.serviceToolStripMenuItem.Tag = "menu.service";
+            this.serviceToolStripMenuItem.Text = "menu.service";
+            // 
+            // gDKSettingsToolStripMenuItem
+            // 
+            this.gDKSettingsToolStripMenuItem.Name = "gDKSettingsToolStripMenuItem";
+            this.gDKSettingsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.gDKSettingsToolStripMenuItem.Tag = "menu.service.settings";
+            this.gDKSettingsToolStripMenuItem.Text = "menu.service.settings";
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.Location = new System.Drawing.Point(0, 380);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(1047, 22);
+            this.statusStrip.TabIndex = 2;
+            this.statusStrip.Text = "statusBar";
+            // 
+            // toolStripContainer1
+            // 
+            this.toolStripContainer1.BottomToolStripPanelVisible = false;
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1047, 331);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer1.LeftToolStripPanelVisible = false;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 24);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.RightToolStripPanelVisible = false;
+            this.toolStripContainer1.Size = new System.Drawing.Size(1047, 356);
+            this.toolStripContainer1.TabIndex = 3;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // toolStripContainer1.TopToolStripPanel
+            // 
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.mainToolStrip);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.previewContainer);
+            this.splitContainer1.Panel1.Controls.Add(this.projectTreeToolStrip);
+            this.splitContainer1.Panel1.Controls.Add(this.projectTree);
+            this.splitContainer1.Panel1.Enabled = false;
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Size = new System.Drawing.Size(1047, 331);
+            this.splitContainer1.SplitterDistance = 200;
+            this.splitContainer1.TabIndex = 0;
+            // 
+            // previewContainer
+            // 
+            this.previewContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.previewContainer.Controls.Add(this.previewBox);
+            this.previewContainer.Location = new System.Drawing.Point(0, 131);
+            this.previewContainer.Name = "previewContainer";
+            this.previewContainer.Size = new System.Drawing.Size(200, 200);
+            this.previewContainer.TabIndex = 2;
+            // 
+            // previewBox
+            // 
+            this.previewBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.previewBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.previewBox.Location = new System.Drawing.Point(0, 0);
+            this.previewBox.Name = "previewBox";
+            this.previewBox.Size = new System.Drawing.Size(200, 200);
+            this.previewBox.TabIndex = 0;
+            this.previewBox.TabStop = false;
+            // 
+            // projectTreeToolStrip
+            // 
+            this.projectTreeToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.projectTreeToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.projectTreeRefresh,
+            this.toolStripSeparator1,
+            this.projectTreeCreateFolder});
+            this.projectTreeToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.projectTreeToolStrip.Name = "projectTreeToolStrip";
+            this.projectTreeToolStrip.Size = new System.Drawing.Size(200, 25);
+            this.projectTreeToolStrip.TabIndex = 1;
+            this.projectTreeToolStrip.Text = "toolStrip2";
+            // 
+            // projectTreeRefresh
+            // 
+            this.projectTreeRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.projectTreeRefresh.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.refresh;
+            this.projectTreeRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.projectTreeRefresh.Name = "projectTreeRefresh";
+            this.projectTreeRefresh.Size = new System.Drawing.Size(23, 22);
+            this.projectTreeRefresh.Tag = "toolbar.projectTree.refresh";
+            this.projectTreeRefresh.Text = "toolbar.projectTree.refresh";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // projectTreeCreateFolder
+            // 
+            this.projectTreeCreateFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.projectTreeCreateFolder.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.create_folder;
+            this.projectTreeCreateFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.projectTreeCreateFolder.Name = "projectTreeCreateFolder";
+            this.projectTreeCreateFolder.Size = new System.Drawing.Size(23, 22);
+            this.projectTreeCreateFolder.Tag = "toolbar.projectTree.createFolder";
+            this.projectTreeCreateFolder.Text = "toolbar.projectTree.createFolder";
+            // 
+            // projectTree
+            // 
+            this.projectTree.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.projectTree.ContextMenuStrip = this.projectTreeContextMenu;
+            this.projectTree.ImageIndex = 0;
+            this.projectTree.ImageList = this.treeIconList;
+            this.projectTree.Location = new System.Drawing.Point(0, 28);
+            this.projectTree.Name = "projectTree";
+            this.projectTree.SelectedImageIndex = 0;
+            this.projectTree.Size = new System.Drawing.Size(200, 97);
+            this.projectTree.TabIndex = 0;
+            this.projectTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.projectTree_NodeMouseClick);
+            // 
+            // projectTreeContextMenu
+            // 
+            this.projectTreeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextProjTreeProperties});
+            this.projectTreeContextMenu.Name = "projectTreeContextMenu";
+            this.projectTreeContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.projectTreeContextMenu.Size = new System.Drawing.Size(232, 26);
+            // 
+            // contextProjTreeProperties
+            // 
+            this.contextProjTreeProperties.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.properties;
+            this.contextProjTreeProperties.Name = "contextProjTreeProperties";
+            this.contextProjTreeProperties.Size = new System.Drawing.Size(231, 22);
+            this.contextProjTreeProperties.Tag = "context.projectTree.properties";
+            this.contextProjTreeProperties.Text = "context.projectTree.properties";
+            this.contextProjTreeProperties.Click += new System.EventHandler(this.ContextProjectTreePropertiesClick);
+            // 
+            // treeIconList
+            // 
+            this.treeIconList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("treeIconList.ImageStream")));
+            this.treeIconList.TransparentColor = System.Drawing.Color.Transparent;
+            this.treeIconList.Images.SetKeyName(0, "folder-closed");
+            this.treeIconList.Images.SetKeyName(1, "folder-open");
+            this.treeIconList.Images.SetKeyName(2, "unknown");
+            this.treeIconList.Images.SetKeyName(3, "project");
+            this.treeIconList.Images.SetKeyName(4, "animation");
+            this.treeIconList.Images.SetKeyName(5, "texture");
+            this.treeIconList.Images.SetKeyName(6, "source");
+            this.treeIconList.Images.SetKeyName(7, "gameobject");
+            this.treeIconList.Images.SetKeyName(8, "scene");
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.mainTabs);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.objectProperties);
+            this.splitContainer2.Size = new System.Drawing.Size(843, 331);
+            this.splitContainer2.SplitterDistance = 603;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // mainTabs
+            // 
+            this.mainTabs.Controls.Add(this.tabSceneEditor);
+            this.mainTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainTabs.Location = new System.Drawing.Point(0, 0);
+            this.mainTabs.Name = "mainTabs";
+            this.mainTabs.SelectedIndex = 0;
+            this.mainTabs.Size = new System.Drawing.Size(603, 331);
+            this.mainTabs.TabIndex = 0;
+            // 
+            // tabSceneEditor
+            // 
+            this.tabSceneEditor.Controls.Add(this.sceneEditor);
+            this.tabSceneEditor.Location = new System.Drawing.Point(4, 22);
+            this.tabSceneEditor.Name = "tabSceneEditor";
+            this.tabSceneEditor.Size = new System.Drawing.Size(595, 305);
+            this.tabSceneEditor.TabIndex = 0;
+            this.tabSceneEditor.Text = "tab.sceneEditor";
+            this.tabSceneEditor.UseVisualStyleBackColor = true;
+            // 
+            // sceneEditor
+            // 
+            this.sceneEditor.BackColor = System.Drawing.Color.Transparent;
+            this.sceneEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sceneEditor.Location = new System.Drawing.Point(0, 0);
+            this.sceneEditor.Name = "sceneEditor";
+            this.sceneEditor.Size = new System.Drawing.Size(595, 305);
+            this.sceneEditor.TabIndex = 0;
+            this.sceneEditor.Render += new System.EventHandler<craftersmine.EtherEngine.GDK.Components.SceneEditorRenderEventArgs>(this.sceneEditor_Render);
+            // 
+            // objectProperties
+            // 
+            this.objectProperties.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.objectProperties.Location = new System.Drawing.Point(0, 0);
+            this.objectProperties.Name = "objectProperties";
+            this.objectProperties.Size = new System.Drawing.Size(236, 331);
+            this.objectProperties.TabIndex = 0;
+            // 
+            // mainToolStrip
+            // 
+            this.mainToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainToolSave,
+            this.mainToolOpen,
+            this.toolStripSeparator2,
+            this.mainToolbarDuplicate,
+            this.mainToolDelete});
+            this.mainToolStrip.Location = new System.Drawing.Point(3, 0);
+            this.mainToolStrip.Name = "mainToolStrip";
+            this.mainToolStrip.Size = new System.Drawing.Size(110, 25);
+            this.mainToolStrip.TabIndex = 0;
+            // 
+            // mainToolSave
+            // 
+            this.mainToolSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mainToolSave.Enabled = false;
+            this.mainToolSave.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.save;
+            this.mainToolSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mainToolSave.Name = "mainToolSave";
+            this.mainToolSave.Size = new System.Drawing.Size(23, 22);
+            this.mainToolSave.Tag = "toolbar.main.save";
+            this.mainToolSave.Text = "toolbar.main.save";
+            this.mainToolSave.Click += new System.EventHandler(this.SaveEventHandler);
+            // 
+            // mainToolOpen
+            // 
+            this.mainToolOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mainToolOpen.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.open;
+            this.mainToolOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mainToolOpen.Name = "mainToolOpen";
+            this.mainToolOpen.Size = new System.Drawing.Size(23, 22);
+            this.mainToolOpen.Tag = "toolbar.main.open";
+            this.mainToolOpen.Text = "toolbar.main.open";
+            this.mainToolOpen.Click += new System.EventHandler(this.OpenEventHandler);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // mainToolbarDuplicate
+            // 
+            this.mainToolbarDuplicate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mainToolbarDuplicate.Enabled = false;
+            this.mainToolbarDuplicate.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.duplicate;
+            this.mainToolbarDuplicate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mainToolbarDuplicate.Name = "mainToolbarDuplicate";
+            this.mainToolbarDuplicate.Size = new System.Drawing.Size(23, 22);
+            this.mainToolbarDuplicate.Tag = "toolbar.main.duplicate";
+            this.mainToolbarDuplicate.Text = "toolbar.main.duplicate";
+            // 
+            // mainToolDelete
+            // 
+            this.mainToolDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mainToolDelete.Enabled = false;
+            this.mainToolDelete.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.delete;
+            this.mainToolDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.mainToolDelete.Name = "mainToolDelete";
+            this.mainToolDelete.Size = new System.Drawing.Size(23, 22);
+            this.mainToolDelete.Tag = "toolbar.main.delete";
+            this.mainToolDelete.Text = "toolbar.main.delete";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DEBUGrunRender,
+            this.DEBUGserializeScene,
+            this.DEBUGdeserializeScene});
+            this.toolStrip1.Location = new System.Drawing.Point(113, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(112, 25);
+            this.toolStrip1.TabIndex = 1;
+            // 
+            // DEBUGrunRender
+            // 
+            this.DEBUGrunRender.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DEBUGrunRender.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.animation;
+            this.DEBUGrunRender.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DEBUGrunRender.Name = "DEBUGrunRender";
+            this.DEBUGrunRender.Size = new System.Drawing.Size(23, 22);
+            this.DEBUGrunRender.Text = "Run Render";
+            this.DEBUGrunRender.Click += new System.EventHandler(this.DEBUGrunRender_Click);
+            // 
+            // DEBUGserializeScene
+            // 
+            this.DEBUGserializeScene.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DEBUGserializeScene.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.scene;
+            this.DEBUGserializeScene.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DEBUGserializeScene.Name = "DEBUGserializeScene";
+            this.DEBUGserializeScene.Size = new System.Drawing.Size(23, 22);
+            this.DEBUGserializeScene.Text = "Serialize scene";
+            this.DEBUGserializeScene.Click += new System.EventHandler(this.DEBUGserializeScene_Click);
+            // 
+            // DEBUGdeserializeScene
+            // 
+            this.DEBUGdeserializeScene.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DEBUGdeserializeScene.Image = global::craftersmine.EtherEngine.GDK.Properties.Resources.build;
+            this.DEBUGdeserializeScene.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DEBUGdeserializeScene.Name = "DEBUGdeserializeScene";
+            this.DEBUGdeserializeScene.Size = new System.Drawing.Size(23, 22);
+            this.DEBUGdeserializeScene.Text = "Deserialize Scene";
+            this.DEBUGdeserializeScene.Click += new System.EventHandler(this.DEBUGdeserializeScene_Click);
             // 
             // MainForm
             // 
@@ -626,15 +720,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.previewContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.previewBox)).EndInit();
             this.projectTreeToolStrip.ResumeLayout(false);
             this.projectTreeToolStrip.PerformLayout();
+            this.projectTreeContextMenu.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.mainTabs.ResumeLayout(false);
+            this.tabSceneEditor.ResumeLayout(false);
             this.mainToolStrip.ResumeLayout(false);
             this.mainToolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.previewBox)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -694,6 +793,14 @@
         private System.Windows.Forms.ToolStripMenuItem serviceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gDKSettingsToolStripMenuItem;
         private System.Windows.Forms.TabControl mainTabs;
+        private System.Windows.Forms.ContextMenuStrip projectTreeContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem contextProjTreeProperties;
+        private System.Windows.Forms.TabPage tabSceneEditor;
+        private Components.SceneEditor sceneEditor;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton DEBUGrunRender;
+        private System.Windows.Forms.ToolStripButton DEBUGserializeScene;
+        private System.Windows.Forms.ToolStripButton DEBUGdeserializeScene;
     }
 }
 

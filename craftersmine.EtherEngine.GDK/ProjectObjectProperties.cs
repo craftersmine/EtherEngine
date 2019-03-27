@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace craftersmine.EtherEngine.GDK
+{
+    public partial class ProjectObjectProperties : Form
+    {
+        private TreeNode _node;
+
+        public ProjectObjectProperties(TreeNode node)
+        {
+            _node = node;
+            InitializeComponent();
+        }
+    }
+}
