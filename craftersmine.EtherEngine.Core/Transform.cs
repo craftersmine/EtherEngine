@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,6 +69,20 @@ namespace craftersmine.EtherEngine.Core
         {
             RotationOriginX = Width / 2 + RendererX;
             RotationOriginY = Height / 2 + RendererY;
+        }
+
+        public bool CheckPointInBounds(Point point)
+        {
+            if (new Rectangle(RendererX, RendererY, Width, Height).Contains(point))
+                return true;
+            else return false;
+        }
+
+        public bool CheckPointInBounds(int x, int y)
+        {
+            if (new Rectangle(RendererX, RendererY, Width, Height).Contains(x, y))
+                return true;
+            else return false;
         }
     }
 }
