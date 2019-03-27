@@ -103,16 +103,25 @@ namespace craftersmine.EtherEngine.Utilities
         {
             if (exception != null)
             {
-                string[] stacktrace = exception.StackTrace.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
                 Log(prefix, "An exception has occurred!");
                 Log(prefix, "Exception message: " + exception.Message);
                 Log(prefix, "Exception type: " + exception.GetType().ToString());
-                Log(prefix, "==== START OF STACKTRACE ====");
-                foreach (var stln in stacktrace)
+                if (exception.StackTrace != null)
                 {
-                    Log(prefix, stln);
+                    string[] stacktrace = exception.StackTrace.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                    Log(prefix, "==== START OF STACKTRACE ====");
+                    foreach (var stln in stacktrace)
+                    {
+                        Log(prefix, stln);
+                    }
+                    Log(prefix, "====  END OF STACKTRACE  ====");
                 }
-                Log(prefix, "====  END OF STACKTRACE  ====");
+                else Log(prefix, "No Stacktrace collected!");
+                if (exception.InnerException != null)
+                {
+                    Log(prefix, "");
+                    LogException(prefix, exception.InnerException);
+                }
             }
             else
             {
