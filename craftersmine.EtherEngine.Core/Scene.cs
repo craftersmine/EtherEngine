@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using craftersmine.EtherEngine.Content;
+using craftersmine.EtherEngine.Input;
 
 namespace craftersmine.EtherEngine.Core
 {
@@ -140,6 +141,20 @@ namespace craftersmine.EtherEngine.Core
 
         internal void InternalUpdate()
         {
+            if (Mouse.LeftButton || Mouse.MiddleButton || Mouse.RightButton)
+            {
+                for (int i = 0; i < UIWidgets.Count; i++)
+                {
+                    if (UIWidgets[i].Transform.CheckPointInBounds(Mouse.X, Mouse.Y))
+                        UIWidgets[i].OnMouseDown(Mouse.X, Mouse.Y, Mouse.LeftButton, Mouse.MiddleButton, Mouse.RightButton);
+                }
+
+                for (int i = 0; i < GameObjects.Count; i++)
+                {
+                    if (GameObjects[i].Transform.CheckPointInBounds(Mouse.X, Mouse.Y))
+                        GameObjects[i].OnMouseDown(Mouse.X, Mouse.Y, Mouse.LeftButton, Mouse.MiddleButton, Mouse.RightButton);
+                }
+            }
             OnUpdate();
         }
     }

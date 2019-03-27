@@ -116,6 +116,11 @@ namespace craftersmine.EtherEngine.Core
             OnCollide(gameObject);
         }
 
+        public virtual void OnMouseDown(int mouseX, int mouseY, bool mouseLeftButton, bool mouseMiddleButton, bool mouseRightButton)
+        {
+
+        }
+
         /// <summary>
         /// Calls when <see cref="GameObject"/> is being rendered
         /// </summary>
