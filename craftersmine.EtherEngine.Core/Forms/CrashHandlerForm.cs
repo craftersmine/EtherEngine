@@ -21,6 +21,7 @@ namespace craftersmine.EtherEngine.Core.Forms
             Icon = SystemIcons.Error;
             msg.Text = msg.Text.Replace("{message}", ex.Message);
             hres.Text = hres.Text.Replace("{hres}", "0x" + ex.HResult.ToString("X"));
+            exception.Text = exception.Text.Replace("{exception}", ex.GetType().ToString());
             stacktrace.Text = ex.StackTrace;
             stacktrace.DeselectAll();
         }

@@ -39,6 +39,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.icon = new System.Windows.Forms.PictureBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.exception = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.icon)).BeginInit();
             this.SuspendLayout();
@@ -85,7 +86,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 145);
+            this.label5.Location = new System.Drawing.Point(14, 163);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 13);
             this.label5.TabIndex = 4;
@@ -98,12 +99,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stacktrace.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
             this.stacktrace.ForeColor = System.Drawing.Color.White;
-            this.stacktrace.Location = new System.Drawing.Point(17, 161);
+            this.stacktrace.Location = new System.Drawing.Point(17, 179);
             this.stacktrace.Multiline = true;
             this.stacktrace.Name = "stacktrace";
             this.stacktrace.ReadOnly = true;
             this.stacktrace.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.stacktrace.Size = new System.Drawing.Size(851, 340);
+            this.stacktrace.Size = new System.Drawing.Size(851, 322);
             this.stacktrace.TabIndex = 999;
             // 
             // panel1
@@ -160,6 +161,15 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Visible = false;
             // 
+            // exception
+            // 
+            this.exception.AutoSize = true;
+            this.exception.Location = new System.Drawing.Point(14, 134);
+            this.exception.Name = "exception";
+            this.exception.Size = new System.Drawing.Size(119, 13);
+            this.exception.TabIndex = 1000;
+            this.exception.Text = "Exception: {exception}";
+            // 
             // CrashHandlerForm
             // 
             this.AcceptButton = this.button1;
@@ -167,6 +177,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(880, 566);
+            this.Controls.Add(this.exception);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.icon);
             this.Controls.Add(this.panel1);
@@ -203,5 +214,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox icon;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label exception;
     }
 }
