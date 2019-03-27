@@ -95,6 +95,10 @@
       <Project>{c7ab00ee-188d-4b1b-bdf5-3ef5a10fdc09}</Project>
       <Name>craftersmine.EtherEngine.Content</Name>
     </ProjectReference>
+    <ProjectReference Include="..\craftersmine.EtherEngine.Input\craftersmine.EtherEngine.Input.csproj">
+      <Project>{EB866C13-3350-4AAE-BABA-42B69156F57D}</Project>
+      <Name>craftersmine.EtherEngine.Input</Name>
+    </ProjectReference>
     <ProjectReference Include="..\craftersmine.EtherEngine.Rendering\craftersmine.EtherEngine.Rendering.csproj">
       <Project>{80C1146F-572F-451C-8730-CC33C04DCBC8}</Project>
       <Name>craftersmine.EtherEngine.Rendering</Name>
