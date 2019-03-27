@@ -181,6 +181,12 @@ namespace craftersmine.EtherEngine.Rendering.Tester
                 SceneManager.CurrentScene.RemoveGameObject(this);
         }
 
+        public override void OnMouseDown(int mouseX, int mouseY, bool mouseLeftButton, bool mouseMiddleButton, bool mouseRightButton)
+        {
+            base.OnMouseDown(mouseX, mouseY, mouseLeftButton, mouseMiddleButton, mouseRightButton);
+            Debugging.Log(LogEntryType.Debug, "MX: " + mouseX + " MY: " + mouseY + " MLB: " + mouseLeftButton + " MMB: " + mouseMiddleButton + " MRB: " + mouseRightButton);
+        }
+
         public override void OnRender(GLGDI renderer)
         {
             base.OnRender(renderer);
