@@ -102,7 +102,7 @@ namespace craftersmine.EtherEngine.Rendering
         {
             Load?.Invoke(this, e);
         }
-
+        
         private void _gameWnd_RenderFrame(object sender, FrameEventArgs e)
         {
             FPS = (int)_gameWnd.RenderFrequency;
