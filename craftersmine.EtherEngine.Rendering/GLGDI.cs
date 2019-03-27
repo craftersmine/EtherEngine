@@ -34,6 +34,14 @@ namespace craftersmine.EtherEngine.Rendering
         public GLGDI()
         {
             GLGraphics = new GLGraphics();
+            Initialize();
+        }
+
+        /// <summary>
+        /// Initializes GLGDI wrapper. It's automatically being called in constructor! Only use ones if you are having troubles with rendering!
+        /// </summary>
+        public void Initialize()
+        {
             GLGraphics.Init();
             GLGraphics.Reset();
             GLGraphics.Clear();
