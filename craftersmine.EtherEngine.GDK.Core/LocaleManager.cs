@@ -40,12 +40,11 @@ namespace craftersmine.EtherEngine.GDK.Core
                         else continue;
                     }
                     if (!isLocaleNameFound)
-                        throw new Exception("Unable to find \"locale.name\" parameter! If you made this translation, please add this parameter to make it readable to end-user, add like \"locale.name=English\"");
+                        throw new KeyNotFoundException("Unable to find \"locale.name\" parameter! If you made this translation, please add this parameter to make it readable to end-user, add like \"locale.name=English\"");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Program.Log(LogEntryType.Warning, "Unable to load locale " + id + "! Additional information below:");
-                    Program.LogException(LogEntryType.Warning, ex);
+                    throw;
                 }
             }
         }
@@ -74,16 +73,12 @@ namespace craftersmine.EtherEngine.GDK.Core
                 if (!isFallbackTried)
                 {
                     MessageBox.Show("Unable to load locale \"" + localeCode + "\"! Falling back to \"English\"...", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Program.Log(LogEntryType.Warning, "Unable to load locale \"" + localeCode + "\"! Falling back to English...");
-                    Program.LogException(LogEntryType.Warning, ex);
                     isFallbackTried = true;
                     LoadLocale("en-US");
                 }
                 else
                 {
                     MessageBox.Show("Unable to fallback back to \"English (en-US)\"! GDK environment may been corrupted! Check logs and try to reinstall GDK!", "Locale fallback error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Program.Log(LogEntryType.Error, "Unable to load locale \"" + localeCode + "\"!");
-                    Program.LogException(LogEntryType.Error, ex);
                     Environment.Exit(0);
                 }
             }
