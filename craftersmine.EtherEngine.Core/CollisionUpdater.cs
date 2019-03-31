@@ -62,17 +62,23 @@ namespace craftersmine.EtherEngine.Core
             {
                 for (int obj = 0; obj < SceneManager.CurrentScene.GameObjects.Count; obj++)
                 {
-                    if (SceneManager.CurrentScene.GameObjects[obj].Collidable && SceneManager.CurrentScene.GameObjects[obj].CollisionBox.CollisionBoxBounds != Rectangle.Empty)
+                    if (SceneManager.CurrentScene.GameObjects[obj].CollisionBox != null)
                     {
-                        SceneManager.CurrentScene.GameObjects[obj].UpdateCollsionLocation();
-                        for (int obj2 = 0; obj2 < SceneManager.CurrentScene.GameObjects.Count; obj2++)
+                        if (SceneManager.CurrentScene.GameObjects[obj].Collidable && SceneManager.CurrentScene.GameObjects[obj].CollisionBox.CollisionBoxBounds != Rectangle.Empty)
                         {
-                            if (SceneManager.CurrentScene.GameObjects[obj2].Collidable && SceneManager.CurrentScene.GameObjects[obj2].CollisionBox != null && SceneManager.CurrentScene.GameObjects[obj2].CollisionBox.CollisionBoxBounds != Rectangle.Empty)
+                            SceneManager.CurrentScene.GameObjects[obj].UpdateCollsionLocation();
+                            for (int obj2 = 0; obj2 < SceneManager.CurrentScene.GameObjects.Count; obj2++)
                             {
-                                SceneManager.CurrentScene.GameObjects[obj].UpdateCollsionLocation();
-                                if (SceneManager.CurrentScene.GameObjects[obj].CollisionBox.CollisionBoxBoundsOffsetted.IntersectsWith(SceneManager.CurrentScene.GameObjects[obj2].CollisionBox.CollisionBoxBoundsOffsetted))
+                                if (SceneManager.CurrentScene.GameObjects[obj2].CollisionBox != null)
                                 {
-                                    SceneManager.CurrentScene.GameObjects[obj].InternalCollide(SceneManager.CurrentScene.GameObjects[obj2]);
+                                    if (SceneManager.CurrentScene.GameObjects[obj2].Collidable && SceneManager.CurrentScene.GameObjects[obj2].CollisionBox != null && SceneManager.CurrentScene.GameObjects[obj2].CollisionBox.CollisionBoxBounds != Rectangle.Empty)
+                                    {
+                                        SceneManager.CurrentScene.GameObjects[obj].UpdateCollsionLocation();
+                                        if (SceneManager.CurrentScene.GameObjects[obj].CollisionBox.CollisionBoxBoundsOffsetted.IntersectsWith(SceneManager.CurrentScene.GameObjects[obj2].CollisionBox.CollisionBoxBoundsOffsetted))
+                                        {
+                                            SceneManager.CurrentScene.GameObjects[obj].InternalCollide(SceneManager.CurrentScene.GameObjects[obj2]);
+                                        }
+                                    }
                                 }
                             }
                         }
