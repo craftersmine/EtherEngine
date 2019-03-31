@@ -72,6 +72,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
         Movable movable = new Movable();
         ParticleSystem particleSystem;
         AudioClip audioclip;
+        Tileset tileset;
 
         public override void OnStart()
         {
@@ -86,30 +87,31 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             //movable.BlendingColor = Color.Red;
             movable.ObjectTransparency = .5f;
 
+            tileset = new Tileset(32, 32, null);
+
             particleSystem = new ParticleSystem(new Particle(Program.contentManager.LoadTexture("TestCircle")), 180, 30, 1.0f, 0.3f, 16, true);
             particleSystem.X = 200; particleSystem.Y = 200;
             particleSystem.Collidable = true;
             particleSystem.SetCollsionBox(new CollisionBox(0, 0, 32, 32));
             particleSystem.OnUpdateAction = new ParticleOnUpdateAction(ParticleOnUpdate);
 
-            for (int x = 0; x < SceneCamera.FrameWidth / 2 / 32 + 1; x++)
+            for (int x = 0; x < SceneCamera.FrameWidth / 32; x++)
                 for (int y = 0; y < SceneCamera.FrameHeight / 2 / 32 + 1; y++)
                 {
-                    int xCoord = x * 32;
-                    int yCoord = y * 32;
-
-                    GameObject obj = new GameObject();
-
-                    obj.X = xCoord;
-                    obj.Y = yCoord;
-                    obj.Texture = Program.texture;
-                    obj.Width = obj.Texture.Width;
-                    obj.Height = obj.Texture.Height;
-
-                    myObjs.Add(obj);
+                    int tileId = new Random().Next(0, 1);
+                    switch (tileId)
+                    {
+                        case 0:
+                            tileset.AddTile(new GrassTile(), x, y);
+                            break;
+                        case 1:
+                            tileset.AddTile(new GrassTile(), x, y);
+                            break;
+                    }
                 }
 
             //AddGameObjects(myObjs);
+            AddGameObject(tileset);
             AddGameObject(movable);
             AddGameObject(particleSystem);
             //particleSystem.Emit();
@@ -162,6 +164,22 @@ namespace craftersmine.EtherEngine.Rendering.Tester
                 movable.ObjectTransparency += .05f;
             if (Keyboard.IsKeyDown(Key.KeypadMinus))
                 movable.ObjectTransparency -= .05f;
+        }
+    }
+
+    public class GrassTile : Tile
+    {
+        public GrassTile()
+        {
+            Texture = Program.contentManager.LoadTextureAtlas("tiles").CutFromAtlas(0, 0, 32, 32);
+        }
+    }
+
+    public class SandTile : Tile
+    {
+        public SandTile()
+        {
+            Texture = Program.contentManager.LoadTextureAtlas("tiles").CutFromAtlas(32, 0, 32, 32);
         }
     }
 
