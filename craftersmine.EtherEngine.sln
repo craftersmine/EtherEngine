@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 		Libraries\OpenTK.GLControl.dll = Libraries\OpenTK.GLControl.dll
 		Libraries\OpenTK.GLControl.xml = Libraries\OpenTK.GLControl.xml
 		Libraries\OpenTK.xml = Libraries\OpenTK.xml
+		Libraries\RazorGDI.dll = Libraries\RazorGDI.dll
 		Libraries\XInput.Wrapper.dll = Libraries\XInput.Wrapper.dll
 	EndProjectSection
 EndProject
@@ -54,6 +55,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.GDK", "craftersmine.EtherEngine.GDK\craftersmine.EtherEngine.GDK.csproj", "{6DC3CB14-144F-4C3F-B38F-CFC87FACEA1D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GDK", "GDK", "{5A6E0A95-F52F-42B5-A413-F686EEA09F89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.GDK.Editor.Texture", "craftersmine.EtherEngine.GDK.Editor.Texture\craftersmine.EtherEngine.GDK.Editor.Texture.csproj", "{8B2C15CB-01CE-4356-A6B2-03B081BEAEC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{C98D3048-001C-437D-87F1-9FA78012BE2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.GDK.Utilities", "craftersmine.EtherEngine.GDK.Core\craftersmine.EtherEngine.GDK.Utilities.csproj", "{68123AC1-59C4-4274-B71F-050DB752A9D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{CE3ECE92-4628-4741-B9DD-6B122089BE9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.GDK.TextureEditor", "craftersmine.EtherEngine.GDK.TextureEditor\craftersmine.EtherEngine.GDK.TextureEditor.csproj", "{2062676F-1C15-4BE1-AE11-94D1114EEC4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +100,18 @@ Global
 		{6DC3CB14-144F-4C3F-B38F-CFC87FACEA1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DC3CB14-144F-4C3F-B38F-CFC87FACEA1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DC3CB14-144F-4C3F-B38F-CFC87FACEA1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B2C15CB-01CE-4356-A6B2-03B081BEAEC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B2C15CB-01CE-4356-A6B2-03B081BEAEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B2C15CB-01CE-4356-A6B2-03B081BEAEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B2C15CB-01CE-4356-A6B2-03B081BEAEC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68123AC1-59C4-4274-B71F-050DB752A9D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68123AC1-59C4-4274-B71F-050DB752A9D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68123AC1-59C4-4274-B71F-050DB752A9D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68123AC1-59C4-4274-B71F-050DB752A9D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2062676F-1C15-4BE1-AE11-94D1114EEC4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2062676F-1C15-4BE1-AE11-94D1114EEC4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2062676F-1C15-4BE1-AE11-94D1114EEC4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2062676F-1C15-4BE1-AE11-94D1114EEC4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,7 +125,12 @@ Global
 		{EB866C13-3350-4AAE-BABA-42B69156F57D} = {70943BFB-7AD2-445E-8AAE-205EA98ABED1}
 		{F56B4C0C-995C-430A-8223-2DEBB535768D} = {E53AC1B3-3A96-4C02-8290-A34E533604EE}
 		{3D2F66FF-37F1-4B82-8201-95633B775AE3} = {F56B4C0C-995C-430A-8223-2DEBB535768D}
-		{6DC3CB14-144F-4C3F-B38F-CFC87FACEA1D} = {5A6E0A95-F52F-42B5-A413-F686EEA09F89}
+		{6DC3CB14-144F-4C3F-B38F-CFC87FACEA1D} = {CE3ECE92-4628-4741-B9DD-6B122089BE9C}
+		{8B2C15CB-01CE-4356-A6B2-03B081BEAEC5} = {C98D3048-001C-437D-87F1-9FA78012BE2A}
+		{C98D3048-001C-437D-87F1-9FA78012BE2A} = {5A6E0A95-F52F-42B5-A413-F686EEA09F89}
+		{68123AC1-59C4-4274-B71F-050DB752A9D1} = {C98D3048-001C-437D-87F1-9FA78012BE2A}
+		{CE3ECE92-4628-4741-B9DD-6B122089BE9C} = {5A6E0A95-F52F-42B5-A413-F686EEA09F89}
+		{2062676F-1C15-4BE1-AE11-94D1114EEC4B} = {CE3ECE92-4628-4741-B9DD-6B122089BE9C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E51B78D-0686-437C-84E4-590D39C15F5F}
