@@ -76,7 +76,6 @@
     <Compile Include="Components\TextureEditor.Designer.cs">
       <DependentUpon>TextureEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\LocaleManager.cs" />
     <Compile Include="Core\Project.cs" />
     <Compile Include="GameBaseComponents\CollisionBox.cs" />
     <Compile Include="GameBaseComponents\EditorCamera.cs" />
@@ -142,6 +141,14 @@
     <ProjectReference Include="..\craftersmine.EtherEngine.Core\craftersmine.EtherEngine.Core.csproj">
       <Project>{8ef2c5f0-d6fb-4e84-848d-2dcf358b66ee}</Project>
       <Name>craftersmine.EtherEngine.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\craftersmine.EtherEngine.GDK.Core\craftersmine.EtherEngine.GDK.Utilities.csproj">
+      <Project>{68123ac1-59c4-4274-b71f-050db752a9d1}</Project>
+      <Name>craftersmine.EtherEngine.GDK.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\craftersmine.EtherEngine.GDK.Editor.Texture\craftersmine.EtherEngine.GDK.Editor.Texture.csproj">
+      <Project>{8b2c15cb-01ce-4356-a6b2-03b081beaec5}</Project>
+      <Name>craftersmine.EtherEngine.GDK.Editor.Texture</Name>
     </ProjectReference>
     <ProjectReference Include="..\craftersmine.EtherEngine.Input\craftersmine.EtherEngine.Input.csproj">
       <Project>{eb866c13-3350-4aae-baba-42b69156f57d}</Project>
