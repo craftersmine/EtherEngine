@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using craftersmine.EtherEngine.Content;
+using craftersmine.EtherEngine.Rendering;
 using craftersmine.EtherEngine.Utilities;
 
 namespace craftersmine.EtherEngine.Core
@@ -49,8 +50,11 @@ namespace craftersmine.EtherEngine.Core
         {
             for (int i = 0; i < _tiles.Count; i++)
             {
+                //if (!SceneManager.CurrentScene.GameObjects.Contains(_tiles[i]))
+                //    SceneManager.CurrentScene.AddGameObject(_tiles[i]);
                 _tiles[i].OnUpdate();
                 TileOnUpdateAction?.Invoke(_tiles[i]);
+                _tiles[i].Visible = Visible;
             }
         }
 
@@ -86,13 +90,35 @@ namespace craftersmine.EtherEngine.Core
             {
                 tile.TilesetX = x;
                 tile.TilesetY = y;
+                tile.X = tile.TilesetX * TileWidth;
+                tile.Y = tile.TilesetY * TileHeight;
+                tile.Width = TileWidth;
+                tile.Height = TileHeight;
                 _tiles.Add(tile);
+                SceneManager.CurrentScene.AddGameObject(tile);
+                tile.Visible = true;
             }
             catch (Exception ex)
             {
                 Debugging.Log(LogEntryType.Warning, "Unable to add tile " + tile.TileId + " @" + x + "," + y);
                 Debugging.LogException(LogEntryType.Warning, ex);
             }
+        }
+
+        public void RemoveTile(Tile tile)
+        {
+            if (_tiles.Contains(tile))
+            {
+                _tiles.Remove(tile);
+                SceneManager.CurrentScene.RemoveGameObject(tile);
+            }
+        }
+
+        public void RemoveTile(int x, int y)
+        {
+            Tile tile = CheckTile(x, y);
+            if (tile != null)
+                RemoveTile(tile);
         }
     }
 

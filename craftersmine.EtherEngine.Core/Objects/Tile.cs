@@ -1,4 +1,6 @@
-﻿namespace craftersmine.EtherEngine.Core
+﻿using craftersmine.EtherEngine.Rendering;
+
+namespace craftersmine.EtherEngine.Core
 {
     /// <summary>
     /// Represents a world tile
@@ -24,6 +26,11 @@
         public Tile()
         {
 
+        }
+
+        public override void OnRender(GLGDI renderer)
+        {
+            base.OnRender(renderer);
         }
     }
 }
