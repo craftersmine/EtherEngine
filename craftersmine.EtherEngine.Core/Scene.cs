@@ -139,7 +139,7 @@ namespace craftersmine.EtherEngine.Core
             OnStart();
         }
 
-        internal void InternalUpdate()
+        internal void InternalUpdate(TimeSpan deltaTime)
         {
             if (Mouse.LeftButton || Mouse.MiddleButton || Mouse.RightButton)
             {

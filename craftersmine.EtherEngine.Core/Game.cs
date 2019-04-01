@@ -58,14 +58,15 @@ namespace craftersmine.EtherEngine.Core
                 GameUpdater = new GameUpdater(60);
                 Debugging.Log(LogEntryType.Info, "Creating CollisionUpdater...");
                 CollisionUpdater = new CollisionUpdater(60);
+                Debugging.Log(LogEntryType.Info, "Handling Events...");
                 DefaultWindowTitle = GameWnd.Title;
                 GameWnd.Render += GameRendererHelper.OnRender;
                 GameWnd.Load += GameWnd_Load;
                 GameWnd.Exiting += GameWnd_Exiting;
-                Debugging.Log(LogEntryType.Info, "Loading default scene...");
-                SceneManager.SetScene(new DefaultScene());
                 GameUpdater.Run();
                 CollisionUpdater.Run();
+                Debugging.Log(LogEntryType.Info, "Loading default scene...");
+                SceneManager.SetScene(new DefaultScene());
                 //GameStarted?.Invoke(null, EventArgs.Empty);
                 GameWnd.Run();
                 Exit(0);

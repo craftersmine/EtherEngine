@@ -12,7 +12,7 @@ namespace craftersmine.EtherEngine.Core
     /// </summary>
     public sealed class GameUpdater
     {
-        private AccurateTimer _gameUpdaterThread;
+        private UpdateTimer _gameUpdaterThread;
         private AccurateTimer _tpsUpdater;
         private int _delayBetweenTicks = 0;
         private int _ticks = 0;
@@ -31,7 +31,8 @@ namespace craftersmine.EtherEngine.Core
         {
             Tickrate = tickrate;
             _delayBetweenTicks = 1000 / tickrate;
-            _gameUpdaterThread = new AccurateTimer(_onUpdate, _delayBetweenTicks);
+            _gameUpdaterThread = new UpdateTimer(60.0f);
+            _gameUpdaterThread.Update += _onUpdate;
             _tpsUpdater = new AccurateTimer(new Action(() => { _lastTicks = _ticks; _ticks = 0; Debugging.TPS = _lastTicks; }), 1000);
         }
 
@@ -55,13 +56,16 @@ namespace craftersmine.EtherEngine.Core
             _tpsUpdater.Stop();
         }
 
-        private void _onUpdate()
+        private void _onUpdate(object sender, UpdateEventArgs e)
         {
             if (SceneManager.CurrentScene != null)
             {
-                SceneManager.CurrentScene.InternalUpdate();
+                SceneManager.CurrentScene.InternalUpdate(e.DeltaTime);
                 for (int obj = 0; obj < SceneManager.CurrentScene.GameObjects.Count; obj++)
-                    SceneManager.CurrentScene.GameObjects[obj].InternalUpdate();
+                    if (SceneManager.CurrentScene.GameObjects[obj] != null)
+                    {
+                        SceneManager.CurrentScene.GameObjects[obj].InternalUpdate(e.DeltaTime);
+                    }
             }
             _ticks++;
         }

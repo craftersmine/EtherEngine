@@ -97,7 +97,7 @@ namespace craftersmine.EtherEngine.Core
         public virtual void OnUpdate()
         { }
 
-        internal void InternalUpdate()
+        internal void InternalUpdate(TimeSpan deltaTime)
         {
             OnUpdate();
         }
