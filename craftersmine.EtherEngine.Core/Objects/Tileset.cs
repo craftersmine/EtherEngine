@@ -46,14 +46,14 @@ namespace craftersmine.EtherEngine.Core
         /// <summary>
         /// Occurs when <see cref="Tileset"/> being updated
         /// </summary>
-        public override void OnUpdate()
+        public override void OnUpdate(float deltaTime)
         {
             for (int i = 0; i < _tiles.Count; i++)
             {
                 //if (!SceneManager.CurrentScene.GameObjects.Contains(_tiles[i]))
                 //    SceneManager.CurrentScene.AddGameObject(_tiles[i]);
-                _tiles[i].OnUpdate();
-                TileOnUpdateAction?.Invoke(_tiles[i]);
+                _tiles[i].OnUpdate(deltaTime);
+                TileOnUpdateAction?.Invoke(deltaTime, _tiles[i]);
                 _tiles[i].Visible = Visible;
             }
         }
@@ -126,5 +126,5 @@ namespace craftersmine.EtherEngine.Core
     /// Represents <see cref="Tile"/> OnUpdate behaviour
     /// </summary>
     /// <param name="updatingTile"></param>
-    public delegate void TileOnUpdateAction(Tile updatingTile);
+    public delegate void TileOnUpdateAction(float deltaTime, Tile updatingTile);
 }

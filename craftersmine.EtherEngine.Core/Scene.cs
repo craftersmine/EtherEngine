@@ -43,7 +43,7 @@ namespace craftersmine.EtherEngine.Core
         /// <summary>
         /// Calls when scene is being updated
         /// </summary>
-        public virtual void OnUpdate()
+        public virtual void OnUpdate(float deltaTime)
         {
 
         }
@@ -155,7 +155,7 @@ namespace craftersmine.EtherEngine.Core
                         GameObjects[i].OnMouseDown(Mouse.X, Mouse.Y, Mouse.LeftButton, Mouse.MiddleButton, Mouse.RightButton);
                 }
             }
-            OnUpdate();
+            OnUpdate((float)deltaTime.TotalMilliseconds);
         }
     }
 }

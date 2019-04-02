@@ -94,12 +94,12 @@ namespace craftersmine.EtherEngine.Core
         /// <summary>
         /// Calls when <see cref="GameObject"/> is being updated
         /// </summary>
-        public virtual void OnUpdate()
+        public virtual void OnUpdate(float deltaTime)
         { }
 
         internal void InternalUpdate(TimeSpan deltaTime)
         {
-            OnUpdate();
+            OnUpdate((float)deltaTime.TotalMilliseconds);
         }
 
         /// <summary>
@@ -128,10 +128,6 @@ namespace craftersmine.EtherEngine.Core
         public virtual void OnRender(GLGDI renderer)
         {
             byte objTransparencyCalculated = (byte)(255 * ObjectTransparency);
-            //if (objTransparencyCalculated < 0)
-            //    objTransparencyCalculated = 0;
-            //else if (objTransparencyCalculated > 255)
-            //    objTransparencyCalculated = 255;
 
             if (IsAnimated)
             {
