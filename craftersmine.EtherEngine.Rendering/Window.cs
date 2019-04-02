@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using craftersmine.EtherEngine.Input;
 using craftersmine.EtherEngine.Utilities;
 using OpenTK;
@@ -81,7 +82,6 @@ namespace craftersmine.EtherEngine.Rendering
             _gameWnd.RenderFrame += _gameWnd_RenderFrame;
 
             GLGDI.ClearColor = Color.LightBlue;
-            fpsBounds = new Rectangle(WindowSize.Width - 30, 0, 30, 30);
 
             _gameWnd.Load += _gameWnd_Load;
             _gameWnd.Closing += _gameWnd_Closing;
@@ -95,14 +95,18 @@ namespace craftersmine.EtherEngine.Rendering
 
         private void _gameWnd_Closing(object sender, CancelEventArgs e)
         {
+            Debugging.Log(LogEntryType.Info, "Invoked Exiting event...");
             Exiting?.Invoke(this, e);
         }
 
         private void _gameWnd_Load(object sender, EventArgs e)
         {
+            Debugging.Log(LogEntryType.Info, "Invoked Load event...");
             Load?.Invoke(this, e);
         }
-        
+
+        private double _fpsTime;
+
         private void _gameWnd_RenderFrame(object sender, FrameEventArgs e)
         {
             FPS = (int)_gameWnd.RenderFrequency;
@@ -112,9 +116,25 @@ namespace craftersmine.EtherEngine.Rendering
             
             if (Debugging.DrawDebug)
             {
+                if (_fpsTime >= 1.0f)
+                {
+                    Debugging.FPS = FPS;
+
+                    Debugging.FrameTime = _gameWnd.RenderTime * 1000.0f;
+                    fpsData = string.Format("{0} FPS\r\nFrameTime: {1:F2} ms\r\n~{2} RenderCalls per frame\r\nUpdateTime: {3:F2} ms\r\nFixedUpdateTime: {4:F2} ms", Debugging.FPS, Debugging.FrameTime, Debugging.RenderCalls, Debugging.UpdateTime, Debugging.FixedUpdateTime);
+
+                    _fpsTime = 0.0f;
+                }
+
+                Size textSize = TextRenderer.MeasureText(fpsData, fpsFont);
+                fpsBounds = new Rectangle(WindowSize.Width - textSize.Width, 0, textSize.Width, textSize.Height);
+
                 GLGDI.DrawRectangle(fpsBgColor, fpsBounds);
                 GLGDI.FillRectangle(fpsBgColor, fpsBounds);
+
                 GLGDI.DrawString(fpsData, fpsFont, fpsColor, fpsBounds, TextQuality.High);
+
+                _fpsTime += _gameWnd.RenderTime;
             }
 
             _gameWnd.SwapBuffers();
@@ -141,7 +161,6 @@ namespace craftersmine.EtherEngine.Rendering
         /// <param name="maxFps">Maximum framerate</param>
         public void Run(double maxFps)
         {
-            preRun();
             _gameWnd.Run(maxFps);
         }
 
@@ -150,38 +169,7 @@ namespace craftersmine.EtherEngine.Rendering
         /// </summary>
         public void Run()
         {
-            preRun();
             _gameWnd.Run();
-        }
-
-        private void preRun()
-        {
-            if (Debugging.DrawDebug)
-            {
-                fpsUpdater = new AccurateTimer(new Action(() => {
-                    Debugging.FPS = FPS;
-                    Debugging.FrameTime = _gameWnd.RenderPeriod * 1000;
-                    fpsData = string.Format("{0} FPS\r\nFrameTime: {1:F2} ms\r\n~{2} DrawCalls per frame\r\n{3} TPS\r\n{4} CUpdates/s", Debugging.FPS, Debugging.FrameTime, Debugging.DrawCalls, Debugging.TPS, Debugging.CollisionsUpdatesPerSecond);
-                    fpsBounds.Width = 0;
-                    fpsBounds.Height = 0;
-                    int lastLength = 0;
-                    foreach (var ln in fpsData.Split(new string[] { "\r\n" }, StringSplitOptions.None))
-                    {
-                        if (lastLength < ln.Length)
-                        {
-                            lastLength = ln.Length;
-                        }
-                        fpsBounds.Width = 0;
-                        for (int i = 0; i < lastLength; i++)
-                        {
-                            fpsBounds.Width += 7;
-                            fpsBounds.X = WindowSize.Width - fpsBounds.Width;
-                        }
-                        fpsBounds.Height += 15;
-                    }
-                }), 1000);
-                fpsUpdater.Start();
-            }
         }
 
         /// <summary>
@@ -189,7 +177,6 @@ namespace craftersmine.EtherEngine.Rendering
         /// </summary>
         public void Close()
         {
-            fpsUpdater?.Stop();
             _gameWnd.Exit();
         }
     }
