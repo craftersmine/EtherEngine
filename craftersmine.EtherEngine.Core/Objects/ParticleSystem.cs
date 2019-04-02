@@ -147,7 +147,7 @@ namespace craftersmine.EtherEngine.Objects
         /// <summary>
         /// Calls when particle system being updated
         /// </summary>
-        public override void OnUpdate()
+        public override void OnUpdate(float deltaTime)
         {
             if (IsEmitting)
             {
@@ -161,8 +161,8 @@ namespace craftersmine.EtherEngine.Objects
                             Particles[i].SizeModifier = (float)SizeRanger.Next(ParticleSize * 2 / 3, ParticleSize) / ParticleSize;
                         Particles[i].Width = (int)((float)ParticleSize * Particles[i].SizeModifier);
                         Particles[i].Height = (int)((float)ParticleSize * Particles[i].SizeModifier);
-                        Particles[i].VerticalVelocity = ParticleVerticalVelocity * (float)VertVeloRanger.Next(1, 4) / 4;
-                        Particles[i].HorizontalVelocity = ParticleHorizontalVelocity * (float)HorizVeloRanger.Next(-1, 4) / 4;
+                        Particles[i].VerticalVelocity = ParticleVerticalVelocity * deltaTime * (float)VertVeloRanger.Next(1, 4) / 4;
+                        Particles[i].HorizontalVelocity = ParticleHorizontalVelocity * deltaTime * (float)HorizVeloRanger.Next(-1, 4) / 4;
                         Particles[i].Lifetime = ParticleLifetime + ParticleLifetimeRanger.Next(-5, 5);
                         Particles[i].CurrentLifetime++;
                     }
