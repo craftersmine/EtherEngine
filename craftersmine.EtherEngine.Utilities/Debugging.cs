@@ -19,7 +19,7 @@ namespace craftersmine.EtherEngine.Utilities
         /// <summary>
         /// Gets or [ENGINE PROPERTY METHOD] sets current game TPS
         /// </summary>
-        public static int TPS { get; set; }
+        public static float UpdateTime { get; set; }
 
         /// <summary>
         /// Gets or [ENGINE PROPERTY METHOD] sets current game FPS
@@ -29,12 +29,12 @@ namespace craftersmine.EtherEngine.Utilities
         /// <summary>
         /// Gets or [ENGINE PROPERTY METHOD] sets current game DrawCalls per frame
         /// </summary>
-        public static int DrawCalls { get; set; }
+        public static int RenderCalls { get; set; }
 
         /// <summary>
         /// Gets or [ENGINE PROPERTY METHOD] sets current game CU/s
         /// </summary>
-        public static int CollisionsUpdatesPerSecond { get; set; }
+        public static float FixedUpdateTime { get; set; }
 
         /// <summary>
         /// Gets or [ENGINE PROPERTY METHOD] sets current game CPU usage
