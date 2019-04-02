@@ -14,13 +14,9 @@ namespace craftersmine.EtherEngine.Core
     public sealed class CollisionUpdater
     {
         private UpdateTimer _collisionUpdaterThread;
-        private AccurateTimer _cpsUpdater;
-        private int _delayBetweenTicks = 0;
-        private int _ticks = 0;
-        private int _lastTicks = 0;
 
         /// <summary>
-        /// Gets current collision updater tickrate (CU/s)
+        /// Gets maximum possible collision updater tickrate (CU/s)
         /// </summary>
         public int Tickrate { get; private set; }
 
@@ -31,33 +27,10 @@ namespace craftersmine.EtherEngine.Core
         public CollisionUpdater(int tickrate)
         {
             Tickrate = tickrate;
-            _delayBetweenTicks = 1000 / tickrate;
-            _collisionUpdaterThread = new UpdateTimer(60.0f);
-            _collisionUpdaterThread.FixedUpdate += _onUpdate;
-            _cpsUpdater = new AccurateTimer(new Action(() => { _lastTicks = _ticks; _ticks = 0; Debugging.CollisionsUpdatesPerSecond = _lastTicks; }), 1000);
+            _collisionUpdaterThread = new UpdateTimer(Tickrate);
         }
 
-        /// <summary>
-        /// Starts <see cref="CollisionUpdater"/> update loop
-        /// </summary>
-        public void Run()
-        {
-            Debugging.Log(LogEntryType.Info, "Starting CollisionUpdater...");
-            _collisionUpdaterThread.Start();
-            _cpsUpdater.Start();
-        }
-
-        /// <summary>
-        /// Stops <see cref="CollisionUpdater"/> update loop
-        /// </summary>
-        public void Stop()
-        {
-            Debugging.Log(LogEntryType.Info, "Stopping CollisionUpdater...");
-            _collisionUpdaterThread.Stop();
-            _cpsUpdater.Stop();
-        }
-
-        private void _onUpdate(object sender, UpdateEventArgs e)
+        internal void OnFixedUpdate(object sender, UpdateEventArgs e)
         {
             if (SceneManager.CurrentScene != null)
             {
@@ -92,7 +65,6 @@ namespace craftersmine.EtherEngine.Core
                     }
                 }
             }
-            _ticks++;
         }
     }
 }
