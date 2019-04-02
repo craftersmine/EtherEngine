@@ -125,7 +125,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             particle.ObjectTransparency = 1.0f * lifetimeFac;
         }
 
-        public override void OnUpdate()
+        public override void OnUpdate(float deltaTime)
         {
 
             DPad DPad = Gamepad.GetDPad(Player.First);
