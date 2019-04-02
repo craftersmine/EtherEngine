@@ -13,13 +13,9 @@ namespace craftersmine.EtherEngine.Core
     public sealed class GameUpdater
     {
         private UpdateTimer _gameUpdaterThread;
-        private AccurateTimer _tpsUpdater;
-        private int _delayBetweenTicks = 0;
-        private int _ticks = 0;
-        private int _lastTicks = 0;
 
         /// <summary>
-        /// Gets current <see cref="GameUpdater"/> tickrate (TPS)
+        /// Gets maximum possible <see cref="GameUpdater"/> tickrate (TPS)
         /// </summary>
         public int Tickrate { get; private set; }
 
@@ -30,10 +26,9 @@ namespace craftersmine.EtherEngine.Core
         public GameUpdater(int tickrate)
         {
             Tickrate = tickrate;
-            _delayBetweenTicks = 1000 / tickrate;
-            _gameUpdaterThread = new UpdateTimer(60.0f);
+            _gameUpdaterThread = new UpdateTimer(Tickrate);
             _gameUpdaterThread.Update += _onUpdate;
-            _tpsUpdater = new AccurateTimer(new Action(() => { _lastTicks = _ticks; _ticks = 0; Debugging.TPS = _lastTicks; }), 1000);
+            _gameUpdaterThread.FixedUpdate += Game.CollisionUpdater.OnFixedUpdate;
         }
 
         /// <summary>
@@ -43,7 +38,6 @@ namespace craftersmine.EtherEngine.Core
         {
             Debugging.Log(LogEntryType.Info, "Starting GameUpdater...");
             _gameUpdaterThread.Start();
-            _tpsUpdater.Start();
         }
 
         /// <summary>
@@ -53,7 +47,6 @@ namespace craftersmine.EtherEngine.Core
         {
             Debugging.Log(LogEntryType.Info, "Stopping GameUpdater...");
             _gameUpdaterThread.Stop();
-            _tpsUpdater.Stop();
         }
 
         private void _onUpdate(object sender, UpdateEventArgs e)
@@ -67,7 +60,9 @@ namespace craftersmine.EtherEngine.Core
                         SceneManager.CurrentScene.GameObjects[obj].InternalUpdate(e.DeltaTime);
                     }
             }
-            _ticks++;
+
+            Debugging.FixedUpdateTime = (float)_gameUpdaterThread.FixedUpdateTime.TotalSeconds * 1000.0f;
+            Debugging.UpdateTime = (float)_gameUpdaterThread.FixedUpdateTime.TotalSeconds * 1000.0f;
         }
     }
 }
