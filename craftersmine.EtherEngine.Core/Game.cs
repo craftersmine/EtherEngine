@@ -50,24 +50,22 @@ namespace craftersmine.EtherEngine.Core
                 Debugging.Log(LogEntryType.Info, "craftersmine EtherEngine (c) craftersmine 2018-2019");
                 Debugging.Log(LogEntryType.Info, "Initializing game...");
                 GameWnd = gameWindow;
-                //Debugging.Log(LogEntryType.Info, "Current OpenAL audio context is " + AudioContext.CurrentContext.ToString());
                 Debugging.Log(LogEntryType.Info, "Initializing OpenAL...");
                 SoundDevice = new SoundDevice();
                 SoundDevice.Initialize();
-                Debugging.Log(LogEntryType.Info, "Creating GameUpdater...");
-                GameUpdater = new GameUpdater(60);
                 Debugging.Log(LogEntryType.Info, "Creating CollisionUpdater...");
                 CollisionUpdater = new CollisionUpdater(60);
+                Debugging.Log(LogEntryType.Info, "Creating GameUpdater...");
+                GameUpdater = new GameUpdater(60);
                 Debugging.Log(LogEntryType.Info, "Handling Events...");
                 DefaultWindowTitle = GameWnd.Title;
                 GameWnd.Render += GameRendererHelper.OnRender;
                 GameWnd.Load += GameWnd_Load;
                 GameWnd.Exiting += GameWnd_Exiting;
                 GameUpdater.Run();
-                CollisionUpdater.Run();
                 Debugging.Log(LogEntryType.Info, "Loading default scene...");
                 SceneManager.SetScene(new DefaultScene());
-                //GameStarted?.Invoke(null, EventArgs.Empty);
+                Debugging.Log(LogEntryType.Info, "Running game window...");
                 GameWnd.Run();
                 Exit(0);
             }
