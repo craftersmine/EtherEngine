@@ -16,7 +16,7 @@ namespace craftersmine.EtherEngine.Core
 
         internal static void OnRender(object sender, RenderEventArgs e)
         {
-            Debugging.DrawCalls = 0;
+            Debugging.RenderCalls = 0;
             if (SceneManager.CurrentScene != null)
             {
                 #region GameObjects Renderer
@@ -34,7 +34,7 @@ namespace craftersmine.EtherEngine.Core
                                 SceneManager.CurrentScene.GameObjects[obj].IsVisibleByCamera = true;
                                 e.GLGDIInstance.Rotate(SceneManager.CurrentScene.GameObjects[obj].Transform.RotationAngle, SceneManager.CurrentScene.GameObjects[obj].Transform.RotationOriginX, SceneManager.CurrentScene.GameObjects[obj].Transform.RotationOriginY);
                                 SceneManager.CurrentScene.GameObjects[obj].OnRender(e.GLGDIInstance);
-                                Debugging.DrawCalls++;
+                                Debugging.RenderCalls++;
                             }
                             else
                                 SceneManager.CurrentScene.GameObjects[obj].IsVisibleByCamera = false;
@@ -58,7 +58,7 @@ namespace craftersmine.EtherEngine.Core
                                 SceneManager.CurrentScene.UIWidgets[widget].IsVisibleByCamera = true;
                                 e.GLGDIInstance.Rotate(SceneManager.CurrentScene.UIWidgets[widget].Transform.RotationAngle, SceneManager.CurrentScene.UIWidgets[widget].Transform.RotationOriginX, SceneManager.CurrentScene.UIWidgets[widget].Transform.RotationOriginY);
                                 SceneManager.CurrentScene.UIWidgets[widget].OnRender(e.GLGDIInstance);
-                                Debugging.DrawCalls++;
+                                Debugging.RenderCalls++;
                             }
                             else
                                 SceneManager.CurrentScene.UIWidgets[widget].IsVisibleByCamera = false;
@@ -89,7 +89,7 @@ namespace craftersmine.EtherEngine.Core
                 #endregion
             }
             if (Debugging.ShowDrawCallsPerFrameInTitle)
-                Game.GameWnd.Title = Game.DefaultWindowTitle + " | ~" + Debugging.DrawCalls + " DrawCalls/s";
+                Game.GameWnd.Title = Game.DefaultWindowTitle + " | ~" + Debugging.RenderCalls + " RenderCalls/s";
         }
     }
 }
