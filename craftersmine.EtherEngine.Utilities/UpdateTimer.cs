@@ -9,12 +9,14 @@ namespace craftersmine.EtherEngine.Utilities
     /// </summary>
     public sealed class UpdateTimer
     {
-        private DateTime _last;
+        private TimeSpan _last;
         private TimeSpan _lag;
-        private DateTime _current;
+        private TimeSpan _current;
         private TimeSpan _elapsed;
         private Thread _updaterThread;
         private TimeSpan _updaterFrequency;
+        private Stopwatch _stopwatch;
+        private TimeSpan _tpsCounterTime;
         
         /// <summary>
         /// Gets true if timer is active, otherwise false
@@ -58,6 +60,7 @@ namespace craftersmine.EtherEngine.Utilities
             UpdaterFrequency = frequency;
             _updaterThread = new Thread(new ThreadStart(Updater));
             _updaterFrequency = TimeSpan.FromMilliseconds(1000.0f / UpdaterFrequency);
+            _stopwatch = new Stopwatch();
         }
 
         /// <summary>
@@ -66,6 +69,7 @@ namespace craftersmine.EtherEngine.Utilities
         public void Stop()
         {
             IsActive = false;
+            _stopwatch.Reset();
         }
 
         /// <summary>
@@ -79,13 +83,13 @@ namespace craftersmine.EtherEngine.Utilities
 
         private void Updater()
         {
-            _last = DateTime.Now;
             _lag = TimeSpan.Zero;
+            _tpsCounterTime = TimeSpan.Zero;
+            _stopwatch.Start();
             while (IsActive)
             {
-                _current = DateTime.Now;
+                _current = _stopwatch.Elapsed;
                 _elapsed = _current - _last;
-                _last = _current;
                 _lag += _elapsed;
 
                 FixedUpdate?.Invoke(this, new UpdateEventArgs() { DeltaTime = _elapsed });
@@ -94,12 +98,20 @@ namespace craftersmine.EtherEngine.Utilities
                     Update?.Invoke(this, new UpdateEventArgs() { DeltaTime = _elapsed + _lag });
                     _lag -= _updaterFrequency;
                 }
+
+                _last = _current;
             }
         }
     }
 
+    /// <summary>
+    /// Represents class which contains Update event data
+    /// </summary>
     public sealed class UpdateEventArgs : EventArgs
     {
+        /// <summary>
+        /// Update delta time
+        /// </summary>
         public TimeSpan DeltaTime { get; set; }
     }
 }
