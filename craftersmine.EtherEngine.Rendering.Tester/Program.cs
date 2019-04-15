@@ -4,12 +4,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using craftersmine.EtherEngine.Content;
 using craftersmine.EtherEngine.Core;
 using craftersmine.EtherEngine.Objects;
 using craftersmine.EtherEngine.Utilities;
 using craftersmine.EtherEngine.Input;
+using craftersmine.EtherEngine.Objects.UIWidgets;
 
 namespace craftersmine.EtherEngine.Rendering.Tester
 {
@@ -110,13 +110,23 @@ namespace craftersmine.EtherEngine.Rendering.Tester
                     }
                 }
 
+            Button btn = new Button();
+            btn.Click += Btn_Click;
+
             //AddGameObjects(myObjs);
             AddGameObject(tileset);
             AddGameObject(movable);
             AddGameObject(particleSystem);
+            AddUIWidget(btn);
+            btn.Texture = Program.contentManager.LoadTextureAtlas("tiles").CutFromAtlas(32, 0, 32, 32);
             //particleSystem.Emit();
             audioclip = Program.contentManager.LoadAudioClip("TestAudioClip");
             CreateAudioChannel("aud", audioclip);
+        }
+
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            Debugging.Log(LogEntryType.Debug, "Button has raised Click event!");
         }
 
         private void ParticleOnUpdate(Particle particle)
