@@ -14,9 +14,9 @@ namespace craftersmine.EtherEngine.Content
     public sealed class Texture
     {
         /// <summary>
-        /// [ENGINE INTERNAL] Gets renderable image object
+        /// Gets renderable image object
         /// </summary>
-        public GLImage RenderableImage { get; private set; }
+        internal GLImage RenderableImage { get; private set; }
         /// <summary>
         /// Gets base texture bitmap
         /// </summary>
