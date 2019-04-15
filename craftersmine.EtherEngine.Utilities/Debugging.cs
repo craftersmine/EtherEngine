@@ -42,10 +42,9 @@ namespace craftersmine.EtherEngine.Utilities
         [Obsolete("(WIP) Not realized yet")]
         public static double CPU { get { throw new NotImplementedException("Not realized yet"); } set { } }
         /// <summary>
-        /// Gets or [ENGINE PROPERTY METHOD] sets current game RAM usage
+        /// Gets current game working set RAM usage
         /// </summary>
-        [Obsolete("(WIP) Not realized yet")]
-        public static double RAM { get { throw new NotImplementedException("Not realized yet"); } set { } }
+        public static long RAM { get { return Environment.WorkingSet; } }
 
         /// <summary>
         /// Gets or [ENGINE PROPERTY METHOD] sets current game frame time
