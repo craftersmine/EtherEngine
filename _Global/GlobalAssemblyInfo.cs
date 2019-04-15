@@ -8,3 +8,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("craftersmine")]
 [assembly: AssemblyProduct("craftersmine EtherEngine")]
 [assembly: AssemblyCopyright("Copyright © craftersmine 2018")]
+[assembly: AssemblyTrademark("craftersmine EtherEngine")]
