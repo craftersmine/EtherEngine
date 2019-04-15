@@ -8,7 +8,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("craftersmine EtherEngine Texture Editor Component")]
 [assembly: AssemblyDescription("Provides components for Texture Editor for EtherEngine GDK")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Установка значения False для параметра ComVisible делает типы в этой сборке невидимыми
