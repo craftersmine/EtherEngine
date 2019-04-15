@@ -6,9 +6,8 @@ using System.Runtime.InteropServices;
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
 [assembly: AssemblyTitle("craftersmine EtherEngine Input Provider Library")]
-[assembly: AssemblyDescription("Provides XInput and Keyboard input methods")]
+[assembly: AssemblyDescription("Provides XInput, Mouse and Keyboard input methods")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Установка значения False для параметра ComVisible делает типы в этой сборке невидимыми
@@ -18,3 +17,8 @@ using System.Runtime.InteropServices;
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
 [assembly: Guid("eb866c13-3350-4aae-baba-42b69156f57d")]
+
+[assembly: InternalsVisibleTo("craftersmine.EtherEngine.Core")]
+[assembly: InternalsVisibleTo("craftersmine.EtherEngine.Content")]
+[assembly: InternalsVisibleTo("craftersmine.EtherEngine.Utilities")]
+[assembly: InternalsVisibleTo("craftersmine.EtherEngine.Rendering")]
