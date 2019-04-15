@@ -26,7 +26,6 @@ namespace craftersmine.EtherEngine.Rendering
         private Font fpsFont = new Font(new FontFamily("Consolas"), 8.25f, FontStyle.Regular);
         private Rectangle fpsBounds;
         private string fpsData = "";
-        private AccurateTimer fpsUpdater;
 
         /// <summary>
         /// Gets current window size
@@ -106,6 +105,8 @@ namespace craftersmine.EtherEngine.Rendering
         }
 
         private double _fpsTime;
+        private string _usedRamSuffix = "Bytes";
+        private float _usedRam = 0.0f;
 
         private void _gameWnd_RenderFrame(object sender, FrameEventArgs e)
         {
@@ -121,7 +122,24 @@ namespace craftersmine.EtherEngine.Rendering
                     Debugging.FPS = FPS;
 
                     Debugging.FrameTime = _gameWnd.RenderTime * 1000.0f;
-                    fpsData = string.Format("{0} FPS\r\nFrameTime: {1:F2} ms\r\n~{2} RenderCalls per frame\r\nUpdateTime: {3:F2} ms\r\nFixedUpdateTime: {4:F2} ms", Debugging.FPS, Debugging.FrameTime, Debugging.RenderCalls, Debugging.UpdateTime, Debugging.FixedUpdateTime);
+                    _usedRam = Debugging.RAM;
+                    if (_usedRam > 1024.0f)
+                    {
+                        _usedRam /= 1024.0f;
+                        _usedRamSuffix = "KBytes";
+                        if (_usedRam > 1024.0f)
+                        {
+                            _usedRam /= 1024.0f;
+                            _usedRamSuffix = "MBytes";
+                            if (_usedRam > 1024.0f)
+                            {
+                                _usedRam /= 1024.0f;
+                                _usedRamSuffix = "GBytes";
+                            }
+                        }
+                    }
+                    
+                    fpsData = string.Format("{0} FPS\r\nFrameTime: {1:F2} ms\r\n~{2} RenderCalls per frame\r\nUpdateTime: {3:F2} ms\r\nFixedUpdateTime: {4:F2} ms\r\nUsed RAM: {5:F2} {6}", Debugging.FPS, Debugging.FrameTime, Debugging.RenderCalls, Debugging.UpdateTime, Debugging.FixedUpdateTime, _usedRam, _usedRamSuffix);
 
                     _fpsTime = 0.0f;
                 }
@@ -136,7 +154,7 @@ namespace craftersmine.EtherEngine.Rendering
 
                 _fpsTime += _gameWnd.RenderTime;
             }
-
+            
             _gameWnd.SwapBuffers();
         }
 
