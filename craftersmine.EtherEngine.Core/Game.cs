@@ -46,8 +46,40 @@ namespace craftersmine.EtherEngine.Core
             {
                 Application.EnableVisualStyles();
                 string tempDirectoryPath = Environment.GetEnvironmentVariable("temp");
-                Debugging.Logger = new Logger(tempDirectoryPath, "craftersmine.EtherEngine");
+                if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+                {
+                    if (Environment.GetCommandLineArgs().Contains("--disableLogging") || Environment.GetCommandLineArgs().Contains("-dl"))
+                    {
+                        Console.WriteLine("craftersmine EtherEngine (c) craftersmine 2018-2019");
+                        Debugging.Logger = null;
+                        Console.WriteLine("Game Logging capability is disabled! To enable logging please remove \"--disableLogging\" or \"-dl\" argument from shortcut or start line");
+                    }
+                    else
+                        Debugging.Logger = new Logger(tempDirectoryPath, "craftersmine.EtherEngine");
+                }
+                else
+                {
+                    Console.WriteLine("craftersmine EtherEngine (c) craftersmine 2018-2019");
+                    Console.WriteLine("Game running on Unix compatible, MacOS or older version of Windows! Logging capability has been disabled to prevent crashes");
+                }
                 Debugging.Log(LogEntryType.Info, "craftersmine EtherEngine (c) craftersmine 2018-2019");
+                switch (Environment.OSVersion.Platform)
+                {
+                    case PlatformID.Win32NT:
+                        Debugging.Log(LogEntryType.Info, "Operating System: " + Environment.OSVersion.VersionString);
+                        break;
+                    case PlatformID.MacOSX:
+                        Debugging.Log(LogEntryType.Info, "Operating System: " + Environment.OSVersion.VersionString);
+                        break;
+                    case PlatformID.Unix:
+                        Debugging.Log(LogEntryType.Info, "Operating System: " + Environment.OSVersion.VersionString);
+                        break;
+                    default:
+                        CrashHandler.Handle(new PlatformNotSupportedException("Unsupported operating system! " + Environment.OSVersion.VersionString));
+                        break;
+                }
+                Debugging.Log(LogEntryType.Info, "Is 64 bit operating system: " + Environment.Is64BitOperatingSystem);
+                Debugging.Log(LogEntryType.Info, "Is 64 bit process: " + Environment.Is64BitProcess);
                 Debugging.Log(LogEntryType.Info, "Initializing game...");
                 GameWnd = gameWindow;
                 Debugging.Log(LogEntryType.Info, "Initializing OpenAL...");
@@ -83,6 +115,11 @@ namespace craftersmine.EtherEngine.Core
         private static void GameWnd_Load(object sender, EventArgs e)
         {
             GameStarted?.Invoke(null, EventArgs.Empty);
+        }
+
+        public static WindowSize GetWindowSize()
+        {
+            return GameWnd.WindowSize;
         }
 
         /// <summary>

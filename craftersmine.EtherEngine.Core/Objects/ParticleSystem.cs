@@ -127,6 +127,13 @@ namespace craftersmine.EtherEngine.Objects
             }
         }
 
+        public void EmitOnce()
+        {
+            Emit();
+            StopEmit();
+            Reset();
+        }
+
         /// <summary>
         /// Reset particles
         /// </summary>

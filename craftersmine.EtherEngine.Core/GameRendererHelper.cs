@@ -50,10 +50,10 @@ namespace craftersmine.EtherEngine.Core
                     {
                         if (SceneManager.CurrentScene.UIWidgets[widget].Texture != null || SceneManager.CurrentScene.UIWidgets[widget].Animation != null)
                         {
-                            if (SceneManager.CurrentScene.UIWidgets[widget].Transform.RendererX + SceneManager.CurrentScene.UIWidgets[widget].Width > 0 &&
-                                SceneManager.CurrentScene.UIWidgets[widget].Transform.RendererX < SceneManager.CurrentScene.SceneCamera.FrameWidth &&
-                                SceneManager.CurrentScene.UIWidgets[widget].Transform.RendererY + SceneManager.CurrentScene.UIWidgets[widget].Height > 0 &&
-                                SceneManager.CurrentScene.UIWidgets[widget].Transform.RendererY < SceneManager.CurrentScene.SceneCamera.FrameHeight)
+                            if (SceneManager.CurrentScene.UIWidgets[widget].Transform.X + SceneManager.CurrentScene.UIWidgets[widget].Width > 0 &&
+                                SceneManager.CurrentScene.UIWidgets[widget].Transform.X < SceneManager.CurrentScene.SceneCamera.FrameWidth &&
+                                SceneManager.CurrentScene.UIWidgets[widget].Transform.Y + SceneManager.CurrentScene.UIWidgets[widget].Height > 0 &&
+                                SceneManager.CurrentScene.UIWidgets[widget].Transform.Y < SceneManager.CurrentScene.SceneCamera.FrameHeight)
                             {
                                 SceneManager.CurrentScene.UIWidgets[widget].IsVisibleByCamera = true;
                                 e.GLGDIInstance.Rotate(SceneManager.CurrentScene.UIWidgets[widget].Transform.RotationAngle, SceneManager.CurrentScene.UIWidgets[widget].Transform.RotationOriginX, SceneManager.CurrentScene.UIWidgets[widget].Transform.RotationOriginY);

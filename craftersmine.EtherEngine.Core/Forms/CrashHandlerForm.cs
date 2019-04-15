@@ -19,11 +19,28 @@ namespace craftersmine.EtherEngine.Core.Forms
             InitializeComponent();
             icon.Image = SystemIcons.Error.ToBitmap();
             Icon = SystemIcons.Error;
-            msg.Text = msg.Text.Replace("{message}", ex.Message);
+            msg.Text = msg.Text.Replace("{message}", ex.Message.Replace("\r\n", " ").Replace("\r", " ").Replace("\n", " ").Replace(Environment.NewLine, " "));
             hres.Text = hres.Text.Replace("{hres}", "0x" + ex.HResult.ToString("X"));
             exception.Text = exception.Text.Replace("{exception}", ex.GetType().ToString());
-            stacktrace.Text = ex.StackTrace;
+            CollectRecursiveStacktrace(ex);
             stacktrace.DeselectAll();
+        }
+
+        private void CollectRecursiveStacktrace(Exception ex)
+        {
+            stacktrace.Text = "An exception has occured!" + Environment.NewLine + Environment.NewLine;
+            stacktrace.Text += "Exception: " + ex.GetType().ToString() + Environment.NewLine;
+            stacktrace.Text += "Error Message: " + ex.Message + Environment.NewLine;
+            stacktrace.Text += "Stacktrace: " + Environment.NewLine;
+            if (ex.StackTrace != null)
+                stacktrace.Text += ex.StackTrace + Environment.NewLine;
+            else stacktrace.Text += "No stacktrace collected!" + Environment.NewLine;
+            if (ex.InnerException != null)
+            {
+                stacktrace.Text += Environment.NewLine;
+                CollectRecursiveStacktrace(ex.InnerException);
+            }
+            else stacktrace.Text += Environment.NewLine + "End of collected exception data.";
         }
 
         private void button1_Click(object sender, EventArgs e)
