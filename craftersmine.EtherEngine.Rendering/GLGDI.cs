@@ -14,7 +14,7 @@ namespace craftersmine.EtherEngine.Rendering
     /// </summary>
     public sealed class GLGDI
     {
-        private GLGraphics GLGraphics { get; set; }
+        internal GLGraphics GLGraphics { get; set; }
         private Color clearColor;
         private bool linearFilteringEnabled;
 
