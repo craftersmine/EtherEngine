@@ -10,6 +10,7 @@ using craftersmine.EtherEngine.Objects;
 using craftersmine.EtherEngine.Utilities;
 using craftersmine.EtherEngine.Input;
 using craftersmine.EtherEngine.Objects.UIWidgets;
+using craftersmine.EtherEngine.Core.EnginePrefabs;
 
 namespace craftersmine.EtherEngine.Rendering.Tester
 {
@@ -34,6 +35,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
                 Debugging.DrawDebug = true;
                 Debugging.ShowDrawCallsPerFrameInTitle = true;
                 Debugging.DrawBounds = true;
+                Debugging.DrawRays = true;
 
                 contentManager = new ContentManager("root");
 
@@ -53,6 +55,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
 
         private static void Game_GameStarted(object sender, EventArgs e)
         {
+            SceneManager.SetScene(new DefaultScene());
             SceneManager.SetScene(new BaseScene());
         }
 
@@ -73,9 +76,11 @@ namespace craftersmine.EtherEngine.Rendering.Tester
         ParticleSystem particleSystem;
         AudioClip audioclip;
         Tileset tileset;
+        Ray ray;
 
         public override void OnStart()
         {
+            ray = new Ray(new Point(400, 200), 15.0f);
             BackgroundColor = Color.Green;
             //movable.Texture = Program.contentManager.LoadTexture("TestAnim");
             movable.Animation = Program.animation;
@@ -95,20 +100,20 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             particleSystem.SetCollsionBox(new CollisionBox(0, 0, 32, 32));
             particleSystem.OnUpdateAction = new ParticleOnUpdateAction(ParticleOnUpdate);
 
-            for (int x = 0; x < SceneCamera.FrameWidth / 32; x++)
-                for (int y = 0; y < SceneCamera.FrameHeight / 2 / 32 + 1; y++)
-                {
-                    int tileId = new Random().Next(0, 1);
-                    switch (tileId)
-                    {
-                        case 0:
-                            tileset.AddTile(new GrassTile(), x, y);
-                            break;
-                        case 1:
-                            tileset.AddTile(new GrassTile(), x, y);
-                            break;
-                    }
-                }
+            //for (int x = 0; x < SceneCamera.FrameWidth / 32; x++)
+            //    for (int y = 0; y < SceneCamera.FrameHeight / 2 / 32 + 1; y++)
+            //    {
+            //        int tileId = new Random().Next(0, 1);
+            //        switch (tileId)
+            //        {
+            //            case 0:
+            //                tileset.AddTile(new GrassTile(), x, y);
+            //                break;
+            //            case 1:
+            //                tileset.AddTile(new GrassTile(), x, y);
+            //                break;
+            //        }
+            //    }
 
             Button btn = new Button();
             btn.Click += Btn_Click;
@@ -126,7 +131,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
 
         private void Btn_Click(object sender, EventArgs e)
         {
-            Debugging.Log(LogEntryType.Debug, "Button has raised Click event!");
+            SettingsController.IsFullscreen = !SettingsController.IsFullscreen;
         }
 
         private void ParticleOnUpdate(Particle particle)
@@ -137,7 +142,10 @@ namespace craftersmine.EtherEngine.Rendering.Tester
 
         public override void OnUpdate(float deltaTime)
         {
-
+            if (Keyboard.IsKeyDown(Key.Number1))
+                SettingsController.Resolution = WindowSizePresets.SVGA;
+            if (Keyboard.IsKeyDown(Key.Number2))
+                SettingsController.Resolution = WindowSizePresets.HD;
             DPad DPad = Gamepad.GetDPad(Player.First);
             Buttons Buttons = Gamepad.GetButtons(Player.First);
             if (Keyboard.IsKeyDown(Key.W) || DPad.Up)
@@ -174,6 +182,27 @@ namespace craftersmine.EtherEngine.Rendering.Tester
                 movable.ObjectTransparency += .05f;
             if (Keyboard.IsKeyDown(Key.KeypadMinus))
                 movable.ObjectTransparency -= .05f;
+
+
+
+            if (Keyboard.IsKeyDown(Key.Up))
+            {
+                GameObject[] castedObjs = ray.Cast(90.0f);
+            }
+            if (Keyboard.IsKeyDown(Key.Up) && Keyboard.IsKeyDown(Key.Right))
+                ray.Cast(45.0f);
+            if (Keyboard.IsKeyDown(Key.Right))
+                ray.Cast(90.0f);
+            if (Keyboard.IsKeyDown(Key.Right) && Keyboard.IsKeyDown(Key.Down))
+                ray.Cast(135.0f);
+            if (Keyboard.IsKeyDown(Key.Down))
+                ray.Cast(180.0f);
+            if (Keyboard.IsKeyDown(Key.Down) && Keyboard.IsKeyDown(Key.Left))
+                ray.Cast(225.0f);
+            if (Keyboard.IsKeyDown(Key.Left))
+                ray.Cast(270.0f);
+            if (Keyboard.IsKeyDown(Key.Left) && Keyboard.IsKeyDown(Key.Up))
+                ray.Cast(315.0f);
         }
     }
 
