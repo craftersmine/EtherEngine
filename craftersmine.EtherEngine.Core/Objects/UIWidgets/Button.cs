@@ -16,6 +16,8 @@ namespace craftersmine.EtherEngine.Objects.UIWidgets
         private Size _measuredTextSize;
         private Rectangle _textRenderBounds;
         private bool _isClicked;
+        private int _frameCounter;
+        private int _currentAnimationFrame;
 
         public Font Font { get; set; }
         public string Text { get { return _text; } set { _text = value; _measuredTextSize = TextRenderer.MeasureText(_text, Font); _textRenderBounds = new Rectangle((int)X, (int)Y, _measuredTextSize.Width, _measuredTextSize.Height); } }
@@ -40,8 +42,39 @@ namespace craftersmine.EtherEngine.Objects.UIWidgets
 
         public override void OnRender(GLGDI renderer)
         {
-            base.OnRender(renderer);
-            renderer.DrawString(_text, Font, TextColor, (Transform.Width / 2) - (_measuredTextSize.Width / 2), (Transform.Height / 2) - (_measuredTextSize.Width / 2), TextQuality.High);
+            byte objTransparencyCalculated = (byte)(255 * ObjectTransparency);
+
+            if (IsAnimated)
+            {
+                if (Animation != null)
+                {
+                    if (_frameCounter == Animation.TicksPerFrame)
+                    {
+                        _frameCounter = 0;
+                        _currentAnimationFrame++;
+                        if (_currentAnimationFrame == Animation.FramesCount)
+                            ResetAnimation();
+                    }
+                    renderer.DrawImage(Animation.AnimationFrames[_currentAnimationFrame].RenderableImage,
+                                    (int)Transform.X,
+                                    (int)Transform.Y,
+                                    Width,
+                                    Height,
+                                    new GLGDIPlus.BlendingValues(BlendingColor.R, BlendingColor.G, BlendingColor.B, objTransparencyCalculated));
+                    _frameCounter++;
+                }
+                else IsAnimated = false;
+            }
+            else
+            {
+                renderer.DrawImage(Texture.RenderableImage,
+                                    (int)Transform.RendererX,
+                                    (int)Transform.RendererY,
+                                    Width,
+                                    Height,
+                                    new GLGDIPlus.BlendingValues(BlendingColor.R, BlendingColor.G, BlendingColor.B, objTransparencyCalculated));
+            }
+            renderer.DrawString(_text, Font, TextColor, (Transform.Width / 2) - (_measuredTextSize.Width / 2), (Transform.Height / 2) - (_measuredTextSize.Height / 2), TextQuality.High);
         }
 
         public override void OnMouseDown(int mouseX, int mouseY, bool mouseLeftButton, bool mouseMiddleButton, bool mouseRightButton)
