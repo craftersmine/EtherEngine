@@ -65,6 +65,7 @@ namespace craftersmine.EtherEngine.Utilities
         /// Gets or sets is DrawCall counter is shown in titlebar after window title
         /// </summary>
         public static bool ShowDrawCallsPerFrameInTitle { get; set; }
+        public static bool DrawRays { get; set; }
 
         /// <summary>
         /// Writes a log entry with specified prefix and content
