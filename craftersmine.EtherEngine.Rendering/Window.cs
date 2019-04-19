@@ -27,6 +27,8 @@ namespace craftersmine.EtherEngine.Rendering
         private Rectangle fpsBounds;
         private string fpsData = "";
 
+        public static Window CurrentWindow { get; private set; }
+
         /// <summary>
         /// Gets current window size
         /// </summary>
@@ -63,6 +65,8 @@ namespace craftersmine.EtherEngine.Rendering
         /// <param name="isFullscreen">Is fullscreen</param>
         public Window(string title, WindowSize windowSize, bool isFullscreen)
         {
+            CurrentWindow = this;
+
             this.title = title;
             WindowSize = windowSize;
             IsFullscreen = isFullscreen;
@@ -90,6 +94,7 @@ namespace craftersmine.EtherEngine.Rendering
             Mouse.MouseDevice.ButtonUp += Mouse.MouseDeviceButtonUpEvent;
             Mouse.MouseDevice.Move += Mouse.MouseDeviceMoveEvent;
             Mouse.MouseDevice.WheelChanged += Mouse.MouseDeviceWheelChangedEvent;
+
         }
 
         private void _gameWnd_Closing(object sender, CancelEventArgs e)
@@ -196,6 +201,22 @@ namespace craftersmine.EtherEngine.Rendering
         public void Close()
         {
             _gameWnd.Exit();
+        }
+
+        public void ChangeResolution(WindowSize size)
+        {
+            CurrentWindow._gameWnd.Height = size.Height;
+            CurrentWindow._gameWnd.Width = size.Width;
+            GLGDI.GLGraphics.Init();
+            WindowSize = size;
+        }
+
+        public void ChangeFullscreenMode(bool isFullscreen)
+        {
+            IsFullscreen = isFullscreen;
+            if (!IsFullscreen)
+                CurrentWindow._gameWnd.WindowState = WindowState.Fullscreen;
+            else CurrentWindow._gameWnd.WindowState = WindowState.Normal;
         }
     }
 
