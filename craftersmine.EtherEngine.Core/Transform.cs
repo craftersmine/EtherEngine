@@ -84,5 +84,23 @@ namespace craftersmine.EtherEngine.Core
                 return true;
             else return false;
         }
+
+        
+         public Rectangle GetBoundsRectangle()
+         {
+             return GetBoundsRectangle(false);
+         }
+ 
+         public Rectangle GetBoundsRectangle(bool cameraRelative)
+         {
+             if (!cameraRelative)
+                 return new Rectangle((int) X, (int) Y, Width, Height);
+             else return new Rectangle(RendererX, RendererY, Width, Height);
+         }
+ 
+         public override string ToString()
+         {
+             return "X = " + X + ", Y = " + Y + ", Width = " + Width + ", Height = " + Height;
+         }
     }
 }
