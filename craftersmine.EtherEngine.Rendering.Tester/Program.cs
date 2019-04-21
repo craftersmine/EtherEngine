@@ -80,8 +80,8 @@ namespace craftersmine.EtherEngine.Rendering.Tester
 
         public override void OnStart()
         {
-            ray = new Ray(new Point(400, 200), 15.0f);
-            BackgroundColor = Color.Green;
+            ray = new Ray(new Point(400, 200), 100.0f);
+            BackgroundColor = Color.Black;
             //movable.Texture = Program.contentManager.LoadTexture("TestAnim");
             movable.Animation = Program.animation;
             movable.IsAnimated = true;
