@@ -36,10 +36,5 @@ namespace craftersmine.EtherEngine.Core
                 return AudioChannels[id];
             else return null;
         }
-
-        public void PlayAudioOnce(AudioClip audio)
-        {
-            new AudioChannel(audio).Play();
-        }
     }
 }
