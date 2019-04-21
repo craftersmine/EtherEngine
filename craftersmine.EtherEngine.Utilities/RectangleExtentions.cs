@@ -16,35 +16,9 @@ namespace craftersmine.EtherEngine.Utilities
 
         public static bool IsLineIntersects(this Rectangle r, Point p1, Point p2)
         {
-            if (r.Left > p1.X || r.Right < p2.X)
-            {
-                return false;
-            }
-
-            if (r.Top < p1.Y || r.Bottom > p2.Y)
-            {
-                return false;
-            }
-
-            var yAtRectLeft = CalculateYForX(r.Left, p1, p2);
-            var yAtRectRight = CalculateYForX(r.Right, p1, p2);
-
-            if (r.Bottom > yAtRectLeft && r.Bottom > yAtRectRight)
-            {
-                return false;
-            }
-
-            if (r.Top < yAtRectLeft && r.Top < yAtRectRight)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private static float CalculateYForX(float x, Point p1, Point p2)
-        {
-            return p1.Y - (x - p1.X) * ((p1.Y - p2.Y) / (p2.X - p1.X));
+            if (r.Contains(p1) || r.Contains(p2))
+                return true;
+            return false;
         }
     }
 }
