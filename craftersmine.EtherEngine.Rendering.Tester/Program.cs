@@ -100,20 +100,20 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             particleSystem.SetCollsionBox(new CollisionBox(0, 0, 32, 32));
             particleSystem.OnUpdateAction = new ParticleOnUpdateAction(ParticleOnUpdate);
 
-            //for (int x = 0; x < SceneCamera.FrameWidth / 32; x++)
-            //    for (int y = 0; y < SceneCamera.FrameHeight / 2 / 32 + 1; y++)
-            //    {
-            //        int tileId = new Random().Next(0, 1);
-            //        switch (tileId)
-            //        {
-            //            case 0:
-            //                tileset.AddTile(new GrassTile(), x, y);
-            //                break;
-            //            case 1:
-            //                tileset.AddTile(new GrassTile(), x, y);
-            //                break;
-            //        }
-            //    }
+            for (int x = 0; x < SceneCamera.FrameWidth / 32; x++)
+                for (int y = 0; y < SceneCamera.FrameHeight / 2 / 32 + 1; y++)
+                {
+                    int tileId = new Random().Next(0, 1);
+                    switch (tileId)
+                    {
+                        case 0:
+                            tileset.AddTile(new GrassTile(), x, y);
+                            break;
+                        case 1:
+                            tileset.AddTile(new GrassTile(), x, y);
+                            break;
+                    }
+                }
 
             Button btn = new Button();
             btn.Click += Btn_Click;
@@ -187,7 +187,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
 
             if (Keyboard.IsKeyDown(Key.Up))
             {
-                GameObject[] castedObjs = ray.Cast(90.0f);
+                GameObject[] castedObjs = ray.Cast(0.0f);
             }
             if (Keyboard.IsKeyDown(Key.Up) && Keyboard.IsKeyDown(Key.Right))
                 ray.Cast(45.0f);
@@ -196,13 +196,17 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             if (Keyboard.IsKeyDown(Key.Right) && Keyboard.IsKeyDown(Key.Down))
                 ray.Cast(135.0f);
             if (Keyboard.IsKeyDown(Key.Down))
-                ray.Cast(180.0f);
+            {
+                GameObject[] castedObjs = ray.Cast(180.0f);
+            }
             if (Keyboard.IsKeyDown(Key.Down) && Keyboard.IsKeyDown(Key.Left))
                 ray.Cast(225.0f);
             if (Keyboard.IsKeyDown(Key.Left))
                 ray.Cast(270.0f);
             if (Keyboard.IsKeyDown(Key.Left) && Keyboard.IsKeyDown(Key.Up))
-                ray.Cast(315.0f);
+            {
+                GameObject[] castedObjs = ray.Cast(315.0f);
+            }
         }
     }
 
