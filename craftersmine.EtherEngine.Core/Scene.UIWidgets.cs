@@ -13,6 +13,7 @@ namespace craftersmine.EtherEngine.Core
         public void AddUIWidget(UIWidget widget)
         {
             UIWidgets.Add(widget);
+            widget.InternalCreate();
         }
 
         public void RemoveUIWidget(UIWidget widget)
