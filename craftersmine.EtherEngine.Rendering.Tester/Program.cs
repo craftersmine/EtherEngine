@@ -77,6 +77,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
         AudioClip audioclip;
         Tileset tileset;
         Ray ray;
+        Button btn;
 
         public override void OnStart()
         {
@@ -115,7 +116,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
                     }
                 }
 
-            Button btn = new Button();
+            btn = new Button();
             btn.Click += Btn_Click;
 
             //AddGameObjects(myObjs);
