@@ -42,38 +42,7 @@ namespace craftersmine.EtherEngine.Objects.UIWidgets
 
         public override void OnRender(GLGDI renderer)
         {
-            byte objTransparencyCalculated = (byte)(255 * ObjectTransparency);
-
-            if (IsAnimated)
-            {
-                if (Animation != null)
-                {
-                    if (_frameCounter == Animation.TicksPerFrame)
-                    {
-                        _frameCounter = 0;
-                        _currentAnimationFrame++;
-                        if (_currentAnimationFrame == Animation.FramesCount)
-                            ResetAnimation();
-                    }
-                    renderer.DrawImage(Animation.AnimationFrames[_currentAnimationFrame].RenderableImage,
-                                    (int)Transform.X,
-                                    (int)Transform.Y,
-                                    Width,
-                                    Height,
-                                    new GLGDIPlus.BlendingValues(BlendingColor.R, BlendingColor.G, BlendingColor.B, objTransparencyCalculated));
-                    _frameCounter++;
-                }
-                else IsAnimated = false;
-            }
-            else
-            {
-                renderer.DrawImage(Texture.RenderableImage,
-                                    (int)Transform.RendererX,
-                                    (int)Transform.RendererY,
-                                    Width,
-                                    Height,
-                                    new GLGDIPlus.BlendingValues(BlendingColor.R, BlendingColor.G, BlendingColor.B, objTransparencyCalculated));
-            }
+            base.OnRender(renderer);
             renderer.DrawString(_text, Font, TextColor, (Transform.Width / 2) - (_measuredTextSize.Width / 2), (Transform.Height / 2) - (_measuredTextSize.Height / 2), TextQuality.High);
         }
 
