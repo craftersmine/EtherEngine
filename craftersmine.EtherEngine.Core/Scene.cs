@@ -58,7 +58,7 @@ namespace craftersmine.EtherEngine.Core
                         GameObjects[i].OnMouseDown(Mouse.X, Mouse.Y, Mouse.LeftButton, Mouse.MiddleButton, Mouse.RightButton);
                 }
             }
-            OnUpdate((float)deltaTime.TotalMilliseconds);
+            OnUpdate((float)deltaTime.TotalSeconds * 1000.0f);
         }
     }
 }
