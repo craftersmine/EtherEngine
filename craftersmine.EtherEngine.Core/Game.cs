@@ -117,11 +117,6 @@ namespace craftersmine.EtherEngine.Core
             GameStarted?.Invoke(null, EventArgs.Empty);
         }
 
-        public static WindowSize GetWindowSize()
-        {
-            return GameWnd.WindowSize;
-        }
-
         /// <summary>
         /// Exits from game with specified exit code
         /// </summary>
