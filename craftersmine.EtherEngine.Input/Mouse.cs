@@ -12,23 +12,13 @@ namespace craftersmine.EtherEngine.Input
     /// </summary>
     public static class Mouse
     {
-        /// <summary>
-        /// [ENGINE METHOD] MouseDevice.Move event handler
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public static void MouseDeviceMoveEvent(object sender, MouseMoveEventArgs e)
+        internal static void MouseDeviceMoveEvent(object sender, MouseMoveEventArgs e)
         {
             XDelta = e.XDelta;
             YDelta = e.YDelta;
         }
-
-        /// <summary>
-        /// [ENGINE METHOD] MouseDevice.ButtonUp event handler
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public static void MouseDeviceButtonUpEvent(object sender, MouseButtonEventArgs e)
+        
+        internal static void MouseDeviceButtonUpEvent(object sender, MouseButtonEventArgs e)
         {
             switch (e.Button)
             {
@@ -43,13 +33,8 @@ namespace craftersmine.EtherEngine.Input
                     break;
             }
         }
-
-        /// <summary>
-        /// [ENGINE METHOD] MouseDevice.ButtonDown event handler
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public static void MouseDeviceButtonDownEvent(object sender, MouseButtonEventArgs e)
+        
+        internal static void MouseDeviceButtonDownEvent(object sender, MouseButtonEventArgs e)
         {
             switch (e.Button)
             {
@@ -64,21 +49,13 @@ namespace craftersmine.EtherEngine.Input
                     break;
             }
         }
-
-        /// <summary>
-        /// [ENGINE METHOD] MouseDevice.WheelChanged event handler
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public static void MouseDeviceWheelChangedEvent(object sender, MouseWheelEventArgs e)
+        
+        internal static void MouseDeviceWheelChangedEvent(object sender, MouseWheelEventArgs e)
         {
             WheelDelta = e.Delta;
         }
-
-        /// <summary>
-        /// [ENGINE PROPERTY] Gets or sets mouse to handle input
-        /// </summary>
-        public static MouseDevice MouseDevice { get; set; }
+        
+        internal static MouseDevice MouseDevice { get; set; }
 
         /// <summary>
         /// Gets current mouse X position on game window
