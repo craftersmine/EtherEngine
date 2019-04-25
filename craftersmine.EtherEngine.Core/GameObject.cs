@@ -99,7 +99,7 @@ namespace craftersmine.EtherEngine.Core
 
         internal void InternalUpdate(TimeSpan deltaTime)
         {
-            OnUpdate((float)deltaTime.TotalMilliseconds);
+            OnUpdate((float)deltaTime.TotalSeconds * 1000.0f);
         }
 
         /// <summary>
@@ -116,6 +116,14 @@ namespace craftersmine.EtherEngine.Core
             OnCollide(gameObject);
         }
 
+        /// <summary>
+        /// Calls when user performs mouse click on <see cref="GameObject"/> by LMB, MMB or RMB
+        /// </summary>
+        /// <param name="mouseX">Click global X position</param>
+        /// <param name="mouseY">Click global Y position</param>
+        /// <param name="mouseLeftButton">true if Left Mouse Button is down, otherwise false</param>
+        /// <param name="mouseMiddleButton">true if Middle Mouse Button is down, otherwise false</param>
+        /// <param name="mouseRightButton">true if Right Mouse Button is down, otherwise false</param>
         public virtual void OnMouseDown(int mouseX, int mouseY, bool mouseLeftButton, bool mouseMiddleButton, bool mouseRightButton)
         {
 

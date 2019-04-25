@@ -17,39 +17,60 @@ namespace craftersmine.EtherEngine.Utilities
         public static Logger Logger { get; set; }
 
         /// <summary>
-        /// Gets or [ENGINE PROPERTY METHOD] sets current game TPS
+        /// Gets current game TPS
         /// </summary>
-        public static float UpdateTime { get; set; }
+        public static float UpdateTime { get; internal set; }
 
         /// <summary>
-        /// Gets or [ENGINE PROPERTY METHOD] sets current game FPS
+        /// Gets current game FPS
         /// </summary>
-        public static int FPS { get; set; }
+        public static int FPS { get; internal set; }
 
         /// <summary>
-        /// Gets or [ENGINE PROPERTY METHOD] sets current game DrawCalls per frame
+        /// Gets current game DrawCalls per frame
         /// </summary>
-        public static int RenderCalls { get; set; }
+        public static int RenderCalls { get; internal set; }
 
         /// <summary>
-        /// Gets or [ENGINE PROPERTY METHOD] sets current game CU/s
+        /// Gets current game CU/s
         /// </summary>
-        public static float FixedUpdateTime { get; set; }
+        public static float FixedUpdateTime { get; internal set; }
 
         /// <summary>
-        /// Gets or [ENGINE PROPERTY METHOD] sets current game CPU usage
+        /// Gets current game CPU usage
         /// </summary>
         [Obsolete("(WIP) Not realized yet")]
-        public static double CPU { get { throw new NotImplementedException("Not realized yet"); } set { } }
+        public static double CPU { get { throw new NotImplementedException("Not realized yet"); } internal set { } }
+
         /// <summary>
         /// Gets current game working set RAM usage
         /// </summary>
         public static long RAM { get { return Environment.WorkingSet; } }
 
         /// <summary>
-        /// Gets or [ENGINE PROPERTY METHOD] sets current game frame time
+        /// Gets or current game frame time
         /// </summary>
-        public static double FrameTime { get; set; }
+        public static double FrameTime { get; internal set; }
+
+        /// <summary>
+        /// Gets current game tickrate
+        /// </summary>
+        public static int TPS { get; internal set; }
+
+        /// <summary>
+        /// Gets current game fixed TPS
+        /// </summary>
+        public static int FixedTPS { get; internal set; }
+
+        /// <summary>
+        /// Gets current frame count
+        /// </summary>
+        public static long Frame { get; internal set; }
+        
+        /// <summary>
+        /// Gets current lag time
+        /// </summary>
+        public static float LagTime { get; internal set; }
 
         /// <summary>
         /// Gets or sets true if debug info draws on screen, else false
@@ -65,6 +86,10 @@ namespace craftersmine.EtherEngine.Utilities
         /// Gets or sets is DrawCall counter is shown in titlebar after window title
         /// </summary>
         public static bool ShowDrawCallsPerFrameInTitle { get; set; }
+
+        /// <summary>
+        /// Gets or sets is Rays will be drawn after first Cast call
+        /// </summary>
         public static bool DrawRays { get; set; }
 
         /// <summary>
