@@ -27,6 +27,9 @@ namespace craftersmine.EtherEngine.Rendering
         private Rectangle fpsBounds;
         private string fpsData = "";
 
+        /// <summary>
+        /// Gets current game window instance
+        /// </summary>
         public static Window CurrentWindow { get; private set; }
 
         /// <summary>
@@ -122,8 +125,8 @@ namespace craftersmine.EtherEngine.Rendering
             
             if (Debugging.DrawDebug)
             {
-                if (_fpsTime >= 1.0f)
-                {
+                //if (_fpsTime >= 1.0f)
+                //{
                     Debugging.FPS = FPS;
 
                     Debugging.FrameTime = _gameWnd.RenderTime * 1000.0f;
@@ -142,9 +145,28 @@ namespace craftersmine.EtherEngine.Rendering
                                 _usedRamSuffix = "GBytes";
                             }
                         }
-                    }
+                    //}
                     
-                    fpsData = string.Format("{0} FPS\r\nFrameTime: {1:F2} ms\r\n~{2} RenderCalls per frame\r\nUpdateTime: {3:F2} ms\r\nFixedUpdateTime: {4:F2} ms\r\nUsed RAM: {5:F2} {6}", Debugging.FPS, Debugging.FrameTime, Debugging.RenderCalls, Debugging.UpdateTime, Debugging.FixedUpdateTime, _usedRam, _usedRamSuffix);
+                    fpsData = string.Format("{0} FPS\r\n" +
+                        "FrameTime: {1:F2} ms\r\n" +
+                        "Frame: {9}\r\n" +
+                        "~{2} RenderCalls per frame\r\n" +
+                        "UpdateTime: {3:F2} ms\r\n" +
+                        "FixedUpdateTime: {4:F2} ms\r\n" +
+                        "LagTime: {10} ms\r\n" +
+                        "Used RAM: {5:F2} {6}\r\n" +
+                        "TPS: {7}\r\n" +
+                        "FixedTPS: {8}", Debugging.FPS, 
+                        Debugging.FrameTime,
+                        Debugging.RenderCalls,
+                        Debugging.UpdateTime * 1000.0f, 
+                        Debugging.FixedUpdateTime * 1000.0f,
+                        _usedRam, 
+                        _usedRamSuffix,
+                        Debugging.TPS,
+                        Debugging.FixedTPS,
+                        Debugging.Frame,
+                        Debugging.LagTime);
 
                     _fpsTime = 0.0f;
                 }
@@ -161,6 +183,7 @@ namespace craftersmine.EtherEngine.Rendering
             }
             
             _gameWnd.SwapBuffers();
+            Debugging.Frame++;
         }
 
         /// <summary>
@@ -203,6 +226,10 @@ namespace craftersmine.EtherEngine.Rendering
             _gameWnd.Exit();
         }
 
+        /// <summary>
+        /// Changes window resolution to specified
+        /// </summary>
+        /// <param name="size">New window resolution</param>
         public void ChangeResolution(WindowSize size)
         {
             CurrentWindow._gameWnd.Height = size.Height;
@@ -211,6 +238,10 @@ namespace craftersmine.EtherEngine.Rendering
             WindowSize = size;
         }
 
+        /// <summary>
+        /// Changes window fullscreen mode or windowed
+        /// </summary>
+        /// <param name="isFullscreen">true to make window fullscreen, otherwise false</param>
         public void ChangeFullscreenMode(bool isFullscreen)
         {
             IsFullscreen = isFullscreen;
