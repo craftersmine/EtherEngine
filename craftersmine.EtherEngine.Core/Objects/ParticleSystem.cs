@@ -14,9 +14,7 @@ namespace craftersmine.EtherEngine.Objects
     public sealed class ParticleSystem : GameObject
     {
         internal List<Particle> Particles { get; set; } = new List<Particle>();
-
-        private Random HorizVeloRanger = new Random();
-        private Random VertVeloRanger = new Random();
+        
         private Random SizeRanger = new Random();
         private Random ParticleLifetimeRanger = new Random();
 
@@ -24,14 +22,6 @@ namespace craftersmine.EtherEngine.Objects
         /// Gets or sets particle lifetime
         /// </summary>
         public int ParticleLifetime { get; set; }
-        /// <summary>
-        /// Gets or sets particle vertical velocity vector
-        /// </summary>
-        public float ParticleVerticalVelocity { get; set; }
-        /// <summary>
-        /// Gets or sets particle horizontal velocity vector
-        /// </summary>
-        public float ParticleHorizontalVelocity { get; set; }
         /// <summary>
         /// Gets or sets particle size
         /// </summary>
@@ -57,24 +47,24 @@ namespace craftersmine.EtherEngine.Objects
         /// </summary>
         public ParticleOnUpdateAction OnUpdateAction { get; set; }
 
+        public ParticleBehaviour ParticleBehaviour { get; set; }
+
         /// <summary>
         /// Creates new <see cref="ParticleSystem"/> instance with specified parameters
         /// </summary>
         /// <param name="particle">Particle template</param>
         /// <param name="particleLifetime">Particle lifetime</param>
         /// <param name="maxParticles">Maximum particles limitaion</param>
-        /// <param name="particleVerticalVelocity">Particle vertical velocity vector</param>
-        /// <param name="particleHorizontalVelocity">Particle horizontal velocity vector</param>
+        /// <param name="particleBehaviour">Particle behaviour</param>
         /// <param name="particleSize">Particle size</param>
         /// <param name="variativeSize">True if particles must have variative size, else false</param>
-        public ParticleSystem(Particle particle, int particleLifetime, int maxParticles, float particleVerticalVelocity, float particleHorizontalVelocity, int particleSize, bool variativeSize)
+        public ParticleSystem(Particle particle, ParticleBehaviour particleBehaviour, int particleLifetime, int maxParticles, int particleSize, bool variativeSize)
         {
             Particle = particle;
             ParticleLifetime = particleLifetime;
-            ParticleVerticalVelocity = particleVerticalVelocity;
-            ParticleHorizontalVelocity = particleHorizontalVelocity;
             ParticleSize = particleSize;
             IsParticleVariativeSize = variativeSize;
+            ParticleBehaviour = particleBehaviour;
             MaxParticles = maxParticles;
             Collidable = false;
         }
@@ -84,7 +74,7 @@ namespace craftersmine.EtherEngine.Objects
         /// </summary>
         public override void OnStart()
         {
-            for (int i = 0; i < MaxParticles; i++)
+            for (int i = 0; i < MaxParticles * 2; i++)
             {
                 Particle particle = Particle.Clone();
                 particle.Visible = false;
@@ -92,7 +82,7 @@ namespace craftersmine.EtherEngine.Objects
                 particle.Height = ParticleSize;
                 particle.X = this.X;
                 particle.Y = this.Y;
-                particle.CurrentLifetime = ParticleLifetimeRanger.Next(-15, 0);
+                particle.CurrentLifetime = ParticleLifetimeRanger.Next(-15, 0) - i;
                 Particles.Add(particle);
             }
             Reset();
@@ -147,7 +137,7 @@ namespace craftersmine.EtherEngine.Objects
                 Particles[i].Height = ParticleSize;
                 Particles[i].X = this.X;
                 Particles[i].Y = this.Y;
-                Particles[i].CurrentLifetime = ParticleLifetimeRanger.Next(-15, 0);
+                Particles[i].CurrentLifetime = ParticleLifetimeRanger.Next(-15, 0) - i;
             }
         }
 
@@ -168,15 +158,12 @@ namespace craftersmine.EtherEngine.Objects
                             Particles[i].SizeModifier = (float)SizeRanger.Next(ParticleSize * 2 / 3, ParticleSize) / ParticleSize;
                         Particles[i].Width = (int)((float)ParticleSize * Particles[i].SizeModifier);
                         Particles[i].Height = (int)((float)ParticleSize * Particles[i].SizeModifier);
-                        Particles[i].VerticalVelocity = ParticleVerticalVelocity * deltaTime * (float)VertVeloRanger.Next(1, 4) / 4;
-                        Particles[i].HorizontalVelocity = ParticleHorizontalVelocity * deltaTime * (float)HorizVeloRanger.Next(-1, 4) / 4;
-                        Particles[i].Lifetime = ParticleLifetime + ParticleLifetimeRanger.Next(-5, 5);
+                        Particles[i].Lifetime = ParticleLifetime + ParticleLifetimeRanger.Next(-15, 0) - i;
                         Particles[i].CurrentLifetime++;
                     }
                     if (Particles[i].CurrentLifetime < Particles[i].Lifetime || !Particles[i].IsParticleLifetimeElapsed)
                     {
-                        Particles[i].X += Particles[i].HorizontalVelocity;
-                        Particles[i].Y -= Particles[i].VerticalVelocity;
+                        ParticleBehaviour.Invoke(Particles[i], deltaTime);
                         Particles[i].CurrentLifetime++;
                     }
                     if (Particles[i].CurrentLifetime >= Particles[i].Lifetime || Particles[i].IsParticleLifetimeElapsed)
@@ -187,7 +174,7 @@ namespace craftersmine.EtherEngine.Objects
                         Particles[i].Height = ParticleSize;
                         Particles[i].X = this.X;
                         Particles[i].Y = this.Y;
-                        Particles[i].CurrentLifetime = ParticleLifetimeRanger.Next(-15, 0);
+                        Particles[i].CurrentLifetime = ParticleLifetimeRanger.Next(-15, 0) - i;
                     }
                     OnUpdateAction?.Invoke(Particles[i]);
                 }
@@ -219,11 +206,11 @@ namespace craftersmine.EtherEngine.Objects
         /// <summary>
         /// Gets current particle vertical velocity vector
         /// </summary>
-        public float VerticalVelocity { get; internal set; }
+        public float VerticalVelocity { get; set; }
         /// <summary>
         /// Gets current particle horizontal velocity vector
         /// </summary>
-        public float HorizontalVelocity { get; internal set; }
+        public float HorizontalVelocity { get;  set; }
         /// <summary>
         /// Gets particle size modifier
         /// </summary>
@@ -266,4 +253,6 @@ namespace craftersmine.EtherEngine.Objects
     /// </summary>
     /// <param name="particle">Updating particle</param>
     public delegate void ParticleOnUpdateAction(Particle particle);
+
+    public delegate void ParticleBehaviour(Particle particle, float deltaTime);
 }
