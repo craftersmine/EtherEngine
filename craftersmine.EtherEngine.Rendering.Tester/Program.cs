@@ -95,7 +95,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
 
             tileset = new Tileset(32, 32, null);
 
-            particleSystem = new ParticleSystem(new Particle(Program.contentManager.LoadTexture("TestCircle")), 180, 30, 1.0f, 0.3f, 16, true);
+            particleSystem = new ParticleSystem(new Particle(Program.contentManager.LoadTexture("TestCircle")), new ParticleBehaviour(ParticleBehaviourMethod), 180, 30, 16, true);
             particleSystem.X = 200; particleSystem.Y = 200;
             particleSystem.Collidable = true;
             particleSystem.SetCollsionBox(new CollisionBox(0, 0, 32, 32));
@@ -128,6 +128,14 @@ namespace craftersmine.EtherEngine.Rendering.Tester
             //particleSystem.Emit();
             audioclip = Program.contentManager.LoadAudioClip("TestAudioClip");
             CreateAudioChannel("aud", audioclip);
+        }
+
+        Random particleRandomizer = new Random();
+
+        private void ParticleBehaviourMethod(Particle particle, float deltaTime)
+        {
+            particle.X += particle.HorizontalVelocity * deltaTime + particleRandomizer.Next(-15, 15);
+            particle.Y += particle.VerticalVelocity * deltaTime + particleRandomizer.Next(-15, 15);
         }
 
         private void Btn_Click(object sender, EventArgs e)
@@ -170,7 +178,7 @@ namespace craftersmine.EtherEngine.Rendering.Tester
                 SceneCamera.MoveCamera(1, 0);
             }
             if (Keyboard.IsKeyDown(Key.P) || Buttons.A)
-                particleSystem.Emit();
+                particleSystem.EmitOnce();
             if (Keyboard.IsKeyDown(Key.Q))
                 movable.Transform.Rotate(-0.5f);
             if (Keyboard.IsKeyDown(Key.E))
