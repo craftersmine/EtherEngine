@@ -16,7 +16,9 @@ namespace craftersmine.EtherEngine.Utilities
         private Thread _updaterThread;
         private TimeSpan _updaterFrequency;
         private Stopwatch _stopwatch;
-        private TimeSpan _tpsCounterTime;
+        private TimeSpan _tpsAccumulator;
+        private int fixedTicks;
+        private int ticks;
         
         /// <summary>
         /// Gets true if timer is active, otherwise false
@@ -83,8 +85,6 @@ namespace craftersmine.EtherEngine.Utilities
 
         private void Updater()
         {
-            _lag = TimeSpan.Zero;
-            _tpsCounterTime = TimeSpan.Zero;
             _stopwatch.Start();
             while (IsActive)
             {
@@ -93,13 +93,28 @@ namespace craftersmine.EtherEngine.Utilities
                 _lag += _elapsed;
 
                 FixedUpdate?.Invoke(this, new UpdateEventArgs() { DeltaTime = _elapsed });
+                Debugging.FixedUpdateTime = (float)_elapsed.TotalSeconds;
+                fixedTicks++;
+
+                Debugging.LagTime = (float)_lag.TotalSeconds * 1000.0f;
 
                 while (_lag >= _updaterFrequency) {
                     Update?.Invoke(this, new UpdateEventArgs() { DeltaTime = _elapsed + _lag });
+                    Debugging.UpdateTime = (float)_elapsed.TotalSeconds + (float)_lag.TotalSeconds;
+                    ticks++;
                     _lag -= _updaterFrequency;
                 }
 
                 _last = _current;
+                _tpsAccumulator += _elapsed;
+                if (_tpsAccumulator >= TimeSpan.FromSeconds(1.0f))
+                {
+                    Debugging.TPS = ticks;
+                    Debugging.FixedTPS = fixedTicks;
+                    ticks = 0;
+                    fixedTicks = 0;
+                    _tpsAccumulator = TimeSpan.Zero;
+                }
             }
         }
     }
