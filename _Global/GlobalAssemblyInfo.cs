@@ -7,5 +7,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("0.2.0.0")]
 [assembly: AssemblyCompany("craftersmine")]
 [assembly: AssemblyProduct("craftersmine EtherEngine")]
-[assembly: AssemblyCopyright("Copyright © craftersmine 2018")]
+[assembly: AssemblyCopyright("Copyright © craftersmine 2019")]
 [assembly: AssemblyTrademark("craftersmine EtherEngine")]
