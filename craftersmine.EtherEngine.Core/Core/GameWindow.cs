@@ -9,48 +9,77 @@ using SharpDX.Windows;
 
 namespace craftersmine.EtherEngine.Core
 {
-    public class GameWindow : RenderForm
+    /// <summary>
+    /// Represents game window. This class cannot be inherited
+    /// </summary>
+    public sealed class GameWindow : RenderForm
     {
-        public WindowParameters WindowParameters { get; set; }
+        private WindowParameters wndParams;
+
+        /// <summary>
+        /// Gets or sets window parameters
+        /// </summary>
+        public WindowParameters WindowParameters { get { return wndParams; } internal set { ApplyWindowParams(value); } }
+        /// <summary>
+        /// Gets current game window instance
+        /// </summary>
         public static GameWindow Current { get; internal set; }
 
-        private GameWindow() { }
+        private GameWindow() { } // Hidden constructor
 
+        /// <summary>
+        /// Creates new <see cref="GameWindow"/> instance with specified window parameters
+        /// </summary>
+        /// <param name="parameters">Window parameters for window</param>
         public GameWindow(WindowParameters parameters)
+        {
+            ApplyWindowParams(parameters);
+            ResizeRedraw = true;
+            Current = this;
+        }
+
+        internal void ApplyWindowParams(WindowParameters parameters)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => { ApplyWndParams(parameters); }));
+            }
+            else ApplyWndParams(parameters);
+        }
+
+        private void ApplyWndParams(WindowParameters parameters)
         {
             if (parameters.Width == 0)
                 parameters.Width = 800;
             if (parameters.Height == 0)
                 parameters.Height = 600;
 
-            //SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
-            ResizeRedraw = true;
-            //DoubleBuffered = true;
-
-            WindowParameters = parameters;
+            wndParams = parameters;
             Text = WindowParameters.Title;
             ClientSize = new Size(WindowParameters.Width, WindowParameters.Height);
-            Current = this;
-            IsFullscreen = true;
         }
 
+        /// <summary>
+        /// Called on <see cref="Form.FormClosing"/> event
+        /// </summary>
+        /// <param name="e">A FormClosingEventArgs that contains the event data</param>
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            Current = null;
             base.OnFormClosing(e);
+            if (Game.IsCloseWindowExitsGame)
+            {
+                Game.Exit(0);
+            }
+            else e.Cancel = true;
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        /// <summary>
+        /// Called on <see cref="Form.Shown"/> event
+        /// </summary>
+        /// <param name="e">A EventArgs that contains the event data</param>
+        protected override void OnShown(EventArgs e)
         {
-            if (Game.Renderer != null)
-                Game.Renderer.Render();
-            Invalidate();
-        }
-
-        protected override void OnResizeEnd(EventArgs e)
-        {
-            //if (Game.Renderer != null)
-            //    Game.Renderer.Resize(ClientSize.Width, ClientSize.Height);
+            Game.RaiseGameInitialized();
         }
     }
 }
