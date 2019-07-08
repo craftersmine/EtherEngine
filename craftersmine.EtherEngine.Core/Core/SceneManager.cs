@@ -6,16 +6,24 @@ using System.Threading.Tasks;
 
 namespace craftersmine.EtherEngine.Core
 {
+    /// <summary>
+    /// Represents scene manager. This class cannot be inherited
+    /// </summary>
     public sealed class SceneManager
     {
+        /// <summary>
+        /// Gets current loaded scene
+        /// </summary>
         public static Scene CurrentScene { get; private set; }
 
-        public static void LoadScene(string name)
-        { }
-
+        /// <summary>
+        /// Loads scene instance into memory and executes load methods
+        /// </summary>
+        /// <param name="scene">Scene instance</param>
         public static void LoadScene(Scene scene)
         {
-            CurrentScene = scene;
+            CurrentScene = scene ?? throw new ArgumentNullException(nameof(scene), "Scene cannot be null");
+            CurrentScene.OnCreate();
         }
     }
 }
