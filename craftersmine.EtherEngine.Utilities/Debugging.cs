@@ -108,6 +108,7 @@ namespace craftersmine.EtherEngine.Utilities
         /// </summary>
         /// <param name="prefix">Log entry prefix</param>
         /// <param name="exception">Exception to write</param>
+        /// <param name="isOnlyConsole">true if output must be only into console, otherwise false</param>
         public static void LogException(LogEntryType prefix, Exception exception, bool isOnlyConsole = false)
         {
             Logger?.LogException(prefix, exception, isOnlyConsole);
