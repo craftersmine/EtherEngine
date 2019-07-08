@@ -50,6 +50,10 @@ namespace craftersmine.EtherEngine.Utilities
         /// Occurs when Update beind called
         /// </summary>
         public event EventHandler<UpdateEventArgs> Update;
+        /// <summary>
+        /// Occurs only when update timer is paused
+        /// </summary>
+        public event EventHandler<UpdateEventArgs> PausedUpdate;
         //public TimeSpan LastUpdateTime { get { return _last; } }
         //public TimeSpan LagTime { get { return _lag; } }
 
@@ -92,6 +96,9 @@ namespace craftersmine.EtherEngine.Utilities
             _updaterThread.Start();
         }
 
+        /// <summary>
+        /// Pauses timer
+        /// </summary>
         public void Pause()
         {
             CurrentState = TimerState.Paused;
@@ -103,7 +110,11 @@ namespace craftersmine.EtherEngine.Utilities
             while (CurrentState == TimerState.Active || CurrentState == TimerState.Paused)
             {
                 while (CurrentState == TimerState.Paused)
-                { }
+                {
+                    if (CurrentState == TimerState.Active || CurrentState == TimerState.Stopped)
+                        break;
+                    PausedUpdate?.Invoke(null, UpdateEventArgs.Empty);
+                }
 
                 _current = _stopwatch.Elapsed;
                 _elapsed = _current - _last;
@@ -147,12 +158,29 @@ namespace craftersmine.EtherEngine.Utilities
         /// Update delta time
         /// </summary>
         public TimeSpan DeltaTime { get; set; }
+
+        /// <summary>
+        /// Contains empty event args
+        /// </summary>
+        public new static readonly UpdateEventArgs Empty = new UpdateEventArgs();
     }
 
+    /// <summary>
+    /// Contains timer states
+    /// </summary>
     public enum TimerState
     {
+        /// <summary>
+        /// Timer is active
+        /// </summary>
         Active,
+        /// <summary>
+        /// Timer is stopped
+        /// </summary>
         Stopped,
+        /// <summary>
+        /// Timer is paused
+        /// </summary>
         Paused
     }
 }
