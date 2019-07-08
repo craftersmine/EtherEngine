@@ -80,7 +80,7 @@
       <Name>craftersmine.EtherEngine.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\craftersmine.EtherEngine.Utilities\craftersmine.EtherEngine.Utilities.csproj">
-      <Project>{3DF06375-A8CE-475D-965D-08EEBE7DAB27}</Project>
+      <Project>{3df06375-a8ce-475d-965d-08eebe7dab27}</Project>
       <Name>craftersmine.EtherEngine.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
