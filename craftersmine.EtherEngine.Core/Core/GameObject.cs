@@ -27,6 +27,7 @@ namespace craftersmine.EtherEngine.Core
         /// <summary>
         /// Gets or sets object opacity
         /// </summary>
+        [Obsolete("Will be removed in future versions, use RendererComponen.Material.Opacity instead")]
         public float ObjectOpacity { get; set; } = 1.0f;
 
         /// <summary>
@@ -119,7 +120,7 @@ namespace craftersmine.EtherEngine.Core
         /// <summary>
         /// Calls when engine performs a draw
         /// </summary>
-        [Obsolete("Use component GameObjectRenderer.OnRender() instead")]
+        [Obsolete("Use component RendererComponent.OnRender() instead")]
         public void OnRender(RenderTarget renderTarget)
         {
             
