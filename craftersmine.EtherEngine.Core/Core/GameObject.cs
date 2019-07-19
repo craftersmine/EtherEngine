@@ -69,7 +69,7 @@ namespace craftersmine.EtherEngine.Core
                 if (component.GetType().GetInterfaces().Contains(typeof(T)))
                     return (T)component;
             }
-            return default;
+            return default(T);
         }
 
         /// <summary>
