@@ -12,7 +12,7 @@ namespace craftersmine.EtherEngine.Core
     /// <summary>
     /// Represents a basic game object
     /// </summary>
-    public class GameObject : IRenderable
+    public class GameObject
     {
         /// <summary>
         /// Object transformation
@@ -25,11 +25,6 @@ namespace craftersmine.EtherEngine.Core
         public CollisionBox CollisionBox;
 
         /// <summary>
-        /// Gets or sets object texture
-        /// </summary>
-        public Texture Texture { get; set; }
-
-        /// <summary>
         /// Gets or sets object opacity
         /// </summary>
         public float ObjectOpacity { get; set; } = 1.0f;
@@ -40,26 +35,52 @@ namespace craftersmine.EtherEngine.Core
         public Color ObjectTint { get; set; }
 
         /// <summary>
+        /// Gets or sets game object component collection
+        /// </summary>
+        public GameObjectComponentCollection Components { get; set; }
+
+        /// <summary>
         /// Creates new instance of <see cref="GameObject"/>
         /// </summary>
         public GameObject()
         {
             Transform = new Transform();
             CollisionBox = CollisionBox.Empty;
+            Components = new GameObjectComponentCollection();
+            Components.Add(new SpriteRenderer());
+        }
+
+        /// <summary>
+        /// Searches component of specified type and returns first entry
+        /// </summary>
+        /// <typeparam name="T">Component type to get</typeparam>
+        /// <returns></returns>
+        public T GetComponent<T>()
+        {
+            foreach (var component in Components)
+            {
+                if (component.GetType() == typeof(T))
+                    return (T)component;
+                if (component.GetType().IsAssignableFrom(typeof(T)))
+                    return (T)component;
+                if (component.GetType().IsSubclassOf(typeof(T)))
+                    return (T)component;
+                if (component.GetType().GetInterfaces().Contains(typeof(T)))
+                    return (T)component;
+            }
+            return default;
         }
 
         /// <summary>
         /// Calls every game update
         /// </summary>
-        /// <param name="deltaTime">Delta time</param>
-        public virtual void OnUpdate(float deltaTime)
+        public virtual void OnUpdate()
         { }
 
         /// <summary>
         /// Calls every fixed game update
         /// </summary>
-        /// <param name="deltaTime">Delta time</param>
-        public virtual void OnFixedUpdate(float deltaTime)
+        public virtual void OnFixedUpdate()
         { }
 
         /// <summary>
@@ -70,29 +91,38 @@ namespace craftersmine.EtherEngine.Core
 
         }
 
-        internal void InternalOnFixedUpdate(float deltaTime)
+        internal void InternalOnCreate()
+        {
+            foreach (var component in Components)
+                component.OnCreate(this);
+            OnCreate();
+        }
+
+        internal void InternalOnFixedUpdate()
         {
             CollisionBox.ObjectX = Transform.X;
             CollisionBox.ObjectY = Transform.Y;
             CollisionBox.ObjectCameraX = Transform.CameraX;
             CollisionBox.ObjectCameraY = Transform.CameraY;
-            OnFixedUpdate(deltaTime);
+            foreach (var component in Components)
+                component.OnFixedUpdate();
+            OnFixedUpdate();
         }
 
-        internal void InternalOnUpdate(float deltaTime)
+        internal void InternalOnUpdate()
         {
-            OnUpdate(deltaTime);
+            foreach (var component in Components)
+                component.OnUpdate();
+            OnUpdate();
         }
 
         /// <summary>
         /// Calls when engine performs a draw
         /// </summary>
+        [Obsolete("Use component GameObjectRenderer.OnRender() instead")]
         public void OnRender(RenderTarget renderTarget)
         {
-            if (Texture != null)
-            {
-                renderTarget.DrawBitmap(Texture.Bitmap, Transform.DrawingBoundings, ObjectOpacity, (BitmapInterpolationMode)Game.Renderer.InterpolationMode);
-            }
+            
         }
     }
 }
