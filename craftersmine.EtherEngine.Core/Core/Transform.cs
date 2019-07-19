@@ -14,10 +14,10 @@ namespace craftersmine.EtherEngine.Core
     {
         private float xPos;
         private float yPos;
+        private float camXPos;
+        private float camYPos;
         private float width;
         private float height;
-        private float rotationAngle;
-        private Vector2 rotationOrigin;
 
         /// <summary>
         /// Gets or sets object position along X axis
@@ -35,62 +35,30 @@ namespace craftersmine.EtherEngine.Core
         /// Gets or sets object height
         /// </summary>
         public float Height { get { return height; } set { height = value; UpdateBoundsRectangle(); } }
-        /// <summary>
-        /// Gets or sets object rotation angle
-        /// </summary>
-        public float RotationAngle { get { return rotationAngle; } set {
-                while (value > 360f)
-                    value -= 360f;
-                while (value < 0f)
-                    value += 360f;
-                rotationAngle = value;
-            } }
-        /// <summary>
-        /// Gets or sets object rotation origin position along X axis
-        /// </summary>
-        public float RotationOriginX { get { return rotationOrigin.X; } set { rotationOrigin.X = value; } }
-        /// <summary>
-        /// Gets or sets object rotation origin position along Y axis
-        /// </summary>
-        public float RotationOriginY { get { return rotationOrigin.Y; } set { rotationOrigin.Y = value; } }
-        /// <summary>
-        /// Gets or sets object scale on X axis
-        /// </summary>
-        public float ScaleFactorX { get; set; }
-        /// <summary>
-        /// Gets or sets object scale on Y axis
-        /// </summary>
-        public float ScaleFactorY { get; set; }
 
         internal float CameraX {
             get {
-                xPos = X;
+                camXPos = X;
                 if (SceneManager.CurrentScene != null)
                     if (SceneManager.CurrentScene.Camera != null)
-                        xPos += SceneManager.CurrentScene.Camera.X;
-                return xPos;
+                        camXPos += SceneManager.CurrentScene.Camera.X;
+                return camXPos;
             }
         }
         internal float CameraY {
             get {
-                yPos = Y;
+                camYPos = Y;
                 if (SceneManager.CurrentScene != null)
                     if (SceneManager.CurrentScene.Camera != null)
-                        yPos += SceneManager.CurrentScene.Camera.Y;
-                return yPos;
+                        camYPos += SceneManager.CurrentScene.Camera.Y;
+                return camYPos;
             }
         }
-        internal RectangleF DrawingBoundings;
+        internal Rectangle DrawingBoundings;
 
-        private void UpdateBoundsRectangle()
+        internal void UpdateBoundsRectangle()
         {
-            if (DrawingBoundings == null)
-                DrawingBoundings = new RectangleF(CameraX, CameraY, Width, Height);
-
-            DrawingBoundings.Width = Width;
-            DrawingBoundings.Height = Height;
-            DrawingBoundings.X = CameraX;
-            DrawingBoundings.Y = CameraY;
+            DrawingBoundings = new Rectangle(CameraX, CameraY, Width, Height);
         }
     }
 }
