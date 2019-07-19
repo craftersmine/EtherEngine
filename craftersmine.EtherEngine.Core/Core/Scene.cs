@@ -36,6 +36,7 @@ namespace craftersmine.EtherEngine.Core
         /// <param name="gameObject">Game object</param>
         public void AddGameObject(GameObject gameObject)
         {
+            gameObject.InternalOnCreate();
             GameObjects.Add(gameObject);
         }
 
