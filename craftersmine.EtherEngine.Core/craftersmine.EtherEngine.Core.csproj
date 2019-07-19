@@ -107,6 +107,8 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Content\Texture.cs" />
+    <Compile Include="Core\BaseRenderer.cs" />
+    <Compile Include="Core\BlendMode.cs" />
     <Compile Include="Core\Camera.cs" />
     <Compile Include="Core\CollisionBox.cs" />
     <Compile Include="Core\Color.cs" />
@@ -119,11 +121,19 @@
     </Compile>
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\GameObject.cs" />
+    <Compile Include="Core\GameObjectComponentCollection.cs" />
+    <Compile Include="Core\Point.cs" />
+    <Compile Include="Core\Rectangle.cs" />
+    <Compile Include="Core\SpriteRenderer.cs" />
     <Compile Include="Core\GameUpdateHandlers.cs" />
+    <Compile Include="Core\IGameObjectComponent.cs" />
     <Compile Include="Core\InterpolationMode.cs" />
+    <Compile Include="Core\Material.cs" />
     <Compile Include="Core\Scene.cs" />
     <Compile Include="Core\SceneManager.cs" />
     <Compile Include="Core\SystemEnvironment.cs" />
+    <Compile Include="Core\TilingMode.cs" />
+    <Compile Include="Core\Time.cs" />
     <Compile Include="Core\Transform.cs" />
     <Compile Include="Core\VSyncMode.cs" />
     <Compile Include="Exceptions\DeviceInitializationException.cs" />
@@ -146,6 +156,7 @@
     <Compile Include="Core\WindowParameters.cs" />
     <Compile Include="Renderer\IRenderable.cs" />
     <Compile Include="Renderer\Renderer.cs" />
+    <Compile Include="Renderer\RenderFrame.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\craftersmine.EtherEngine.Utilities\craftersmine.EtherEngine.Utilities.csproj">
