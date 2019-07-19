@@ -50,11 +50,12 @@ namespace TestGame
             base.OnCreate();
             Debugging.Log(LogEntryType.Info, "FirstScene.OnCreate called!");
             GameObject test1 = new GameObject();
-            test1.Texture = Texture.FromFile(@"D:\Desktop\tiling.png");
-            test1.Transform.Width = test1.Texture.Width;
-            test1.Transform.Height = test1.Texture.Height;
+            Material mat = new Material(Texture.FromFile(@"D:\Desktop\tiling.png"));
+            test1.Transform.Width = mat.Texture.Width;
+            test1.Transform.Height = mat.Texture.Height;
             test1.Transform.X = 10;
             test1.Transform.Y = 10;
+            test1.GetComponent<SpriteRenderer>().Material = mat;
             test1.CollisionBox.Height = 10f;
             test1.CollisionBox.Width = 10f;
             test1.CollisionBox.OffsetX = 5f;
@@ -67,27 +68,34 @@ namespace TestGame
         public override void OnFixedUpdate(float deltaTime)
         {
             base.OnFixedUpdate(deltaTime);
-            count++;
-            if (count == 600)
-                SceneManager.LoadScene(new SecondScene());
+            //count++;
+            //if (count == 600)
+            //    SceneManager.LoadScene(new SecondScene());
         }
+
+        public float velocity = 1f;
 
         public override void OnUpdate(float deltaTime)
         {
-            base.OnUpdate(deltaTime);
             if (Keyboard.IsKeyPressed(Key.W))
-                Camera.Y -= 0.1f * deltaTime;
-            if (Keyboard.IsKeyPressed(Key.A))
-                Camera.X -= 0.1f * deltaTime;
-            if (Keyboard.IsKeyPressed(Key.S))
-                Camera.Y += 0.1f * deltaTime;
-            if (Keyboard.IsKeyPressed(Key.D))
-                Camera.X += 0.1f * deltaTime;
-            if (Keyboard.GetKeyState(Key.P).IsPressed)
             {
-                if (!Game.IsPaused)
-                    Game.Pause();
-                else Game.Resume();
+                Debugging.Log(LogEntryType.Debug, "W pressed");
+                Camera.Y -= velocity * Time.DeltaTime;
+            }
+            if (Keyboard.IsKeyPressed(Key.A))
+            {
+                Debugging.Log(LogEntryType.Debug, "A pressed");
+                Camera.X -= velocity * Time.DeltaTime;
+            }
+            if (Keyboard.IsKeyPressed(Key.S))
+            {
+                Debugging.Log(LogEntryType.Debug, "S pressed");
+                Camera.Y += velocity * Time.DeltaTime;
+            }
+            if (Keyboard.IsKeyPressed(Key.D))
+            {
+                Debugging.Log(LogEntryType.Debug, "D pressed");
+                Camera.X += velocity * Time.DeltaTime;
             }
         }
     }
