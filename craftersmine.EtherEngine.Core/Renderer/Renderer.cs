@@ -14,6 +14,7 @@ using DW = SharpDX.DirectWrite;
 using SharpDX.Windows;
 using craftersmine.EtherEngine.Exceptions;
 using craftersmine.EtherEngine.Utilities;
+using System.Diagnostics;
 
 namespace craftersmine.EtherEngine.Renderer
 {
@@ -54,6 +55,10 @@ namespace craftersmine.EtherEngine.Renderer
         // ==================================== //
 
         private IntPtr GameWindowHandle;
+        private Stopwatch Clock;
+        private int FrameCount;
+        private float TotalTime;
+        private RenderFrame RenderFrame;
 
         private Renderer() { } // Hidden contructor
 
@@ -121,6 +126,10 @@ namespace craftersmine.EtherEngine.Renderer
                 // Initialize debug drawings brushes
                 DrawingBoundsBrush = new D2D1.SolidColorBrush(RenderTarget, new SharpDX.Color(1f, 1f, 0f));
                 CollisionBoxesBrush = new D2D1.SolidColorBrush(RenderTarget, new SharpDX.Color(1f, 0f, 0f));
+
+                RenderFrame = new RenderFrame(RenderTarget);
+
+                Clock = Stopwatch.StartNew();
             }
             catch (Exception ex)
             {
@@ -147,6 +156,7 @@ namespace craftersmine.EtherEngine.Renderer
             IsRendererSuppressed = true;
             ReleaseDevices();
             InitializeDevices();
+            Clock.Restart();
             IsRendererSuppressed = false;
         }
 
@@ -194,13 +204,15 @@ namespace craftersmine.EtherEngine.Renderer
                 {
                     if (!RenderTarget.IsDisposed)
                     {
+                        CountFPS(); // === Start count frame time
+
                         RenderTarget.BeginDraw();
 
-                        RenderTarget.Clear(SceneManager.CurrentScene.BackgroundColor.Color4);
+                        RenderTarget.Clear(SceneManager.CurrentScene.BackgroundColor.RawColor);
                         
                         for (int obj = 0; obj < SceneManager.CurrentScene.GameObjects.Count; obj++)
                         {
-                            SceneManager.CurrentScene.GameObjects[obj].OnRender(RenderTarget);
+                            SceneManager.CurrentScene.GameObjects[obj].GetComponent<IRenderable>().OnRender(RenderFrame);
                             RenderTarget.Transform = Matrix3x2.Identity;
                         }
 
@@ -208,7 +220,7 @@ namespace craftersmine.EtherEngine.Renderer
                         {
                             for (int obj = 0; obj < SceneManager.CurrentScene.GameObjects.Count; obj++)
                             {
-                                RenderTarget.DrawRectangle(SceneManager.CurrentScene.GameObjects[obj].Transform.DrawingBoundings, DrawingBoundsBrush);
+                                RenderTarget.DrawRectangle(SceneManager.CurrentScene.GameObjects[obj].Transform.DrawingBoundings.RawRectangle, DrawingBoundsBrush);
                                 RenderTarget.DrawRectangle(SceneManager.CurrentScene.GameObjects[obj].CollisionBox.ColliderBounds, CollisionBoxesBrush);
                                 RenderTarget.Transform = Matrix3x2.Identity;
                             }
@@ -230,8 +242,24 @@ namespace craftersmine.EtherEngine.Renderer
                                 SwapChain.Present(2, DXGI.PresentFlags.None);
                                 break;
                         }
+
+                        Clock.Restart(); // === End count frame time
                     }
                 }
+            }
+        }
+
+        private void CountFPS()
+        {
+            FrameCount++;
+            Debugging.FrameTime = (float)Clock.ElapsedTicks / Stopwatch.Frequency;
+            TotalTime += Debugging.FrameTime;
+            if (TotalTime >= 1.0f)
+            {
+                Debugging.FPS = (float)FrameCount / TotalTime;
+
+                FrameCount = 0;
+                TotalTime = 0;
             }
         }
     }
