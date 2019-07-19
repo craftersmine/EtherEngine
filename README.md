@@ -31,7 +31,4 @@ Statuses:
 | Game Engine Type        | ![2D Game Engine](https://img.shields.io/badge/game%20engine-2D-green.svg)                 	              |
 
 
-* Uses OpenTK Library under MIT licence and can be found [here](https://github.com/opentk/opentk)
-* Uses GLGDI Library by dmbreaker and can be found [here](https://github.com/dmbreaker/glgdiplus)
-* Uses XInput Wrapper Library by nicvoronin under MIT license and can be found [here](https://github.com/nikvoronin/XInput.Wrapper)
-* Uses NVorbis and NVorbis.OpenTKSupport Libraries by ioctlLR under Microsoft Public License and can be found [here](https://github.com/ioctlLR/NVorbis)
+* Uses SharpDX library made by Alexandre Mutel aka xoofx and can be found [![here](https://github.com/sharpdx/SharpDX)] under MIT license
