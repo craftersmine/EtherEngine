@@ -17,7 +17,7 @@ namespace craftersmine.EtherEngine.Core
                 SceneManager.CurrentScene.OnFixedUpdate((float)e.DeltaTime.TotalMilliseconds);
                 for (int obj = 0; obj < SceneManager.CurrentScene.GameObjects.Count; obj++)
                 {
-                    SceneManager.CurrentScene.GameObjects[obj].InternalOnFixedUpdate((float)e.DeltaTime.TotalMilliseconds);
+                    SceneManager.CurrentScene.GameObjects[obj].InternalOnFixedUpdate();
                 }
             }
         }
@@ -29,7 +29,7 @@ namespace craftersmine.EtherEngine.Core
                 SceneManager.CurrentScene.OnUpdate((float)e.DeltaTime.TotalMilliseconds);
                 for (int obj = 0; obj < SceneManager.CurrentScene.GameObjects.Count; obj++)
                 {
-                    SceneManager.CurrentScene.GameObjects[obj].InternalOnUpdate((float)e.DeltaTime.TotalMilliseconds);
+                    SceneManager.CurrentScene.GameObjects[obj].InternalOnUpdate();
                 }
             }
         }
