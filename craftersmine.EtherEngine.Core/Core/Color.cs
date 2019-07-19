@@ -8,28 +8,28 @@ using System.Threading.Tasks;
 namespace craftersmine.EtherEngine.Core
 {
     /// <summary>
-    /// Represents and RGB/RGBA color. This class cannot be inherited
+    /// Represents and RGB/RGBA color
     /// </summary>
-    public sealed class Color
+    public struct Color
     {
-        internal Color4 Color4 { get; set; }
+        internal Color4 RawColor { get; set; }
 
         /// <summary>
         /// Gets a Red component of color
         /// </summary>
-        public float R { get { return Color4.Red; } }
+        public float R { get { return RawColor.Red; } }
         /// <summary>
         /// Gets a Green component of color
         /// </summary>
-        public float G { get { return Color4.Green; } }
+        public float G { get { return RawColor.Green; } }
         /// <summary>
         /// Gets a Blue component of color
         /// </summary>
-        public float B { get { return Color4.Blue; } }
+        public float B { get { return RawColor.Blue; } }
         /// <summary>
         /// Gets a Alpha value of color
         /// </summary>
-        public float A { get { return Color4.Alpha; } }
+        public float A { get { return RawColor.Alpha; } }
         
         /// <summary>
         /// Creates a color from specified Red, Green, Blue and Alpha values
@@ -40,7 +40,7 @@ namespace craftersmine.EtherEngine.Core
         /// <param name="a">Alpha value of color</param>
         public Color(float r, float g, float b, float a)
         {
-            Color4 = new Color4(r, g, b, a);
+            RawColor = new Color4(r, g, b, a);
         }
 
         /// <summary>
@@ -70,14 +70,14 @@ namespace craftersmine.EtherEngine.Core
         /// <param name="rgba"></param>
         public Color(int rgba)
         {
-            Color4 = new Color4(rgba);
+            RawColor = new Color4(rgba);
         }
 
         /// <summary>
         /// [INTERNAL] Creates color from specified DirectX color
         /// </summary>
         /// <param name="color4">Internal DirectX raw color instance</param>
-        internal Color(Color4 color4) { Color4 = color4; }
+        internal Color(Color4 color4) { RawColor = color4; }
 
         /// <summary>
         /// Adds two colors
@@ -87,7 +87,7 @@ namespace craftersmine.EtherEngine.Core
         /// <returns></returns>
         public static Color Add(Color color1, Color color2)
         {
-            return new Color(Color4.Add(color1.Color4, color2.Color4));
+            return new Color(Color4.Add(color1.RawColor, color2.RawColor));
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace craftersmine.EtherEngine.Core
         /// <returns></returns>
         public static Color Subtract(Color color1, Color color2)
         {
-            return new Color(Color4.Subtract(color1.Color4, color1.Color4));
+            return new Color(Color4.Subtract(color1.RawColor, color1.RawColor));
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace craftersmine.EtherEngine.Core
         /// <returns></returns>
         public static Color Clamp(Color color, Color min, Color max)
         {
-            return new Color(Color4.Clamp(color.Color4, min.Color4, max.Color4));
+            return new Color(Color4.Clamp(color.RawColor, min.RawColor, max.RawColor));
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace craftersmine.EtherEngine.Core
         /// <returns></returns>
         public static Color Premultiply(Color color)
         {
-            return new Color(Color4.Premultiply(color.Color4));
+            return new Color(Color4.Premultiply(color.RawColor));
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace craftersmine.EtherEngine.Core
         /// <returns></returns>
         public static Color Modulate(Color color1, Color color2)
         {
-            return new Color(Color4.Modulate(color1.Color4, color2.Color4));
+            return new Color(Color4.Modulate(color1.RawColor, color2.RawColor));
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace craftersmine.EtherEngine.Core
         /// <returns></returns>
         public static Color Negate(Color color)
         {
-            return new Color(Color4.Negate(color.Color4));
+            return new Color(Color4.Negate(color.RawColor));
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace craftersmine.EtherEngine.Core
         /// <returns></returns>
         public static Color Min(Color color1, Color color2)
         {
-            return new Color(Color4.Min(color1.Color4, color2.Color4));
+            return new Color(Color4.Min(color1.RawColor, color2.RawColor));
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace craftersmine.EtherEngine.Core
         /// <returns></returns>
         public static Color Max(Color color1, Color color2)
         {
-            return new Color(Color4.Max(color1.Color4, color2.Color4));
+            return new Color(Color4.Max(color1.RawColor, color2.RawColor));
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace craftersmine.EtherEngine.Core
         /// <returns></returns>
         public static Color Lerp(Color color1, Color color2, float value)
         {
-            return new Color(Color4.Lerp(color1.Color4, color2.Color4, value));
+            return new Color(Color4.Lerp(color1.RawColor, color2.RawColor, value));
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace craftersmine.EtherEngine.Core
         /// <returns></returns>
         public static Color Scale(Color color, float value)
         {
-            return new Color(Color4.Scale(color.Color4, value));
+            return new Color(Color4.Scale(color.RawColor, value));
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace craftersmine.EtherEngine.Core
         /// <returns></returns>
         public static Color SmoothStep(Color color1, Color color2, float value)
         {
-            return new Color(Color4.SmoothStep(color1.Color4, color2.Color4, value));
+            return new Color(Color4.SmoothStep(color1.RawColor, color2.RawColor, value));
         }
 
         /// <summary>
@@ -209,7 +209,7 @@ namespace craftersmine.EtherEngine.Core
         /// <returns></returns>
         public static Color AdjustContrast(Color color, float contrast)
         {
-            return new Color(Color4.AdjustContrast(color.Color4, contrast));
+            return new Color(Color4.AdjustContrast(color.RawColor, contrast));
         }
 
         /// <summary>
@@ -220,7 +220,7 @@ namespace craftersmine.EtherEngine.Core
         /// <returns></returns>
         public static Color AdjustSaturation(Color color, float saturation)
         {
-            return new Color(Color4.AdjustSaturation(color.Color4, saturation));
+            return new Color(Color4.AdjustSaturation(color.RawColor, saturation));
         }
     }
 }
