@@ -1,70 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28902.138
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.Rendering", "craftersmine.EtherEngine.Rendering\craftersmine.EtherEngine.Rendering.csproj", "{80C1146F-572F-451C-8730-CC33C04DCBC8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.Core", "craftersmine.EtherEngine.Core\craftersmine.EtherEngine.Core.csproj", "{EAD520F6-2DEF-4667-8414-4D8262D59E70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.Rendering.Tester", "craftersmine.EtherEngine.Rendering.Tester\craftersmine.EtherEngine.Rendering.Tester.csproj", "{11A7CF2E-C87D-401F-92B5-F1D2E51E32BD}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testers", "Testers", "{E53AC1B3-3A96-4C02-8290-A34E533604EE}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{DCC01A6D-63FE-4102-AB23-6FD712B7A691}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Global", "_Global", "{D337D195-7756-4ECC-A872-B949C0E2BDC5}"
 	ProjectSection(SolutionItems) = preProject
-		Libraries\GLGDIPlus.dll = Libraries\GLGDIPlus.dll
-		Libraries\GLGDIPlus.xml = Libraries\GLGDIPlus.xml
-		Libraries\NVorbis.dll = Libraries\NVorbis.dll
-		Libraries\NVorbis.OpenTKSupport.dll = Libraries\NVorbis.OpenTKSupport.dll
-		Libraries\NVorbis.OpenTKSupport.xml = Libraries\NVorbis.OpenTKSupport.xml
-		Libraries\NVorbis.xml = Libraries\NVorbis.xml
-		Libraries\OpenTK.Compatibility.dll = Libraries\OpenTK.Compatibility.dll
-		Libraries\OpenTK.dll = Libraries\OpenTK.dll
-		Libraries\OpenTK.GLControl.dll = Libraries\OpenTK.GLControl.dll
-		Libraries\OpenTK.GLControl.xml = Libraries\OpenTK.GLControl.xml
-		Libraries\OpenTK.xml = Libraries\OpenTK.xml
-		Libraries\RazorGDI.dll = Libraries\RazorGDI.dll
-		Libraries\XInput.Wrapper.dll = Libraries\XInput.Wrapper.dll
+		..\_Global\GlobalAssemblyInfo.cs = ..\_Global\GlobalAssemblyInfo.cs
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{70943BFB-7AD2-445E-8AAE-205EA98ABED1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGame", "TestGame\TestGame.csproj", "{644ADFE4-4D9C-4583-988F-9F18E7D460B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{D6D51843-5466-4DC1-9679-F133906DA616}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.Utilities", "craftersmine.EtherEngine.Utilities\craftersmine.EtherEngine.Utilities.csproj", "{3DF06375-A8CE-475D-965D-08EEBE7DAB27}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.Content", "craftersmine.EtherEngine.Content\craftersmine.EtherEngine.Content.csproj", "{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.Core", "craftersmine.EtherEngine.Core\craftersmine.EtherEngine.Core.csproj", "{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Global", "_Global", "{B5E6C975-7725-4C6D-8E08-3A06A6F539D2}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		_Global\GlobalAssemblyInfo.cs = _Global\GlobalAssemblyInfo.cs
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.Input", "craftersmine.EtherEngine.Input\craftersmine.EtherEngine.Input.csproj", "{EB866C13-3350-4AAE-BABA-42B69156F57D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TesterContent", "TesterContent", "{F56B4C0C-995C-430A-8223-2DEBB535768D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{3D2F66FF-37F1-4B82-8201-95633B775AE3}"
-	ProjectSection(SolutionItems) = preProject
-		TesterContent\content\root\Animation.eam = TesterContent\content\root\Animation.eam
-		TesterContent\content\root\metadata.epm = TesterContent\content\root\metadata.epm
-		TesterContent\content\root\TestAnim.etx = TesterContent\content\root\TestAnim.etx
-		TesterContent\content\root\TestCircle.etx = TesterContent\content\root\TestCircle.etx
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.GDK", "craftersmine.EtherEngine.GDK\craftersmine.EtherEngine.GDK.csproj", "{6DC3CB14-144F-4C3F-B38F-CFC87FACEA1D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GDK", "GDK", "{5A6E0A95-F52F-42B5-A413-F686EEA09F89}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.GDK.Editor.Texture", "craftersmine.EtherEngine.GDK.Editor.Texture\craftersmine.EtherEngine.GDK.Editor.Texture.csproj", "{8B2C15CB-01CE-4356-A6B2-03B081BEAEC5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{C98D3048-001C-437D-87F1-9FA78012BE2A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.GDK.Utilities", "craftersmine.EtherEngine.GDK.Core\craftersmine.EtherEngine.GDK.Utilities.csproj", "{68123AC1-59C4-4274-B71F-050DB752A9D1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{CE3ECE92-4628-4741-B9DD-6B122089BE9C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craftersmine.EtherEngine.GDK.TextureEditor", "craftersmine.EtherEngine.GDK.TextureEditor\craftersmine.EtherEngine.GDK.TextureEditor.csproj", "{2062676F-1C15-4BE1-AE11-94D1114EEC4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,67 +22,27 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{80C1146F-572F-451C-8730-CC33C04DCBC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80C1146F-572F-451C-8730-CC33C04DCBC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80C1146F-572F-451C-8730-CC33C04DCBC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80C1146F-572F-451C-8730-CC33C04DCBC8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{11A7CF2E-C87D-401F-92B5-F1D2E51E32BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{11A7CF2E-C87D-401F-92B5-F1D2E51E32BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{11A7CF2E-C87D-401F-92B5-F1D2E51E32BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{11A7CF2E-C87D-401F-92B5-F1D2E51E32BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAD520F6-2DEF-4667-8414-4D8262D59E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAD520F6-2DEF-4667-8414-4D8262D59E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAD520F6-2DEF-4667-8414-4D8262D59E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAD520F6-2DEF-4667-8414-4D8262D59E70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{644ADFE4-4D9C-4583-988F-9F18E7D460B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{644ADFE4-4D9C-4583-988F-9F18E7D460B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{644ADFE4-4D9C-4583-988F-9F18E7D460B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{644ADFE4-4D9C-4583-988F-9F18E7D460B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3DF06375-A8CE-475D-965D-08EEBE7DAB27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3DF06375-A8CE-475D-965D-08EEBE7DAB27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DF06375-A8CE-475D-965D-08EEBE7DAB27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DF06375-A8CE-475D-965D-08EEBE7DAB27}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB866C13-3350-4AAE-BABA-42B69156F57D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB866C13-3350-4AAE-BABA-42B69156F57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB866C13-3350-4AAE-BABA-42B69156F57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB866C13-3350-4AAE-BABA-42B69156F57D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6DC3CB14-144F-4C3F-B38F-CFC87FACEA1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DC3CB14-144F-4C3F-B38F-CFC87FACEA1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DC3CB14-144F-4C3F-B38F-CFC87FACEA1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DC3CB14-144F-4C3F-B38F-CFC87FACEA1D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8B2C15CB-01CE-4356-A6B2-03B081BEAEC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B2C15CB-01CE-4356-A6B2-03B081BEAEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B2C15CB-01CE-4356-A6B2-03B081BEAEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B2C15CB-01CE-4356-A6B2-03B081BEAEC5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{68123AC1-59C4-4274-B71F-050DB752A9D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{68123AC1-59C4-4274-B71F-050DB752A9D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{68123AC1-59C4-4274-B71F-050DB752A9D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{68123AC1-59C4-4274-B71F-050DB752A9D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2062676F-1C15-4BE1-AE11-94D1114EEC4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2062676F-1C15-4BE1-AE11-94D1114EEC4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2062676F-1C15-4BE1-AE11-94D1114EEC4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2062676F-1C15-4BE1-AE11-94D1114EEC4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{80C1146F-572F-451C-8730-CC33C04DCBC8} = {70943BFB-7AD2-445E-8AAE-205EA98ABED1}
-		{11A7CF2E-C87D-401F-92B5-F1D2E51E32BD} = {E53AC1B3-3A96-4C02-8290-A34E533604EE}
-		{3DF06375-A8CE-475D-965D-08EEBE7DAB27} = {70943BFB-7AD2-445E-8AAE-205EA98ABED1}
-		{C7AB00EE-188D-4B1B-BDF5-3EF5A10FDC09} = {70943BFB-7AD2-445E-8AAE-205EA98ABED1}
-		{8EF2C5F0-D6FB-4E84-848D-2DCF358B66EE} = {70943BFB-7AD2-445E-8AAE-205EA98ABED1}
-		{EB866C13-3350-4AAE-BABA-42B69156F57D} = {70943BFB-7AD2-445E-8AAE-205EA98ABED1}
-		{F56B4C0C-995C-430A-8223-2DEBB535768D} = {E53AC1B3-3A96-4C02-8290-A34E533604EE}
-		{3D2F66FF-37F1-4B82-8201-95633B775AE3} = {F56B4C0C-995C-430A-8223-2DEBB535768D}
-		{6DC3CB14-144F-4C3F-B38F-CFC87FACEA1D} = {CE3ECE92-4628-4741-B9DD-6B122089BE9C}
-		{8B2C15CB-01CE-4356-A6B2-03B081BEAEC5} = {C98D3048-001C-437D-87F1-9FA78012BE2A}
-		{C98D3048-001C-437D-87F1-9FA78012BE2A} = {5A6E0A95-F52F-42B5-A413-F686EEA09F89}
-		{68123AC1-59C4-4274-B71F-050DB752A9D1} = {C98D3048-001C-437D-87F1-9FA78012BE2A}
-		{CE3ECE92-4628-4741-B9DD-6B122089BE9C} = {5A6E0A95-F52F-42B5-A413-F686EEA09F89}
-		{2062676F-1C15-4BE1-AE11-94D1114EEC4B} = {CE3ECE92-4628-4741-B9DD-6B122089BE9C}
+		{EAD520F6-2DEF-4667-8414-4D8262D59E70} = {D6D51843-5466-4DC1-9679-F133906DA616}
+		{3DF06375-A8CE-475D-965D-08EEBE7DAB27} = {D6D51843-5466-4DC1-9679-F133906DA616}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0E51B78D-0686-437C-84E4-590D39C15F5F}
+		SolutionGuid = {2561AEBB-1BB9-4684-8B8A-D5EEB8CD4AEE}
 	EndGlobalSection
 EndGlobal

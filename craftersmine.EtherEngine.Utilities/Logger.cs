@@ -99,34 +99,35 @@ namespace craftersmine.EtherEngine.Utilities
         /// </summary>
         /// <param name="prefix">Lines prefixes</param>
         /// <param name="exception"><see cref="Exception"/> to write</param>
-        public void LogException(LogEntryType prefix, Exception exception)
+        /// <param name="isOnlyConsole">If <code>true</code> log line will be only in console, else writes at file also</param>
+        public void LogException(LogEntryType prefix, Exception exception, bool isOnlyConsole = false)
         {
             if (exception != null)
             {
-                Log(prefix, "An exception has occurred!");
-                Log(prefix, "Exception message: " + exception.Message);
-                Log(prefix, "Exception type: " + exception.GetType().ToString());
+                Log(prefix, "An exception has occurred!", isOnlyConsole);
+                Log(prefix, "Exception message: " + exception.Message, isOnlyConsole);
+                Log(prefix, "Exception type: " + exception.GetType().ToString(), isOnlyConsole);
                 if (exception.StackTrace != null)
                 {
                     string[] stacktrace = exception.StackTrace.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-                    Log(prefix, "==== START OF STACKTRACE ====");
+                    Log(prefix, "==== START OF STACKTRACE ====", isOnlyConsole);
                     foreach (var stln in stacktrace)
                     {
-                        Log(prefix, stln);
+                        Log(prefix, stln, isOnlyConsole);
                     }
-                    Log(prefix, "====  END OF STACKTRACE  ====");
+                    Log(prefix, "====  END OF STACKTRACE  ====", isOnlyConsole);
                 }
-                else Log(prefix, "No Stacktrace collected!");
+                else Log(prefix, "No Stacktrace collected!", isOnlyConsole);
                 if (exception.InnerException != null)
                 {
-                    Log(prefix, "");
-                    LogException(prefix, exception.InnerException);
+                    Log(prefix, "", isOnlyConsole);
+                    LogException(prefix, exception.InnerException, isOnlyConsole);
                 }
             }
             else
             {
-                Log(prefix, "An exception has occurred!");
-                Log(prefix, "Exception was null! No additional information!");
+                Log(prefix, "An exception has occurred!", isOnlyConsole);
+                Log(prefix, "Exception was null! No additional information!", isOnlyConsole);
             }
         }
     }

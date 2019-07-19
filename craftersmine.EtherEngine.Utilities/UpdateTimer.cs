@@ -19,15 +19,16 @@ namespace craftersmine.EtherEngine.Utilities
         private TimeSpan _tpsAccumulator;
         private int fixedTicks;
         private int ticks;
+        private float _updateFreq;
         
         /// <summary>
-        /// Gets true if timer is active, otherwise false
+        /// Gets timer current state
         /// </summary>
-        public bool IsActive { get; private set; }
+        public TimerState CurrentState { get; private set; }
         /// <summary>
         /// Gets current timer frequency
         /// </summary>
-        public float UpdaterFrequency { get; private set; }
+        public float UpdaterFrequency { get { return _updateFreq; } set { _updateFreq = value; _updaterFrequency = TimeSpan.FromMilliseconds(1000.0f / _updateFreq); } }
         /// <summary>
         /// Gets last fixed update elapsed time
         /// </summary>
@@ -49,6 +50,10 @@ namespace craftersmine.EtherEngine.Utilities
         /// Occurs when Update beind called
         /// </summary>
         public event EventHandler<UpdateEventArgs> Update;
+        /// <summary>
+        /// Occurs only when update timer is paused
+        /// </summary>
+        public event EventHandler<UpdateEventArgs> PausedUpdate;
         //public TimeSpan LastUpdateTime { get { return _last; } }
         //public TimeSpan LagTime { get { return _lag; } }
 
@@ -58,10 +63,9 @@ namespace craftersmine.EtherEngine.Utilities
         /// <param name="frequency">Timer update frequency</param>
         public UpdateTimer(float frequency)
         {
-            IsActive = false;
+            CurrentState = TimerState.Stopped;
             UpdaterFrequency = frequency;
             _updaterThread = new Thread(new ThreadStart(Updater));
-            _updaterFrequency = TimeSpan.FromMilliseconds(1000.0f / UpdaterFrequency);
             _stopwatch = new Stopwatch();
         }
 
@@ -70,7 +74,9 @@ namespace craftersmine.EtherEngine.Utilities
         /// </summary>
         public void Stop()
         {
-            IsActive = false;
+            if (CurrentState == TimerState.Paused)
+                CurrentState = TimerState.Active;
+            CurrentState = TimerState.Stopped;
             _stopwatch.Reset();
         }
 
@@ -79,29 +85,51 @@ namespace craftersmine.EtherEngine.Utilities
         /// </summary>
         public void Start()
         {
-            IsActive = true;
+            if (CurrentState == TimerState.Active)
+                return;
+            if (CurrentState == TimerState.Paused)
+            {
+                CurrentState = TimerState.Active;
+                return;
+            }
+            CurrentState = TimerState.Active;
             _updaterThread.Start();
+        }
+
+        /// <summary>
+        /// Pauses timer
+        /// </summary>
+        public void Pause()
+        {
+            CurrentState = TimerState.Paused;
         }
 
         private void Updater()
         {
             _stopwatch.Start();
-            while (IsActive)
+            while (CurrentState == TimerState.Active || CurrentState == TimerState.Paused)
             {
+                while (CurrentState == TimerState.Paused)
+                {
+                    if (CurrentState == TimerState.Active || CurrentState == TimerState.Stopped)
+                        break;
+                    PausedUpdate?.Invoke(null, UpdateEventArgs.Empty);
+                }
+
                 _current = _stopwatch.Elapsed;
                 _elapsed = _current - _last;
                 _lag += _elapsed;
 
-                FixedUpdate?.Invoke(this, new UpdateEventArgs() { DeltaTime = _elapsed });
-                Debugging.FixedUpdateTime = (float)_elapsed.TotalSeconds;
-                fixedTicks++;
+                Update?.Invoke(this, new UpdateEventArgs() { DeltaTime = _elapsed });
+                Debugging.UpdateTime = (float)_elapsed.TotalSeconds;
+                ticks++;
 
                 Debugging.LagTime = (float)_lag.TotalSeconds * 1000.0f;
 
                 while (_lag >= _updaterFrequency) {
-                    Update?.Invoke(this, new UpdateEventArgs() { DeltaTime = _elapsed + _lag });
-                    Debugging.UpdateTime = (float)_elapsed.TotalSeconds + (float)_lag.TotalSeconds;
-                    ticks++;
+                    FixedUpdate?.Invoke(this, new UpdateEventArgs() { DeltaTime = _elapsed + _lag });
+                    Debugging.FixedUpdateTime = ((float)_elapsed.TotalSeconds + (float)_lag.TotalSeconds);
+                    fixedTicks++;
                     _lag -= _updaterFrequency;
                 }
 
@@ -116,6 +144,8 @@ namespace craftersmine.EtherEngine.Utilities
                     _tpsAccumulator = TimeSpan.Zero;
                 }
             }
+            if (CurrentState == TimerState.Paused || CurrentState == TimerState.Active)
+                Debugging.Log(LogEntryType.Warning, "Update timer was stopped unexpectedly!");
         }
     }
 
@@ -128,5 +158,29 @@ namespace craftersmine.EtherEngine.Utilities
         /// Update delta time
         /// </summary>
         public TimeSpan DeltaTime { get; set; }
+
+        /// <summary>
+        /// Contains empty event args
+        /// </summary>
+        public new static readonly UpdateEventArgs Empty = new UpdateEventArgs();
+    }
+
+    /// <summary>
+    /// Contains timer states
+    /// </summary>
+    public enum TimerState
+    {
+        /// <summary>
+        /// Timer is active
+        /// </summary>
+        Active,
+        /// <summary>
+        /// Timer is stopped
+        /// </summary>
+        Stopped,
+        /// <summary>
+        /// Timer is paused
+        /// </summary>
+        Paused
     }
 }

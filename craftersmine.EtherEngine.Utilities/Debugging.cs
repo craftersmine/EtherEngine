@@ -24,7 +24,7 @@ namespace craftersmine.EtherEngine.Utilities
         /// <summary>
         /// Gets current game FPS
         /// </summary>
-        public static int FPS { get; internal set; }
+        public static float FPS { get; internal set; }
 
         /// <summary>
         /// Gets current game DrawCalls per frame
@@ -50,7 +50,7 @@ namespace craftersmine.EtherEngine.Utilities
         /// <summary>
         /// Gets or current game frame time
         /// </summary>
-        public static double FrameTime { get; internal set; }
+        public static float FrameTime { get; internal set; }
 
         /// <summary>
         /// Gets current game tickrate
@@ -98,6 +98,7 @@ namespace craftersmine.EtherEngine.Utilities
         /// <param name="prefix">Log entry prefix</param>
         /// <param name="contents">Log entry contents</param>
         /// <param name="isOnlyConsole">Indicates log entry must log only to console if true, else false</param>
+        [System.Diagnostics.DebuggerStepThrough]
         public static void Log(LogEntryType prefix, string contents, bool isOnlyConsole = false)
         {
             Logger?.Log(prefix, contents, isOnlyConsole);
@@ -108,9 +109,11 @@ namespace craftersmine.EtherEngine.Utilities
         /// </summary>
         /// <param name="prefix">Log entry prefix</param>
         /// <param name="exception">Exception to write</param>
-        public static void LogException(LogEntryType prefix, Exception exception)
+        /// <param name="isOnlyConsole">true if output must be only into console, otherwise false</param>
+        [System.Diagnostics.DebuggerStepThrough]
+        public static void LogException(LogEntryType prefix, Exception exception, bool isOnlyConsole = false)
         {
-            Logger?.LogException(prefix, exception);
+            Logger?.LogException(prefix, exception, isOnlyConsole);
         }
     }
 }
