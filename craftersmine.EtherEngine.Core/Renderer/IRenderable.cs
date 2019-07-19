@@ -9,6 +9,6 @@ namespace craftersmine.EtherEngine.Renderer
 {
     interface IRenderable
     {
-        void OnRender(RenderTarget renderTarget);
+        void OnRender(RenderFrame renderFrame);
     }
 }
