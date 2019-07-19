@@ -20,6 +20,7 @@ namespace craftersmine.EtherEngine.Core
         /// Gets or sets window parameters
         /// </summary>
         public WindowParameters WindowParameters { get { return wndParams; } internal set { ApplyWindowParams(value); } }
+
         /// <summary>
         /// Gets current game window instance
         /// </summary>
